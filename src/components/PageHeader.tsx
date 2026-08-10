@@ -12,11 +12,12 @@ export function PageHeader({
   crumb: string;
 }) {
   return (
-    <section className="border-b border-line bg-white">
+    <section className="border-b border-line bg-gradient-to-b from-white to-bg">
       <div className="mx-auto max-w-[1280px] px-8 py-16 md:py-20 lg:px-12">
         <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
-          Trang chủ <span className="mx-1 text-line">›</span>
-          <span className="text-navy">{crumb}</span>
+          <span className="transition-colors hover:text-accent">Trang chủ</span>
+          <span className="mx-2 text-line">›</span>
+          <span className="font-semibold text-navy">{crumb}</span>
         </nav>
         <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
           <span className="h-px w-8 bg-accent" />

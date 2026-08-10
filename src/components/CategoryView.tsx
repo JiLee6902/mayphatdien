@@ -31,14 +31,14 @@ export function CategoryView({ slug }: { slug: string }) {
 
         <p className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
           <span className="h-px w-8 bg-accent" />
-          Danh mục
+          Danh mục thiết bị
         </p>
         <h1 className="mt-4 text-[34px] font-extrabold tracking-tight text-navy md:text-[44px]">
           Cho thuê {category.name}
         </h1>
-        <p className="mt-4 max-w-2xl text-muted">{category.meta}</p>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{category.meta}</p>
 
-        <div className="mt-12">
+        <div className="mt-10 border-t border-line pt-10">
           <CategoryFilter items={equipmentByCategory(slug)} />
         </div>
       </div>

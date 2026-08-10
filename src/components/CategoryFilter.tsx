@@ -6,8 +6,8 @@ import { EquipmentCard } from '@/components/EquipmentCard';
 
 const chipBase =
   'inline-flex items-center rounded-full border px-4 py-2 text-sm font-semibold transition-colors';
-const chipActive = 'border-accent bg-accent text-white';
-const chipIdle = 'border-line bg-white text-navy hover:border-steel';
+const chipActive = 'border-navy bg-navy text-white';
+const chipIdle = 'border border-line text-ink/70 hover:border-steel';
 
 function distinct(values: string[]): string[] {
   return Array.from(new Set(values));
@@ -39,7 +39,7 @@ export function CategoryFilter({ items }: { items: Equipment[] }) {
     <div>
       <div className="flex flex-col gap-6">
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-muted">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted">
             Thương hiệu
           </p>
           <div className="flex flex-wrap gap-2">
@@ -64,7 +64,7 @@ export function CategoryFilter({ items }: { items: Equipment[] }) {
         </div>
 
         <div>
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-muted">
+          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted">
             Công suất
           </p>
           <div className="flex flex-wrap gap-2">
@@ -82,9 +82,20 @@ export function CategoryFilter({ items }: { items: Equipment[] }) {
         </div>
       </div>
 
-      <p className="mt-8 text-sm font-semibold text-muted">
-        {filtered.length} thiết bị
-      </p>
+      <div className="mt-8 flex items-center justify-between border-t border-line pt-6">
+        <p className="text-sm font-semibold text-muted">
+          Hiển thị <span className="text-navy">{filtered.length}</span> thiết bị
+        </p>
+        {(brand !== null || power !== null) && (
+          <button
+            type="button"
+            onClick={reset}
+            className="text-sm font-bold text-accent hover:underline"
+          >
+            Xóa bộ lọc
+          </button>
+        )}
+      </div>
 
       {filtered.length > 0 ? (
         <div className="mt-6 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
@@ -93,14 +104,17 @@ export function CategoryFilter({ items }: { items: Equipment[] }) {
           ))}
         </div>
       ) : (
-        <div className="mt-6 rounded-2xl border border-line bg-white p-10 text-center">
-          <p className="text-navy">
-            Không có thiết bị phù hợp với bộ lọc đã chọn.
+        <div className="mt-6 rounded-2xl border border-line bg-white p-12 text-center shadow-sm">
+          <p className="text-lg font-bold text-navy">
+            Không có thiết bị phù hợp
+          </p>
+          <p className="mt-2 text-sm text-muted">
+            Thử điều chỉnh bộ lọc hoặc xóa để xem toàn bộ thiết bị trong danh mục.
           </p>
           <button
             type="button"
             onClick={reset}
-            className="mt-4 font-bold text-accent hover:underline"
+            className="mt-6 inline-flex items-center rounded-xl bg-accent px-6 py-3 font-bold text-white shadow-sm transition hover:bg-accent-dark"
           >
             Xóa bộ lọc
           </button>
