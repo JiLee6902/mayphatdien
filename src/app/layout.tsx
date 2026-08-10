@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import './globals.css';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { FloatingContact } from '@/components/FloatingContact';
 
 const beVietnam = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
@@ -18,7 +21,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="vi" className={beVietnam.variable}>
-      <body className="font-sans antialiased">{children}</body>
+      <body className="font-sans antialiased">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <FloatingContact />
+      </body>
     </html>
   );
 }
