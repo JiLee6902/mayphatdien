@@ -14,7 +14,7 @@ export function CategoryCard({
       href={categoryHref(category.slug)}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(18,49,79,0.25)]"
     >
-      <div className="relative h-[170px] overflow-hidden bg-navy-dark">
+      <div className="relative h-[210px] overflow-hidden bg-navy-dark">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={category.image}

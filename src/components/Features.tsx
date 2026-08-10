@@ -71,7 +71,7 @@ function Dot() {
 export function Features() {
   return (
     <section className="bg-bg">
-      <div className="mx-auto max-w-[1200px] px-6 py-20 md:py-28">
+      <div className="mx-auto max-w-[1320px] px-8 py-28 lg:px-12 md:py-36">
         <div className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
             <span className="h-px w-8 bg-accent" />
