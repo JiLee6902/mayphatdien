@@ -3,10 +3,9 @@ import { vi } from 'vitest';
 import { createElement } from 'react';
 import type { AnchorHTMLAttributes, ReactNode } from 'react';
 
-// Render next/link as a plain anchor in jsdom so tests assert the exact href
-// we pass. The real component normalizes hrefs against the build-time
-// `trailingSlash` config (unavailable under vitest), which would strip our
-// intentional trailing slashes (e.g. "/thiet-bi/" -> "/thiet-bi").
+// Render next/link as a plain anchor in jsdom, preserving the `href` verbatim,
+// so tests can assert the exact hrefs we pass (including their trailing
+// slashes, e.g. "/thiet-bi/") without wiring the Next router into jsdom.
 vi.mock('next/link', () => ({
   default: ({
     href,

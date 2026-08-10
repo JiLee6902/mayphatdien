@@ -16,6 +16,14 @@ export const metadata: Metadata = {
   title: 'PMC — Cho thuê máy phát điện, máy nén khí, thiết bị công nghiệp',
   description:
     'PMC cho thuê máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn. Khảo sát, lắp đặt tận công trình. Hotline 0936 899 431.',
+  openGraph: {
+    title: 'PMC — Cho thuê máy phát điện, máy nén khí, thiết bị công nghiệp',
+    description:
+      'PMC cho thuê máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn. Khảo sát, lắp đặt tận công trình. Hotline 0936 899 431.',
+    type: 'website',
+    locale: 'vi_VN',
+    siteName: 'PMC',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

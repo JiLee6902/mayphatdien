@@ -18,4 +18,14 @@ describe('Button', () => {
     render(<Button variant="accent">X</Button>);
     expect(screen.getByRole('button', { name: 'X' }).className).toContain('bg-accent');
   });
+
+  it('renders a native button with type="button" when no href is provided', () => {
+    render(<Button>Gửi</Button>);
+    expect(screen.getByRole('button', { name: 'Gửi' })).toHaveAttribute('type', 'button');
+  });
+
+  it('renders a plain anchor for tel: hrefs', () => {
+    render(<Button href="tel:0936899431">Gọi</Button>);
+    expect(screen.getByRole('link', { name: 'Gọi' })).toHaveAttribute('href', 'tel:0936899431');
+  });
 });
