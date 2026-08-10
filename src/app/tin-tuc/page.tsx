@@ -74,21 +74,29 @@ export default function TinTucPage() {
           {articles.map((a) => (
             <article
               key={a.title}
-              className="overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
+              className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={a.image}
-                alt={a.title}
-                className="h-52 w-full object-cover"
-                loading="lazy"
-              />
-              <div className="p-6">
-                <time className="text-xs font-semibold uppercase tracking-wide text-accent">
+              <div className="relative h-52 overflow-hidden bg-navy-dark">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={a.image}
+                  alt={a.title}
+                  className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <time className="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-navy shadow">
                   {a.date}
                 </time>
-                <h2 className="mt-2 text-lg font-bold leading-snug text-navy">{a.title}</h2>
-                <p className="mt-2 text-sm text-muted">{a.excerpt}</p>
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <h3 className="text-lg font-bold leading-snug text-navy transition-colors group-hover:text-accent">
+                  {a.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{a.excerpt}</p>
+                <span className="mt-5 inline-flex items-center gap-1.5 font-bold text-accent">
+                  Đọc thêm
+                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+                </span>
               </div>
             </article>
           ))}

@@ -1,5 +1,14 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import { PageHeader } from '@/components/PageHeader';
+
+function Icon({ children }: { children: ReactNode }) {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      {children}
+    </svg>
+  );
+}
 
 export const metadata: Metadata = {
   title: 'Giới thiệu Công ty TNHH P.M.C — Cho thuê thiết bị công nghiệp',
@@ -14,13 +23,46 @@ const stats = [
   { value: '24/7 hỗ trợ', label: 'Vận hành & sự cố' },
 ];
 
-const services = [
-  { title: 'Khảo sát', desc: 'Đánh giá tải, mặt bằng và điều kiện thi công tại công trình.' },
-  { title: 'Vận chuyển', desc: 'Điều phối xe chuyên dụng, giao thiết bị đúng tiến độ.' },
-  { title: 'Lắp đặt', desc: 'Đấu nối, căn chỉnh và kiểm tra an toàn trước khi bàn giao.' },
-  { title: 'Vận hành', desc: 'Hướng dẫn hoặc cử kỹ thuật viên vận hành theo yêu cầu.' },
-  { title: 'Bảo trì', desc: 'Bảo dưỡng định kỳ, thay thế vật tư trong suốt thời gian thuê.' },
-  { title: 'Xử lý sự cố', desc: 'Đội kỹ thuật cơ động, có mặt nhanh khi phát sinh sự cố.' },
+const services: { title: string; desc: string; icon: ReactNode }[] = [
+  {
+    title: 'Khảo sát',
+    desc: 'Đánh giá tải, mặt bằng và điều kiện thi công tại công trình.',
+    icon: <Icon><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></Icon>,
+  },
+  {
+    title: 'Vận chuyển',
+    desc: 'Điều phối xe chuyên dụng, giao thiết bị đúng tiến độ.',
+    icon: <Icon><path d="M1 3h13v13H1zM14 8h4l3 3v5h-7z" /><circle cx="5.5" cy="18.5" r="1.5" /><circle cx="17.5" cy="18.5" r="1.5" /></Icon>,
+  },
+  {
+    title: 'Lắp đặt',
+    desc: 'Đấu nối, căn chỉnh và kiểm tra an toàn trước khi bàn giao.',
+    icon: <Icon><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z" /></Icon>,
+  },
+  {
+    title: 'Vận hành',
+    desc: 'Hướng dẫn hoặc cử kỹ thuật viên vận hành theo yêu cầu.',
+    icon: <Icon><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /></Icon>,
+  },
+  {
+    title: 'Bảo trì',
+    desc: 'Bảo dưỡng định kỳ, thay thế vật tư trong suốt thời gian thuê.',
+    icon: <Icon><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></Icon>,
+  },
+  {
+    title: 'Xử lý sự cố',
+    desc: 'Đội kỹ thuật cơ động, có mặt nhanh khi phát sinh sự cố.',
+    icon: <Icon><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></Icon>,
+  },
+];
+
+const provinces = [
+  'TP. Hồ Chí Minh',
+  'Bình Dương',
+  'Đồng Nai',
+  'Bà Rịa - Vũng Tàu',
+  'Long An',
+  'Cần Thơ',
 ];
 
 export default function GioiThieuPage() {
@@ -85,9 +127,33 @@ export default function GioiThieuPage() {
                 key={sv.title}
                 className="rounded-2xl border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
               >
-                <h3 className="text-lg font-bold text-navy">{sv.title}</h3>
-                <p className="mt-2 text-sm text-muted">{sv.desc}</p>
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-accent">
+                  {sv.icon}
+                </span>
+                <h3 className="mt-4 text-lg font-bold text-navy">{sv.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{sv.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Service area */}
+        <div className="mt-20 rounded-2xl border border-line bg-white p-8 shadow-sm md:p-10">
+          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+            <span className="h-px w-8 bg-accent" />
+            Khu vực phục vụ
+          </p>
+          <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
+            Phủ khắp các tỉnh thành miền Nam
+          </h2>
+          <div className="mt-6 flex flex-wrap gap-3">
+            {provinces.map((p) => (
+              <span
+                key={p}
+                className="inline-flex items-center rounded-full border border-line bg-bg px-4 py-2 text-sm font-semibold text-navy"
+              >
+                {p}
+              </span>
             ))}
           </div>
         </div>
