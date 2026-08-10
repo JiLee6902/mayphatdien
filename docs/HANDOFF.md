@@ -3,7 +3,7 @@
 Dự án làm lại website **chothuethietbipmc.com** (PMC — cho thuê máy phát điện, máy nén khí, phun rửa UHP, máy hàn) thành site mới UI/UX + SEO tốt hơn.
 
 ## Toạ độ dự án
-- **Repo local:** `/Users/mac/pmc-website`
+- **Repo local:** `/Users/mac/Desktop/pmc-website`
 - **GitHub:** https://github.com/JiLee6902/mayphatdien (branch mặc định `main`; nhánh làm việc `phase-1-foundation`). Đã push toàn bộ code UI + trang.
 - **Tài khoản GitHub push:** `JiLee6902` (đăng nhập HTTPS qua gh; `chile-it` KHÔNG có quyền push).
 - **Dev server:** `npm run dev` → http://localhost:3000
@@ -40,7 +40,7 @@ Dự án làm lại website **chothuethietbipmc.com** (PMC — cho thuê máy ph
 1. **Sanity token Editor:** revoke token cũ, tạo token **Editor** mới → `echo 'SANITY_AUTH_TOKEN=sk...' >> .env.local`.
 2. **Nạp dữ liệu + Studio:**
    ```
-   cd /Users/mac/pmc-website
+   cd /Users/mac/Desktop/pmc-website
    set -a; . ./.env.local; set +a
    npx sanity dataset create production --visibility public   # nếu chưa có
    npx sanity dataset import sanity/seed.ndjson production --replace   # chạy: node scripts/build-seed.mjs trước
