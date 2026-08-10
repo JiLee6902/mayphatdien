@@ -1,6 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Home from './page';
+import { categories, categoryHref } from '@/config/categories';
 
 describe('Homepage', () => {
   it('renders exactly one H1 with the rental value proposition', () => {
@@ -10,11 +11,15 @@ describe('Homepage', () => {
     expect(h1s[0].textContent).toMatch(/cho thuê/i);
   });
 
-  it('renders all four category cards', () => {
-    render(<Home />);
-    expect(screen.getByRole('link', { name: /máy phát điện/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /máy nén khí/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /phun rửa áp lực cao/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /máy hàn/i })).toBeInTheDocument();
+  it('renders a link to each of the four category landing pages', () => {
+    // Match by href (unambiguous) — the featured-equipment section also contains
+    // links whose text includes category names, so name-based queries would clash.
+    const { container } = render(<Home />);
+    expect(categories).toHaveLength(4);
+    for (const c of categories) {
+      expect(
+        container.querySelector(`a[href="${categoryHref(c.slug)}"]`),
+      ).toBeTruthy();
+    }
   });
 });

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { equipment, equipmentByCategory, getEquipment } from '@/config/equipment';
+import { equipment, equipmentByCategory, getEquipment, getImages } from '@/config/equipment';
 import { categories } from '@/config/categories';
 import { site, telHref } from '@/config/site';
 import { EquipmentCard } from '@/components/EquipmentCard';
+import { EquipmentGallery } from '@/components/EquipmentGallery';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -80,15 +81,7 @@ export default async function Page({ params }: Props) {
         <div className="mt-10 grid gap-10 lg:grid-cols-12">
           {/* LEFT */}
           <div className="lg:col-span-7">
-            <div className="relative overflow-hidden rounded-2xl border border-line bg-white shadow-[0_20px_50px_-20px_rgba(14,58,102,0.28)]">
-              <span className={`absolute left-4 top-4 z-10 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow ${item.featured ? 'bg-accent' : 'bg-ok'}`}>
-                {item.featured ? '★ Nổi bật' : '● Còn hàng'}
-              </span>
-              <div className="aspect-[4/3] w-full overflow-hidden bg-navy-dark">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={item.image} alt={`Cho thuê ${item.name}`} className="h-full w-full object-cover" />
-              </div>
-            </div>
+            <EquipmentGallery images={getImages(item)} name={item.name} featured={item.featured} />
 
             {/* highlight spec tiles */}
             <div className="mt-6 grid grid-cols-3 gap-4">

@@ -239,3 +239,27 @@ export const getEquipment = (slug: string) =>
   equipment.find((e) => e.slug === slug);
 
 export const featuredEquipment = () => equipment.filter((e) => e.featured);
+
+// Image galleries per equipment (multiple angles/units). Placeholder set reusing
+// available real photos so the detail-page gallery UI can be reviewed in full.
+const E = '/images/equipment';
+const C = '/images/categories';
+const galleries: Record<string, string[]> = {
+  'may-phat-dien-cummins-550kva': [`${E}/mpd-cummins-550kva.jpg`, `${E}/mpd-mtu-1250kva.jpg`, `${E}/mpd-mitsubishi-300kva.jpg`, `${C}/may-phat-dien.jpg`],
+  'may-phat-dien-mitsubishi-300kva': [`${E}/mpd-mitsubishi-300kva.jpg`, `${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-cummins-550kva.jpg`],
+  'may-phat-dien-denyo-100kva': [`${E}/mpd-denyo-100kva.jpg`, `${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-komatsu-75kva.jpg`],
+  'may-phat-dien-denyo-150kva': [`${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-denyo-100kva.jpg`, `${E}/mpd-mitsubishi-300kva.jpg`],
+  'may-phat-dien-mtu-1250kva': [`${E}/mpd-mtu-1250kva.jpg`, `${E}/mpd-cummins-550kva.jpg`, `${C}/may-phat-dien.jpg`],
+  'may-phat-dien-komatsu-75kva': [`${E}/mpd-komatsu-75kva.jpg`, `${E}/mpd-denyo-100kva.jpg`],
+  'may-nen-khi-denyo-dis-390': [`${E}/mnk-denyo-390.jpg`, `${E}/mnk-airman-750.jpg`, `${C}/may-nen-khi.jpg`],
+  'may-nen-khi-airman-750': [`${E}/mnk-airman-750.jpg`, `${E}/mnk-denyo-390.jpg`, `${C}/may-nen-khi.jpg`],
+  'may-phun-rua-uhp-densin-c1400': [`${E}/uhp-densin-c1400.jpg`, `${E}/uhp-hydrotest-10000.jpg`, `${C}/phun-rua-uhp.jpg`],
+  'may-hydrotest-10000-psi': [`${E}/uhp-hydrotest-10000.jpg`, `${E}/uhp-densin-c1400.jpg`],
+  'may-han-mig-350a': [`${E}/mh-mig-350a.jpg`, `${E}/mh-mig-500a.jpg`, `${E}/mh-tig-280a.jpg`],
+  'may-han-mig-500a': [`${E}/mh-mig-500a.jpg`, `${E}/mh-mig-350a.jpg`, `${E}/mh-tig-280a.jpg`],
+  'may-han-tig-280a': [`${E}/mh-tig-280a.jpg`, `${E}/mh-mig-350a.jpg`],
+};
+
+/** All images for an item's gallery (falls back to the single primary image). */
+export const getImages = (item: Equipment): string[] =>
+  galleries[item.slug]?.length ? galleries[item.slug] : [item.image];
