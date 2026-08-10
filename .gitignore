@@ -47,3 +47,6 @@ dist/
 # Next.js dev-generated agent docs
 AGENTS.md
 CLAUDE.md
+
+# generated seed (machine-specific asset paths)
+sanity/seed.ndjson

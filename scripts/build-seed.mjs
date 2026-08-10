@@ -267,6 +267,36 @@ const settings = {
   ],
 };
 
+// ---- Images: uploaded during `sanity dataset import` via _sanityAsset refs ----
+// Local files under /public are attached so imported content has real photos.
+const asset = (rel) => ({
+  _type: 'image',
+  _sanityAsset: `image@file://${join(repoRoot, 'public', rel)}`,
+});
+const E = 'images/equipment';
+const C = 'images/categories';
+const categoryImage = {
+  'may-phat-dien': `${C}/may-phat-dien.jpg`,
+  'may-nen-khi': `${C}/may-nen-khi.jpg`,
+  'may-phun-rua-ap-luc-cao': `${C}/phun-rua-uhp.jpg`,
+  'may-han': `${C}/may-han.jpg`,
+};
+const equipmentImages = {
+  'may-phat-dien-cummins-550kva': [`${E}/mpd-cummins-550kva.jpg`, `${E}/mpd-mtu-1250kva.jpg`, `${E}/mpd-mitsubishi-300kva.jpg`, `${C}/may-phat-dien.jpg`],
+  'may-phat-dien-mitsubishi-300kva': [`${E}/mpd-mitsubishi-300kva.jpg`, `${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-cummins-550kva.jpg`],
+  'may-phat-dien-denyo-100kva': [`${E}/mpd-denyo-100kva.jpg`, `${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-komatsu-75kva.jpg`],
+  'may-phat-dien-denyo-150kva': [`${E}/mpd-denyo-150kva.jpg`, `${E}/mpd-denyo-100kva.jpg`, `${E}/mpd-mitsubishi-300kva.jpg`],
+  'may-phat-dien-mtu-1250kva': [`${E}/mpd-mtu-1250kva.jpg`, `${E}/mpd-cummins-550kva.jpg`, `${C}/may-phat-dien.jpg`],
+  'may-phat-dien-komatsu-75kva': [`${E}/mpd-komatsu-75kva.jpg`, `${E}/mpd-denyo-100kva.jpg`],
+  'may-nen-khi-denyo-dis-390': [`${E}/mnk-denyo-390.jpg`, `${E}/mnk-airman-750.jpg`, `${C}/may-nen-khi.jpg`],
+  'may-nen-khi-airman-750': [`${E}/mnk-airman-750.jpg`, `${E}/mnk-denyo-390.jpg`, `${C}/may-nen-khi.jpg`],
+  'may-phun-rua-uhp-densin-c1400': [`${E}/uhp-densin-c1400.jpg`, `${E}/uhp-hydrotest-10000.jpg`, `${C}/phun-rua-uhp.jpg`],
+  'may-hydrotest-10000-psi': [`${E}/uhp-hydrotest-10000.jpg`, `${E}/uhp-densin-c1400.jpg`],
+  'may-han-mig-350a': [`${E}/mh-mig-350a.jpg`, `${E}/mh-mig-500a.jpg`, `${E}/mh-tig-280a.jpg`],
+  'may-han-mig-500a': [`${E}/mh-mig-500a.jpg`, `${E}/mh-mig-350a.jpg`, `${E}/mh-tig-280a.jpg`],
+  'may-han-tig-280a': [`${E}/mh-tig-280a.jpg`, `${E}/mh-mig-350a.jpg`],
+};
+
 // ---- Build documents ----
 const docs = [];
 
@@ -278,10 +308,12 @@ categories.forEach((c, i) => {
     slug: { _type: 'slug', current: c.slug },
     description: c.description,
     order: i,
+    ...(categoryImage[c.slug] ? { image: asset(categoryImage[c.slug]) } : {}),
   });
 });
 
 equipment.forEach((e) => {
+  const imgs = equipmentImages[e.slug] || [];
   docs.push({
     _id: `equipment-${e.slug}`,
     _type: 'equipment',
@@ -293,6 +325,7 @@ equipment.forEach((e) => {
     featured: Boolean(e.featured),
     specs: e.specs.map((s) => ({ _type: 'spec', ...s })),
     description: e.description,
+    ...(imgs.length ? { images: imgs.map((p) => ({ ...asset(p), _key: p.replace(/\W/g, '') })) } : {}),
   });
 });
 
