@@ -1,0 +1,47 @@
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import { categories } from '@/config/categories';
+import { equipmentByCategory } from '@/config/equipment';
+import { CategoryFilter } from '@/components/CategoryFilter';
+
+export function CategoryView({ slug }: { slug: string }) {
+  const category = categories.find((c) => c.slug === slug);
+  if (!category) notFound();
+
+  return (
+    <section className="bg-bg py-24 md:py-32">
+      <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
+        <nav aria-label="Breadcrumb" className="text-sm text-muted">
+          <ol className="flex flex-wrap items-center gap-2">
+            <li>
+              <Link href="/" className="hover:text-navy">
+                Trang chủ
+              </Link>
+            </li>
+            <li aria-hidden>›</li>
+            <li>
+              <Link href="/thiet-bi/" className="hover:text-navy">
+                Thiết bị
+              </Link>
+            </li>
+            <li aria-hidden>›</li>
+            <li className="font-semibold text-navy">{category.name}</li>
+          </ol>
+        </nav>
+
+        <p className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
+          <span className="h-px w-8 bg-accent" />
+          Danh mục
+        </p>
+        <h1 className="mt-4 text-[34px] font-extrabold tracking-tight text-navy md:text-[44px]">
+          Cho thuê {category.name}
+        </h1>
+        <p className="mt-4 max-w-2xl text-muted">{category.meta}</p>
+
+        <div className="mt-12">
+          <CategoryFilter items={equipmentByCategory(slug)} />
+        </div>
+      </div>
+    </section>
+  );
+}
