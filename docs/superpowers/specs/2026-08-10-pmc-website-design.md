@@ -66,12 +66,35 @@ Next.js (App Router, output: 'export')  →  build ra HTML tĩnh
 - `/gioi-thieu`, `/lien-he` — schema LocalBusiness, NAP đủ 2 cơ sở (HCM + Vũng Tàu).
 
 ### 3.2 Kỹ thuật SEO đi kèm
-- `sitemap.xml` + `robots.txt` tự sinh lúc build.
-- Structured data schema.org: `LocalBusiness`, `Product`, `BreadcrumbList`, `FAQPage`.
-- Metadata (title, description) viết tay theo từ khóa cho từng trang; Open Graph; canonical URL.
-- Core Web Vitals: mục tiêu PageSpeed ≥ 90 (mobile & desktop). Ảnh WebP/AVIF, lazy-load, font tối ưu.
-- Link nội bộ chặt: danh mục ↔ thiết bị ↔ dự án ↔ bài viết.
+- `sitemap.xml` + `robots.txt` tự sinh lúc build, **`lastmod` thật** lấy từ ngày sửa nội dung trong CMS (không dùng ngày giả như site cũ).
+- Structured data schema.org (JSON-LD): `LocalBusiness` (2 khối — 1 cho mỗi cơ sở HCM & Vũng Tàu, đủ NAP + geo + openingHours + areaServed), `Service` cho từng nhóm cho thuê, `Product` + `Offer` trên trang thiết bị, `BreadcrumbList` trên trang sâu, `WebSite` + `SearchAction` (sitelinks searchbox), `Organization`.
+  - **KHÔNG dùng `FAQPage`** — Google đã ngừng FAQ rich results từ 07/05/2026, không còn lợi ích SERP.
+  - `og:type = business.business` (site cũ đang để `article` sai).
+- Metadata (title, description) viết tay theo từ khóa cho từng trang; description **≤ 155 ký tự, CTA trong 100 ký tự đầu**; cân nhắc gắn năm vào title (đối thủ dùng chiêu này tăng CTR); Open Graph đầy đủ; canonical URL.
+- Core Web Vitals: mục tiêu PageSpeed ≥ 90 (mobile & desktop). `next/image` (WebP/AVIF, tự set width/height chống CLS, lazy-load), **không script chặn render**, font tối ưu.
+- **Security headers** trong `next.config` (HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy) — site cũ thiếu toàn bộ.
+- **Cache headers qua Cloudflare**: asset tĩnh `immutable, max-age=1 năm`; HTML `s-maxage + stale-while-revalidate` (site cũ tắt cache hoàn toàn).
+- **IndexNow** (đẩy URL mới lên Bing/Yandex tức thì) — đối thủ chưa có, là điểm vượt nhanh.
+- **Không chặn Googlebot** (đối thủ Võ Gia đang trả 403 với IP ngoài VN → index dễ cũ; ta để mở → thắng về độ tươi nội dung).
+- Link nội bộ chặt: danh mục ↔ thiết bị ↔ dự án ↔ bài viết ↔ trang địa điểm.
 - **301 redirect** toàn bộ URL cũ → URL mới khi chuyển domain (giữ thứ hạng đã có).
+
+### 3.3 Local SEO (điểm site cũ gần như bằng 0 — 28/100)
+Đây là mỏ vàng cho công ty cho thuê thiết bị theo khu vực:
+- **Trang địa điểm riêng**: `/cho-thue-may-phat-dien-tphcm`, `/cho-thue-may-phat-dien-vung-tau`, rồi mở rộng Đồng Nai, Bình Dương, Cần Thơ... (nội dung riêng, không nhân bản mỏng) — bắt truy vấn "cho thuê + thiết bị + khu vực".
+- **Nhúng Google Maps** cho cả 2 cơ sở (site cũ không có).
+- **Google Business Profile**: hướng dẫn khách hàng tạo/claim 2 listing (HCM + Vũng Tàu), phân loại "Equipment Rental Agency", ảnh kho/xe, service area.
+- **Sửa NAP**: SĐT chuẩn hóa `tel:0936899431` (bỏ dấu cách), thêm link gọi Vũng Tàu, dùng tên pháp nhân "Công ty TNHH P.M.C" trong schema.
+- **Thu thập đánh giá + `aggregateRating`**: CTA xin review Google sau mỗi lần thuê (qua Zalo/email) → tạo khác biệt vì đối thủ mảng này hầu như 0 review.
+
+### 3.4 Bảng điểm mục tiêu (đo lại bằng skill `seo` sau khi build)
+| Chỉ số | Site cũ | Mục tiêu site mới |
+|---|---|---|
+| Technical SEO | 44/100 | ≥ 90/100 |
+| Local SEO | 28/100 | ≥ 85/100 |
+| Schema | Organization + WebSite | LocalBusiness×2 + Service + Product/Offer + Breadcrumb + SearchAction |
+| PageSpeed (mobile) | thấp (cache tắt, JS chặn) | ≥ 90 |
+| Trang địa điểm | 0 | ≥ 2 (mở rộng dần theo tỉnh) |
 
 ---
 
