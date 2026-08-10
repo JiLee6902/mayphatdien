@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy": "next build && wrangler pages deploy out --project-name=pmc-website"
   },
   "dependencies": {
     "next": "16.3.0",
@@ -29,6 +30,7 @@
     "jsdom": "^29.1.1",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "wrangler": "^4.120.0"
   }
 }
