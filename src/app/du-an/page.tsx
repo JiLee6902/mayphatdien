@@ -1,59 +1,20 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { PageHeader } from '@/components/PageHeader';
+import { Reveal } from '@/components/motion/Reveal';
+import { projectHref } from '@/config/projects';
+import { loadProjects } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Dự án tiêu biểu — PMC cho thuê thiết bị công nghiệp',
+  title: { absolute: 'Dự án tiêu biểu — PMC cho thuê thiết bị công nghiệp' },
   description:
     'Các dự án tiêu biểu PMC đã triển khai: cho thuê máy phát điện, máy nén khí và hệ thống phun rửa áp lực cao (UHP) cho khu công nghiệp và nhà máy lớn.',
+  alternates: { canonical: '/du-an/' },
 };
 
-interface Project {
-  title: string;
-  location: string;
-  image: string;
-  desc: string;
-}
+export default async function DuAnPage() {
+  const projects = await loadProjects();
 
-const projects: Project[] = [
-  {
-    title: 'Cho thuê máy phát điện KCN Đại Quang Minh',
-    location: 'TP. Thủ Đức, TP.HCM',
-    image: '/images/categories/may-phat-dien.jpg',
-    desc: 'Cấp nguồn dự phòng công suất lớn phục vụ thi công hạ tầng khu đô thị.',
-  },
-  {
-    title: 'Máy nén khí dự án PVD6',
-    location: 'Vũng Tàu, BR-VT',
-    image: '/images/categories/may-nen-khi.jpg',
-    desc: 'Cung cấp khí nén ổn định cho công đoạn phun cát và làm sạch bề mặt.',
-  },
-  {
-    title: 'Hệ thống UHP nhà máy lọc dầu',
-    location: 'Đồng Nai',
-    image: '/images/categories/phun-rua-uhp.jpg',
-    desc: 'Thiết bị phun rửa áp lực siêu cao xử lý cáu cặn đường ống và bồn bể.',
-  },
-  {
-    title: 'Máy hàn công trình cầu cảng',
-    location: 'Cần Thơ',
-    image: '/images/categories/may-han.jpg',
-    desc: 'Bố trí dàn máy hàn di động phục vụ thi công kết cấu thép cầu cảng.',
-  },
-  {
-    title: 'Nguồn dự phòng sự kiện quy mô lớn',
-    location: 'Bình Dương',
-    image: '/images/hero-genset.jpg',
-    desc: 'Máy phát điện cách âm bảo đảm điện liên tục cho sự kiện ngoài trời.',
-  },
-  {
-    title: 'Cụm máy nén khí nhà máy sản xuất',
-    location: 'Long An',
-    image: '/images/categories/may-nen-khi.jpg',
-    desc: 'Thuê dài hạn máy nén khí công nghiệp cho dây chuyền sản xuất liên tục.',
-  },
-];
-
-export default function DuAnPage() {
   return (
     <>
       <PageHeader
@@ -65,12 +26,14 @@ export default function DuAnPage() {
 
       <section className="mx-auto max-w-[1280px] px-8 py-24 md:py-32 lg:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <article
+          {projects.map((p, i) => (
+            <Reveal
               key={p.title}
+              delay={(i % 3) * 90}
+              as="article"
               className="group overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
             >
-              <div className="relative h-52 overflow-hidden bg-navy-dark">
+              <Link href={projectHref(p.slug)} className="relative block h-52 overflow-hidden bg-navy-dark">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={p.image}
@@ -86,12 +49,21 @@ export default function DuAnPage() {
                   </svg>
                   {p.location}
                 </span>
-              </div>
+              </Link>
               <div className="p-6">
-                <h2 className="text-lg font-bold leading-snug text-navy transition-colors group-hover:text-accent">{p.title}</h2>
+                <h2 className="text-lg font-bold leading-snug text-navy transition-colors group-hover:text-accent">
+                  <Link href={projectHref(p.slug)}>{p.title}</Link>
+                </h2>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{p.desc}</p>
+                <Link
+                  href={projectHref(p.slug)}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-accent"
+                >
+                  Xem chi tiết
+                  <span aria-hidden className="transition group-hover:translate-x-1">→</span>
+                </Link>
               </div>
-            </article>
+            </Reveal>
           ))}
         </div>
       </section>
