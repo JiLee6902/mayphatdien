@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { mainNav } from '@/config/nav';
-import { site, telHref } from '@/config/site';
+import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 import { Button } from './ui/Button';
 import { MobileMenu } from './MobileMenu';
 
-export function Header() {
+export function Header({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
   return (
     <header className="sticky top-0 z-40 bg-white shadow-[0_1px_0_var(--color-line)]">
       <div className="bg-navy text-[13px] text-[#c3d3e2]">
@@ -14,7 +14,7 @@ export function Header() {
           </span>
           <span className="ml-auto">
             Hotline:{' '}
-            <a className="font-semibold text-white hover:text-accent" href={telHref(site.hotline)}>
+            <a className="font-semibold text-white hover:text-accent" href={telHref(settings.hotline)}>
               0936 899 431
             </a>
           </span>
@@ -22,7 +22,7 @@ export function Header() {
       </div>
       <div className="relative mx-auto flex h-[74px] max-w-[1280px] items-center gap-6 border-b border-line px-6 lg:px-8">
         <Link href="/" className="text-[26px] font-extrabold tracking-tight text-navy">
-          {site.brand}
+          {settings.brand}
           <span className="ml-0.5 text-accent">.</span>
         </Link>
         <nav
@@ -60,7 +60,7 @@ export function Header() {
         <Button href="/lien-he/" className="hidden md:ml-auto md:inline-flex lg:ml-0">
           Nhận báo giá
         </Button>
-        <MobileMenu />
+        <MobileMenu hotline={settings.hotline} />
       </div>
     </header>
   );

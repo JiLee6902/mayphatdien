@@ -11,59 +11,54 @@ function PhoneIcon() {
   );
 }
 
-export function EquipmentCard({ item }: { item: Equipment }) {
+export function EquipmentCard({
+  item,
+  hotline = site.hotline,
+}: {
+  item: Equipment;
+  hotline?: string;
+}) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]">
-      <Link href={equipmentHref(item.slug)} className="relative block h-[210px] overflow-hidden bg-navy-dark">
+    <div className="group flex flex-col overflow-hidden rounded-[20px] border border-line/80 bg-white shadow-[0_1px_2px_rgba(16,42,67,0.05)] transition duration-300 hover:-translate-y-1.5 hover:border-accent/25 hover:shadow-[0_30px_60px_-24px_rgba(14,58,102,0.32)]">
+      <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden bg-[#eef1ee]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={item.image}
           alt={`Cho thuê ${item.name}`}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition duration-[600ms] ease-out group-hover:scale-[1.04]"
           loading="lazy"
         />
-        <span
-          className={`absolute left-3 top-3 inline-flex items-center rounded-full px-3 py-1 text-xs font-bold text-white shadow ${
-            item.featured ? 'bg-accent' : 'bg-ok'
-          }`}
-        >
-          {item.featured ? '★ Nổi bật' : '● Còn hàng'}
-        </span>
+        {/* a single small badge only — image stays clear */}
+        {item.featured && (
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-[11px] font-bold text-white shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-white" /> Nổi bật
+          </span>
+        )}
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-xs font-bold uppercase tracking-[0.15em] text-accent">
-          {item.brand}
-        </p>
-        <h3 className="mt-2 text-[17px] font-bold leading-snug text-navy transition-colors group-hover:text-accent">
-          <Link href={equipmentHref(item.slug)}>{item.name}</Link>
-        </h3>
-
-        <div className="mt-3 flex flex-wrap gap-2">
-          <span className="inline-flex items-center rounded-full bg-navy/90 px-2.5 py-1 text-xs font-bold text-white">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-muted">
+            {item.brand}
+          </p>
+          <span className="inline-flex items-center rounded-md bg-accent/10 px-2.5 py-1 text-[12px] font-bold text-accent">
             {item.power}
           </span>
         </div>
+        <h3 className="mt-2.5 min-h-[3.25rem] text-[18px] font-bold leading-snug text-navy transition-colors group-hover:text-accent">
+          <Link href={equipmentHref(item.slug)}>{item.name}</Link>
+        </h3>
 
-        <p className="mt-3 text-sm text-muted">
-          Giá thuê: <span className="font-bold text-navy">Liên hệ</span>
-        </p>
-
-        <div className="mt-5 flex items-center justify-between border-t border-line pt-4">
-          <Link
-            href={equipmentHref(item.slug)}
-            className="inline-flex items-center gap-1.5 font-bold text-accent"
-          >
-            Xem chi tiết
-            <span aria-hidden className="transition group-hover:translate-x-1">
-              →
-            </span>
-          </Link>
+        <div className="mt-auto flex items-end justify-between border-t border-line pt-4">
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-muted">Giá thuê</div>
+            <div className="text-[15px] font-extrabold text-navy">Liên hệ</div>
+          </div>
           <a
-            href={telHref(site.hotline)}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-accent-dark"
+            href={telHref(hotline)}
+            className="inline-flex items-center gap-1.5 rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-white shadow-[0_8px_20px_-8px_rgba(226,129,28,0.7)] transition hover:bg-accent-dark"
           >
-            <PhoneIcon /> Gọi
+            <PhoneIcon /> Gọi ngay
           </a>
         </div>
       </div>

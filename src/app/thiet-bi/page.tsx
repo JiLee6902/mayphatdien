@@ -1,17 +1,28 @@
 import type { Metadata } from 'next';
-import { categories } from '@/config/categories';
-import { featuredEquipment } from '@/config/equipment';
+import { loadCategories, loadFeaturedEquipment, loadSettings } from '@/lib/content';
 import { CategoryCard } from '@/components/CategoryCard';
 import { EquipmentCard } from '@/components/EquipmentCard';
 
+const DESC =
+  'Danh mục thiết bị công nghiệp PMC cho thuê: máy phát điện, máy nén khí, phun rửa áp lực cao (UHP) và máy hàn. Sẵn kho, giao lắp tận công trình.';
+
 export const metadata: Metadata = {
-  title: 'Thiết bị cho thuê | PMC',
-  description:
-    'Danh mục thiết bị công nghiệp PMC cho thuê: máy phát điện, máy nén khí, phun rửa áp lực cao (UHP) và máy hàn. Sẵn kho, giao lắp tận công trình.',
+  title: 'Thiết bị cho thuê',
+  description: DESC,
+  alternates: { canonical: '/thiet-bi/' },
+  openGraph: {
+    title: 'Thiết bị cho thuê | PMC',
+    description: DESC,
+    url: 'https://chothuethietbipmc.com/thiet-bi/',
+  },
 };
 
-export default function Page() {
-  const featured = featuredEquipment();
+export default async function Page() {
+  const [categories, featured, settings] = await Promise.all([
+    loadCategories(),
+    loadFeaturedEquipment(),
+    loadSettings(),
+  ]);
 
   return (
     <section className="bg-bg py-24 md:py-32">
@@ -39,7 +50,7 @@ export default function Page() {
         </h2>
         <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {featured.map((item) => (
-            <EquipmentCard key={item.slug} item={item} />
+            <EquipmentCard key={item.slug} item={item} hotline={settings.hotline} />
           ))}
         </div>
       </div>

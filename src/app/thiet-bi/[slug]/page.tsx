@@ -1,23 +1,46 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { equipment, equipmentByCategory, getEquipment, getImages } from '@/config/equipment';
-import { categories } from '@/config/categories';
 import { site, telHref } from '@/config/site';
+import {
+  loadAllEquipment,
+  loadEquipmentBySlug,
+  loadEquipmentByCategory,
+  loadCategories,
+  loadSettings,
+} from '@/lib/content';
+import { equipmentHref } from '@/config/equipment';
+import { categoryHref } from '@/config/categories';
 import { EquipmentCard } from '@/components/EquipmentCard';
 import { EquipmentGallery } from '@/components/EquipmentGallery';
+import { JsonLd } from '@/components/JsonLd';
+import { graph, productSchema, breadcrumbSchema } from '@/lib/schema';
 
 type Props = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const equipment = await loadAllEquipment();
   return equipment.map((e) => ({ slug: e.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const item = getEquipment(slug);
-  if (!item) return { title: 'Không tìm thấy thiết bị | PMC' };
-  return { title: `${item.name} — Cho thuê | PMC`, description: item.description };
+  const item = await loadEquipmentBySlug(slug);
+  if (!item) return { title: 'Không tìm thấy thiết bị' };
+  const canonical = equipmentHref(slug);
+  const description = item.seoDescription || item.description;
+  const ogImage = item.image || site.ogImage;
+  return {
+    title: `${item.name} — Cho thuê`,
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title: `${item.name} — Cho thuê | PMC`,
+      description,
+      url: `${site.url}${canonical}`,
+      images: [{ url: ogImage }],
+    },
+  };
 }
 
 const trust = [
@@ -44,15 +67,31 @@ function PhoneIcon() {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
-  const item = getEquipment(slug);
+  const item = await loadEquipmentBySlug(slug);
   if (!item) notFound();
 
+  const [categories, categoryEquipment, settings] = await Promise.all([
+    loadCategories(),
+    loadEquipmentByCategory(item.categorySlug),
+    loadSettings(),
+  ]);
   const category = categories.find((c) => c.slug === item.categorySlug);
-  const related = equipmentByCategory(item.categorySlug).filter((e) => e.slug !== item.slug).slice(0, 3);
+  const related = categoryEquipment.filter((e) => e.slug !== item.slug).slice(0, 3);
   const highlights = item.specs.slice(0, 3);
+
+  const canonical = equipmentHref(item.slug);
+  const crumbs = [
+    { name: 'Trang chủ', path: '/' },
+    { name: 'Thiết bị', path: '/thiet-bi/' },
+    ...(category ? [{ name: category.name, path: categoryHref(category.slug) }] : []),
+    { name: item.name, path: canonical },
+  ];
 
   return (
     <div className="bg-bg pb-24 pt-10 md:pb-32">
+      <JsonLd
+        data={graph([productSchema(item, canonical), breadcrumbSchema(crumbs)])}
+      />
       <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
         {/* breadcrumb */}
         <nav aria-label="Breadcrumb" className="text-sm text-muted">
@@ -81,7 +120,7 @@ export default async function Page({ params }: Props) {
         <div className="mt-10 grid gap-10 lg:grid-cols-12">
           {/* LEFT */}
           <div className="lg:col-span-7">
-            <EquipmentGallery images={getImages(item)} name={item.name} featured={item.featured} />
+            <EquipmentGallery images={item.images} name={item.name} featured={item.featured} />
 
             {/* highlight spec tiles */}
             <div className="mt-6 grid grid-cols-3 gap-4">
@@ -133,10 +172,10 @@ export default async function Page({ params }: Props) {
                   </div>
                 </div>
                 <div className="mt-6 flex flex-col gap-3">
-                  <a href={telHref(site.hotline)} className="flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-accent-dark">
+                  <a href={telHref(settings.hotline)} className="flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-4 text-base font-bold text-white shadow-sm transition hover:bg-accent-dark">
                     <PhoneIcon /> Gọi thuê ngay · 0936 899 431
                   </a>
-                  <a href={site.zaloUrl} className="flex items-center justify-center gap-2 rounded-xl border border-line bg-bg px-6 py-3.5 text-base font-bold text-navy transition hover:border-steel">
+                  <a href={settings.zaloUrl} className="flex items-center justify-center gap-2 rounded-xl border border-line bg-bg px-6 py-3.5 text-base font-bold text-navy transition hover:border-steel">
                     Chat Zalo báo giá nhanh
                   </a>
                 </div>
@@ -149,7 +188,7 @@ export default async function Page({ params }: Props) {
                 </ul>
               </div>
               <p className="mt-4 text-center text-xs text-muted">
-                Khảo sát &amp; báo giá miễn phí trong ngày · {site.brand}
+                Khảo sát &amp; báo giá miễn phí trong ngày · {settings.brand}
               </p>
             </div>
           </div>
@@ -160,7 +199,7 @@ export default async function Page({ params }: Props) {
             <h2 className="text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Thiết bị liên quan</h2>
             <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((rel) => (
-                <EquipmentCard key={rel.slug} item={rel} />
+                <EquipmentCard key={rel.slug} item={rel} hotline={settings.hotline} />
               ))}
             </div>
           </div>

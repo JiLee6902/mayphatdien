@@ -2,9 +2,9 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { mainNav } from '@/config/nav';
-import { site, telHref } from '@/config/site';
+import { telHref, defaultSiteSettings } from '@/config/site';
 
-export function MobileMenu() {
+export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?: string }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative ml-auto md:hidden">
@@ -35,7 +35,7 @@ export function MobileMenu() {
               </li>
             ))}
             <li className="p-2">
-              <a href={telHref(site.hotline)} className="block rounded-lg bg-accent px-4 py-3 text-center font-bold text-white">
+              <a href={telHref(hotline)} className="block rounded-lg bg-accent px-4 py-3 text-center font-bold text-white">
                 Gọi ngay 0936 899 431
               </a>
             </li>

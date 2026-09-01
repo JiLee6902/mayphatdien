@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { PageHeader } from '@/components/PageHeader';
-import { site, telHref } from '@/config/site';
+import { telHref } from '@/config/site';
+import { loadSettings } from '@/lib/content';
 
 export const metadata: Metadata = {
-  title: 'Liên hệ PMC — Hotline, Zalo, Email và văn phòng',
+  title: { absolute: 'Liên hệ PMC — Hotline, Zalo, Email và văn phòng' },
   description:
     'Liên hệ Công ty TNHH P.M.C để được khảo sát và báo giá miễn phí thuê máy phát điện, máy nén khí, thiết bị UHP, máy hàn. Hotline 0936 899 431.',
+  alternates: { canonical: '/lien-he/' },
 };
 
 function formatPhone(phone: string): string {
@@ -59,28 +61,29 @@ type Method = {
   external?: boolean;
 };
 
-export default function LienHePage() {
+export default async function LienHePage() {
+  const settings = await loadSettings();
   const methods: Method[] = [
     {
       icon: <PhoneIcon />,
       label: 'Hotline',
-      value: formatPhone(site.hotline),
-      href: telHref(site.hotline),
+      value: formatPhone(settings.hotline),
+      href: telHref(settings.hotline),
       cta: 'Gọi ngay',
     },
     {
       icon: <ChatIcon />,
       label: 'Zalo',
       value: 'Chat báo giá nhanh',
-      href: site.zaloUrl,
+      href: settings.zaloUrl,
       cta: 'Nhắn Zalo',
       external: true,
     },
     {
       icon: <MailIcon />,
       label: 'Email',
-      value: site.email,
-      href: `mailto:${site.email}`,
+      value: settings.email,
+      href: `mailto:${settings.email}`,
       cta: 'Gửi Email',
     },
   ];
@@ -158,7 +161,7 @@ export default function LienHePage() {
             </h2>
 
             <div className="mt-8 space-y-6">
-              {site.locations.map((loc) => (
+              {settings.locations.map((loc) => (
                 <div
                   key={loc.name}
                   className="rounded-2xl border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"

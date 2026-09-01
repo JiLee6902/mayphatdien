@@ -13,7 +13,13 @@ function distinct(values: string[]): string[] {
   return Array.from(new Set(values));
 }
 
-export function CategoryFilter({ items }: { items: Equipment[] }) {
+export function CategoryFilter({
+  items,
+  hotline,
+}: {
+  items: Equipment[];
+  hotline?: string;
+}) {
   const [brand, setBrand] = useState<string | null>(null);
   const [power, setPower] = useState<string | null>(null);
 
@@ -100,7 +106,7 @@ export function CategoryFilter({ items }: { items: Equipment[] }) {
       {filtered.length > 0 ? (
         <div className="mt-6 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((item) => (
-            <EquipmentCard key={item.slug} item={item} />
+            <EquipmentCard key={item.slug} item={item} hotline={hotline} />
           ))}
         </div>
       ) : (

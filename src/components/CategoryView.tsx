@@ -1,15 +1,29 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { categories } from '@/config/categories';
-import { equipmentByCategory } from '@/config/equipment';
+import { loadCategories, loadEquipmentByCategory, loadSettings } from '@/lib/content';
+import { categoryHref } from '@/config/categories';
 import { CategoryFilter } from '@/components/CategoryFilter';
+import { JsonLd } from '@/components/JsonLd';
+import { graph, breadcrumbSchema } from '@/lib/schema';
 
-export function CategoryView({ slug }: { slug: string }) {
+export async function CategoryView({ slug }: { slug: string }) {
+  const [categories, items, settings] = await Promise.all([
+    loadCategories(),
+    loadEquipmentByCategory(slug),
+    loadSettings(),
+  ]);
   const category = categories.find((c) => c.slug === slug);
   if (!category) notFound();
 
+  const crumbs = [
+    { name: 'Trang chủ', path: '/' },
+    { name: 'Thiết bị', path: '/thiet-bi/' },
+    { name: category.name, path: categoryHref(slug) },
+  ];
+
   return (
     <section className="bg-bg py-24 md:py-32">
+      <JsonLd data={graph([breadcrumbSchema(crumbs)])} />
       <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
         <nav aria-label="Breadcrumb" className="text-sm text-muted">
           <ol className="flex flex-wrap items-center gap-2">
@@ -39,7 +53,7 @@ export function CategoryView({ slug }: { slug: string }) {
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{category.meta}</p>
 
         <div className="mt-10 border-t border-line pt-10">
-          <CategoryFilter items={equipmentByCategory(slug)} />
+          <CategoryFilter items={items} hotline={settings.hotline} />
         </div>
       </div>
     </section>
