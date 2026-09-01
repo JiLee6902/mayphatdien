@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-type Variant = 'accent' | 'outline' | 'outline-light';
+type Variant = 'accent' | 'outline' | 'outline-light' | 'light';
 
 const base =
   'inline-flex items-center justify-center gap-2 rounded-xl font-bold px-6 py-3.5 text-sm transition-colors';
@@ -9,6 +9,7 @@ const variants: Record<Variant, string> = {
   accent: 'bg-accent text-white shadow-sm hover:bg-accent-dark hover:shadow-md',
   outline: 'border border-line text-navy hover:border-steel hover:text-navy',
   'outline-light': 'border border-white/40 text-white hover:bg-white/10',
+  light: 'bg-white text-navy shadow-sm hover:bg-white/90 hover:shadow-md',
 };
 
 export function Button({

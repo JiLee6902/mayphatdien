@@ -12,29 +12,33 @@ export function CategoryCard({
   return (
     <Link
       href={categoryHref(category.slug)}
-      className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(18,49,79,0.25)]"
+      className="group flex flex-col overflow-hidden rounded-[20px] border border-line/80 bg-white shadow-[0_1px_2px_rgba(16,42,67,0.05)] transition duration-300 hover:-translate-y-1.5 hover:border-accent/25 hover:shadow-[0_30px_60px_-24px_rgba(14,58,102,0.32)]"
     >
-      <div className="relative h-[210px] overflow-hidden bg-navy-dark">
+      <div className="aspect-[4/3] overflow-hidden bg-[#eef1ee]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={category.image}
           alt={`Cho thuê ${category.name}`}
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+          className="h-full w-full object-cover transition duration-[600ms] ease-out group-hover:scale-[1.04]"
           loading={index < 2 ? 'eager' : 'lazy'}
           fetchPriority={index === 0 ? 'high' : 'auto'}
         />
-        <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-dark/85 to-transparent px-4 pb-2.5 pt-5 text-[15px] font-bold text-white">
-          {category.name}
-        </span>
       </div>
-      <div className="p-5">
-        <p className="min-h-[38px] text-[13.5px] text-muted">{category.meta}</p>
-        <span className="mt-2 inline-flex items-center gap-1.5 font-bold text-accent">
-          Xem thiết bị
-          <span aria-hidden className="transition group-hover:translate-x-1">
-            →
+      <div className="flex flex-1 flex-col p-5">
+        <div className="flex items-start justify-between gap-3">
+          <h3 className="min-h-[2.75rem] text-[17px] font-bold leading-tight text-navy transition-colors group-hover:text-accent">
+            {category.name}
+          </h3>
+          <span
+            aria-hidden
+            className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent/10 text-accent transition group-hover:bg-accent group-hover:text-white"
+          >
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4">
+              <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </span>
-        </span>
+        </div>
+        <p className="mt-auto text-[13.5px] leading-relaxed text-muted">{category.meta}</p>
       </div>
     </Link>
   );

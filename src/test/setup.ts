@@ -14,3 +14,35 @@ vi.mock('next/link', () => ({
   }: { href: string; children: ReactNode } & AnchorHTMLAttributes<HTMLAnchorElement>) =>
     createElement('a', { href, ...rest }, children),
 }));
+
+// jsdom has no IntersectionObserver; our scroll-reveal motion components rely on
+// it. Provide a no-op stub so components mount in tests (they render their
+// content regardless of whether the observer ever fires).
+class MockIntersectionObserver implements IntersectionObserver {
+  readonly root = null;
+  readonly rootMargin = '';
+  readonly thresholds = [];
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+  takeRecords(): IntersectionObserverEntry[] {
+    return [];
+  }
+}
+vi.stubGlobal('IntersectionObserver', MockIntersectionObserver);
+
+// jsdom has no matchMedia; motion components query prefers-reduced-motion.
+// Default to "no preference" (matches: false) in tests.
+vi.stubGlobal(
+  'matchMedia',
+  vi.fn((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: () => {},
+    removeListener: () => {},
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    dispatchEvent: () => false,
+  })),
+);

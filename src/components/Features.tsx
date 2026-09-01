@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Reveal } from './motion/Reveal';
 
 const iconClass = 'h-6 w-6';
 const svgProps = {
@@ -62,7 +63,7 @@ const features: { icon: ReactNode; title: string; desc: string; points: string[]
 
 function Dot() {
   return (
-    <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 flex-none text-accent" fill="none" stroke="currentColor" strokeWidth="2.2">
+    <svg aria-hidden viewBox="0 0 24 24" className="mt-0.5 h-4 w-4 flex-none text-mint" fill="none" stroke="currentColor" strokeWidth="2.2">
       <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
@@ -72,33 +73,34 @@ export function Features() {
   return (
     <section className="bg-bg">
       <div className="mx-auto max-w-[1320px] px-8 py-28 lg:px-12 md:py-36">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
             <span className="h-px w-8 bg-accent" />
             Cam kết dịch vụ
             <span className="h-px w-8 bg-accent" />
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
+          <h2 className="mt-4 text-[36px] font-extrabold tracking-tight text-navy md:text-[52px]">
             Vì sao chọn PMC
           </h2>
           <p className="mt-4 text-muted">
             Đối tác cho thuê thiết bị công nghiệp uy tín — từ thiết bị chính hãng đến dịch vụ
             kỹ thuật tận nơi, đồng hành trọn vòng đời dự án.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {features.map((f) => (
-            <div
+        <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {features.map((f, i) => (
+            <Reveal
               key={f.title}
-              className="group rounded-2xl bg-[linear-gradient(160deg,#0f4179,#0a2947)] p-6 text-white ring-1 ring-white/10 shadow-[0_24px_60px_-28px_rgba(10,41,71,0.85)] transition duration-300 hover:-translate-y-1"
+              delay={i * 90}
+              className="group flex h-full flex-col rounded-[20px] bg-[linear-gradient(160deg,#0c463f,#083832)] p-7 text-white ring-1 ring-white/10 shadow-[0_24px_60px_-32px_rgba(5,46,42,0.85)] transition duration-300 hover:-translate-y-1.5 hover:ring-mint/30 hover:shadow-[0_34px_70px_-30px_rgba(16,185,129,0.35)]"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-accent ring-1 ring-white/10">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-mint/12 text-mint ring-1 ring-mint/20">
                 {f.icon}
               </div>
-              <h3 className="mt-5 text-lg font-bold text-white">{f.title}</h3>
-              <p className="mt-2 text-sm text-white/65">{f.desc}</p>
-              <ul className="mt-4 space-y-2 border-t border-white/10 pt-4">
+              <h3 className="mt-6 min-h-[3.25rem] text-lg font-bold leading-snug text-white">{f.title}</h3>
+              <p className="mt-1 min-h-[2.75rem] text-sm leading-relaxed text-white/60">{f.desc}</p>
+              <ul className="mt-6 space-y-2.5 border-t border-white/10 pt-5">
                 {f.points.map((p) => (
                   <li key={p} className="flex gap-2 text-sm text-white/80">
                     <Dot />
@@ -106,7 +108,7 @@ export function Features() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

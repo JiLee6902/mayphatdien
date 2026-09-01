@@ -1,20 +1,140 @@
 @import "tailwindcss";
 
 @theme {
-  /* Industrial blue + warm orange accent */
-  --color-navy: #0e3a66;        /* primary dark surface */
-  --color-navy-dark: #0a2947;   /* deepest */
-  --color-steel: #4a6a8f;       /* muted blue-gray */
-  --color-emerald: #3b82f6;     /* blue glow (kept name for reuse) */
-  --color-accent: #e2811c;      /* warm CTA */
-  --color-accent-dark: #c96e11;
-  --color-ink: #14202e;
-  --color-muted: #5a6b7d;
-  --color-line: #e3e9f0;
-  --color-bg: #f4f7fb;
-  --color-ok: #0f9d63;
+  /* Deep teal-green + mint accent (TechCoop-inspired) */
+  --color-navy: #0a3f39;        /* primary teal surface (kept name for reuse) */
+  --color-navy-dark: #052e2a;   /* deepest teal */
+  --color-steel: #5a807a;       /* muted teal-gray */
+  --color-emerald: #34d399;     /* mint glow */
+  --color-accent: #067a55;      /* rich emerald CTA */
+  --color-accent-dark: #05613f;
+  --color-mint: #5eead0;        /* bright accent on dark surfaces */
+  --color-ink: #0e2a26;         /* near-black teal ink */
+  --color-muted: #5b6b67;
+  --color-line: #e4e7e2;
+  --color-bg: #f5f5f1;          /* soft warm cream */
+  --color-ok: #067a55;
   --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
 }
 
 html { scroll-behavior: smooth; font-size: 17px; }
 body { background: var(--color-bg); color: var(--color-ink); }
+
+/* ---------------------------------------------------------------------------
+   Motion layer — lightweight, dependency-free, respects reduced-motion.
+   Used by <Reveal>, <TiltCard>, <CountUp> and the animated hero background.
+--------------------------------------------------------------------------- */
+
+/* Scroll-reveal: hidden until JS adds .is-visible when the element enters view */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 3D tilt: driven by CSS vars set from pointer move in <TiltCard> */
+.tilt {
+  transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg));
+  transition: transform 0.25s ease-out;
+  transform-style: preserve-3d;
+}
+
+/* Animated aurora blobs behind the hero */
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(6%, -8%, 0) scale(1.15); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
+}
+.aurora { animation: aurora-drift 14s ease-in-out infinite; }
+.aurora-slow { animation: aurora-drift 20s ease-in-out infinite reverse; }
+
+/* Soft pulsing status dot */
+@keyframes pmc-pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(226, 129, 28, 0.55); }
+  50%      { opacity: 0.7; box-shadow: 0 0 0 6px rgba(226, 129, 28, 0); }
+}
+.pulse-dot { animation: pmc-pulse 2.4s ease-in-out infinite; }
+
+/* Marquee for the brand strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.marquee-mask:hover .marquee-track { animation-play-state: paused; }
+
+/* Blueprint dot-grid — industrial texture behind dark sections */
+.blueprint {
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Fine grain/noise overlay for richness on flat gradients */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Animated gradient conic border — used on the hero image frame */
+@keyframes border-spin {
+  to { transform: rotate(360deg); }
+}
+.gradient-frame { position: relative; isolation: isolate; }
+.gradient-frame::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from 0deg,
+    rgba(226, 129, 28, 0.9),
+    rgba(56, 132, 255, 0.7),
+    rgba(255, 255, 255, 0.15),
+    rgba(226, 129, 28, 0.9)
+  );
+  animation: border-spin 8s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  z-index: -1;
+}
+
+/* Shimmer sweep across a surface */
+@keyframes shimmer {
+  0%   { transform: translateX(-120%) skewX(-12deg); }
+  60%, 100% { transform: translateX(220%) skewX(-12deg); }
+}
+.shimmer { animation: shimmer 4.5s ease-in-out infinite; }
+
+/* Gentle float for badges/pills */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .tilt { transform: none !important; }
+  .aurora, .aurora-slow, .pulse-dot, .marquee-track,
+  .gradient-frame::before, .shimmer, .float-y { animation: none !important; }
+}
