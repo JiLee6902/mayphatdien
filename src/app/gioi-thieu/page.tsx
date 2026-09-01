@@ -11,9 +11,10 @@ function Icon({ children }: { children: ReactNode }) {
 }
 
 export const metadata: Metadata = {
-  title: 'Giới thiệu Công ty TNHH P.M.C — Cho thuê thiết bị công nghiệp',
+  title: { absolute: 'Giới thiệu Công ty TNHH P.M.C — Cho thuê thiết bị công nghiệp' },
   description:
     'Thành lập năm 2007, P.M.C chuyên cho thuê máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn, phục vụ các tỉnh thành miền Nam.',
+  alternates: { canonical: '/gioi-thieu/' },
 };
 
 const stats = [
