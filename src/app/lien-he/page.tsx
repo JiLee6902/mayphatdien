@@ -51,6 +51,13 @@ function PinIcon() {
     </svg>
   );
 }
+function SendIcon() {
+  return (
+    <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m22 2-7 20-4-9-9-4 20-7z" /><path d="M22 2 11 13" />
+    </svg>
+  );
+}
 
 type Method = {
   icon: ReactNode;
@@ -60,6 +67,12 @@ type Method = {
   cta: string;
   external?: boolean;
 };
+
+const MAPS_EMBED =
+  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.857!2d107.0816!3d10.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f21f9e7e7e8f%3A0x0!2s1591A+%C4%90%C6%B0%E1%BB%9Dng+30%2F4%2C+Ph%C6%B0%E1%BB%9Dng+12%2C+Th%C3%A0nh+ph%E1%BB%91+V%C5%A9ng+T%C3%A0u!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn';
+
+const fieldClass =
+  'w-full rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/60 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20';
 
 export default async function LienHePage() {
   const settings = await loadSettings();
@@ -93,111 +106,161 @@ export default async function LienHePage() {
       <PageHeader
         eyebrow="Liên hệ"
         title="Liên hệ PMC"
-        subtitle="Gọi ngay để được khảo sát và báo giá miễn phí. Đội ngũ PMC tư vấn công suất, phương án lắp đặt và vận hành phù hợp với công trình của bạn."
+        subtitle="Khảo sát và báo giá miễn phí trong ngày. Gọi hotline hoặc điền form — PMC phản hồi trong vòng 1 giờ."
         crumb="Liên hệ"
       />
 
-      <section className="mx-auto max-w-[1280px] px-8 py-24 md:py-32 lg:px-12">
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* Left: contact methods */}
-          <div>
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-              <span className="h-px w-8 bg-accent" />
-              Kênh liên hệ nhanh
-            </p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
-              Kết nối với PMC
-            </h2>
+      <section className="mx-auto max-w-[1280px] px-8 py-10 md:py-14 lg:px-12">
+        <div className="grid gap-12 lg:grid-cols-2">
 
-            <div className="mt-8 space-y-4">
-              {methods.map((m) => (
-                <div
-                  key={m.label}
-                  className="flex items-center gap-5 rounded-2xl border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
-                >
-                  <span className="flex h-14 w-14 flex-none items-center justify-center rounded-xl bg-navy/5 text-accent">
-                    {m.icon}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold uppercase tracking-wide text-muted">{m.label}</p>
+          {/* Left: channels + locations */}
+          <div className="space-y-10">
+            <div>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Kênh liên hệ nhanh</p>
+              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Kết nối với PMC</h2>
+              <div className="mt-6 space-y-4">
+                {methods.map((m) => (
+                  <div
+                    key={m.label}
+                    className="flex items-center gap-5 rounded-2xl border border-line bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                  >
+                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      {m.icon}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-xs font-bold uppercase tracking-wide text-muted">{m.label}</p>
+                      <a
+                        href={m.href}
+                        {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                        className="mt-0.5 block truncate text-base font-extrabold text-navy transition-colors hover:text-accent"
+                      >
+                        {m.value}
+                      </a>
+                    </div>
                     <a
                       href={m.href}
-                      className="mt-1 block truncate text-lg font-extrabold text-navy transition-colors hover:text-accent"
+                      {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                      className="inline-flex flex-none items-center rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-navy-dark shadow-sm transition hover:bg-accent-dark"
                     >
-                      {m.value}
+                      {m.cta}
                     </a>
                   </div>
-                  <a
-                    href={m.href}
-                    className="inline-flex flex-none items-center rounded-xl bg-accent px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-accent-dark"
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Văn phòng</p>
+              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Địa điểm của PMC</h2>
+              <div className="mt-6 space-y-4">
+                {settings.locations.map((loc) => (
+                  <div
+                    key={loc.name}
+                    className="rounded-2xl border border-line bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
                   >
-                    {m.cta}
-                  </a>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-navy p-6 text-sm text-white/85">
-              <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-accent/20 text-accent">
-                <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <path d="m5 13 4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </span>
-              <p>
-                <span className="font-bold text-white">Khảo sát &amp; báo giá miễn phí trong ngày.</span>{' '}
-                Liên hệ Hotline hoặc Zalo — website hiện chưa có biểu mẫu gửi yêu cầu trực tuyến.
-              </p>
-            </div>
-          </div>
-
-          {/* Right: locations */}
-          <div>
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-              <span className="h-px w-8 bg-accent" />
-              Văn phòng
-            </p>
-            <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
-              Địa điểm của PMC
-            </h2>
-
-            <div className="mt-8 space-y-6">
-              {settings.locations.map((loc) => (
-                <div
-                  key={loc.name}
-                  className="rounded-2xl border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
-                >
-                  <div className="flex items-start gap-4">
-                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-navy/5 text-accent">
-                      <PinIcon />
-                    </span>
-                    <div>
-                      <h3 className="text-lg font-bold text-navy">{loc.name}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-muted">{loc.address}</p>
+                    <div className="flex items-start gap-4">
+                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-accent/10 text-accent">
+                        <PinIcon />
+                      </span>
+                      <div>
+                        <h3 className="font-bold text-navy">{loc.name}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-muted">{loc.address}</p>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-line pt-4">
+                      <a href={telHref(loc.phone)} className="inline-flex items-center gap-2 text-sm font-bold text-navy transition-colors hover:text-accent">
+                        <PhoneIcon />
+                        {formatPhone(loc.phone)}
+                      </a>
+                      <a href={mapsHref(loc.address)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline">
+                        Chỉ đường →
+                      </a>
                     </div>
                   </div>
-                  <div className="mt-5 flex flex-wrap items-center gap-4 border-t border-line pt-5">
-                    <a
-                      href={telHref(loc.phone)}
-                      className="inline-flex items-center gap-2 text-sm font-bold text-navy transition-colors hover:text-accent"
-                    >
-                      <PhoneIcon />
-                      {formatPhone(loc.phone)}
-                    </a>
-                    <a
-                      href={mapsHref(loc.address)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline"
-                    >
-                      Chỉ đường
-                      <span aria-hidden>→</span>
-                    </a>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
+
+          {/* Right: contact form */}
+          <div>
+            <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Gửi yêu cầu báo giá</p>
+            <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Điền form — PMC gọi lại ngay</h2>
+            <p className="mt-2 text-sm text-muted">Phản hồi trong vòng 1 giờ (7:00 – 21:00 hàng ngày).</p>
+
+            <form
+              action={`mailto:${settings.email}`}
+              method="POST"
+              encType="text/plain"
+              className="mt-6 space-y-4"
+            >
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-name">Họ tên *</label>
+                  <input id="contact-name" name="ho_ten" type="text" required placeholder="Nguyễn Văn A" className={fieldClass} />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-phone">Số điện thoại *</label>
+                  <input id="contact-phone" name="so_dien_thoai" type="tel" required placeholder="0912 345 678" className={fieldClass} />
+                </div>
+              </div>
+
+              <div>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-company">Công ty / Dự án</label>
+                <input id="contact-company" name="cong_ty" type="text" placeholder="Tên công ty hoặc dự án" className={fieldClass} />
+              </div>
+
+              <div>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-equipment">Thiết bị cần thuê *</label>
+                <select id="contact-equipment" name="thiet_bi" required className={fieldClass}>
+                  <option value="">Chọn nhóm thiết bị…</option>
+                  <option>Máy phát điện</option>
+                  <option>Máy nén khí</option>
+                  <option>Thiết bị phun rửa UHP</option>
+                  <option>Máy hàn / máy phát hàn</option>
+                  <option>Nhiều loại thiết bị</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-message">Yêu cầu chi tiết</label>
+                <textarea
+                  id="contact-message"
+                  name="yeu_cau"
+                  rows={4}
+                  placeholder="Công suất cần thiết, địa điểm công trình, thời gian thuê…"
+                  className={`${fieldClass} resize-none`}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-bold text-navy-dark shadow-md transition hover:bg-accent-dark hover:-translate-y-0.5 active:scale-95"
+              >
+                <SendIcon />
+                Gửi yêu cầu báo giá
+              </button>
+
+              <p className="text-center text-xs text-muted">
+                Hoặc gọi ngay <a href={telHref(settings.hotline)} className="font-bold text-accent hover:underline">{formatPhone(settings.hotline)}</a> để được tư vấn tức thì.
+              </p>
+            </form>
+          </div>
         </div>
+      </section>
+
+      {/* Google Maps */}
+      <section className="border-t border-line">
+        <iframe
+          src={MAPS_EMBED}
+          title="Vị trí PMC trên Google Maps"
+          width="100%"
+          height="400"
+          style={{ border: 0, display: 'block' }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </section>
     </>
   );

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 
 export function PageHeader({
   eyebrow,
@@ -12,23 +13,27 @@ export function PageHeader({
   crumb: string;
 }) {
   return (
-    <section className="border-b border-line bg-gradient-to-b from-white to-bg">
-      <div className="mx-auto max-w-[1280px] px-8 py-16 md:py-20 lg:px-12">
-        <nav aria-label="Breadcrumb" className="mb-6 text-sm text-muted">
-          <span className="transition-colors hover:text-accent">Trang chủ</span>
-          <span className="mx-2 text-line">›</span>
-          <span className="font-semibold text-navy">{crumb}</span>
+    <section className="relative overflow-hidden border-b border-line bg-white">
+      {/* Subtle accent depth */}
+      <div className="pointer-events-none absolute -right-32 -top-24 h-[380px] w-[380px] rounded-full bg-accent/[0.06] blur-[80px]" />
+
+      <div className="relative mx-auto max-w-[1280px] px-8 pb-8 pt-8 lg:px-12">
+        <nav aria-label="Breadcrumb" className="mb-8 text-[13px] text-muted">
+          <Link href="/" className="transition-colors hover:text-navy">Trang chủ</Link>
+          <span className="mx-2 text-muted/40">›</span>
+          <span className="font-semibold text-ink">{crumb}</span>
         </nav>
-        <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-          <span className="h-px w-8 bg-accent" />
-          {eyebrow}
-        </p>
-        <h1 className="mt-4 text-[34px] font-extrabold tracking-tight text-navy md:text-[48px]">
-          {title}
-        </h1>
-        {subtitle ? (
-          <p className="mt-4 max-w-2xl text-lg text-muted">{subtitle}</p>
-        ) : null}
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-12">
+          <div>
+            <p className="text-[13px] font-bold uppercase tracking-widest text-accent">{eyebrow}</p>
+            <h1 className="mt-3 text-[32px] font-extrabold leading-tight tracking-tight text-navy md:text-[46px]">
+              {title}
+            </h1>
+          </div>
+          {subtitle ? (
+            <p className="max-w-md shrink-0 text-[15px] leading-relaxed text-muted">{subtitle}</p>
+          ) : null}
+        </div>
       </div>
     </section>
   );

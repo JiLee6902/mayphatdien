@@ -34,7 +34,10 @@ export const metadata: Metadata = {
     template: '%s | PMC',
   },
   description: DESCRIPTION,
-  alternates: { canonical: '/' },
+  alternates: {
+    canonical: '/',
+    languages: { 'vi-VN': '/' },
+  },
   keywords: [
     'cho thuê máy phát điện',
     'cho thuê máy nén khí',
@@ -70,6 +73,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const settings = await loadSettings();
   return (
     <html lang="vi" className={beVietnam.variable}>
+      <head>
+        {/* Preload LCP hero image (WebP) for faster Largest Contentful Paint */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/showcase-genset-yard.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+      </head>
       <body className="font-sans antialiased">
         {/* Site-wide entity graph: Organization + WebSite + LocalBusiness ×2 */}
         <JsonLd

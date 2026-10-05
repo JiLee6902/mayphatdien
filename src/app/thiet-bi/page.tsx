@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
-import { loadCategories, loadFeaturedEquipment, loadSettings } from '@/lib/content';
+import { loadCategories, loadAllEquipment, loadSettings } from '@/lib/content';
 import { CategoryCard } from '@/components/CategoryCard';
-import { EquipmentCard } from '@/components/EquipmentCard';
+import { CategoryFilter } from '@/components/CategoryFilter';
+import { CtaBand } from '@/components/CtaBand';
+import { PageHeader } from '@/components/PageHeader';
+import { Reveal } from '@/components/motion/Reveal';
 
 const DESC =
   'Danh mục thiết bị công nghiệp PMC cho thuê: máy phát điện, máy nén khí, phun rửa áp lực cao (UHP) và máy hàn. Sẵn kho, giao lắp tận công trình.';
@@ -18,42 +21,61 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const [categories, featured, settings] = await Promise.all([
+  const [categories, equipment, settings] = await Promise.all([
     loadCategories(),
-    loadFeaturedEquipment(),
+    loadAllEquipment(),
     loadSettings(),
   ]);
 
+  const catChips = categories.map((c) => ({ slug: c.slug, name: c.name }));
+
   return (
-    <section className="bg-bg py-24 md:py-32">
-      <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
-        <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-          <span className="h-px w-8 bg-accent" />
-          Thiết bị cho thuê
-        </p>
-        <h1 className="mt-4 text-[34px] font-extrabold tracking-tight text-navy md:text-[44px]">
-          Thiết bị cho thuê
-        </h1>
-        <p className="mt-4 max-w-2xl text-muted">
-          4 nhóm thiết bị công nghiệp — đầy đủ công suất, thương hiệu lớn, sẵn
-          kho, giao lắp và vận hành tận công trình.
-        </p>
+    <>
+      <PageHeader
+        eyebrow="Thiết bị"
+        title="Thiết bị cho thuê"
+        subtitle="4 nhóm thiết bị công nghiệp — đầy đủ công suất, thương hiệu lớn, sẵn kho, giao lắp và vận hành tận công trình."
+        crumb="Thiết bị"
+      />
 
-        <div className="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+      {/* Categories — quick nav into each group */}
+      <section className="mx-auto max-w-[1280px] px-8 pb-14 pt-9 lg:px-12 md:pb-16 md:pt-11">
+        <Reveal>
+          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Danh mục</p>
+          <h2 className="mt-2 text-[26px] font-extrabold tracking-tight text-navy md:text-[32px]">
+            Chọn nhóm thiết bị
+          </h2>
+        </Reveal>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {categories.map((c, i) => (
-            <CategoryCard key={c.slug} category={c} index={i} />
+            <Reveal key={c.slug} delay={i * 70}>
+              <CategoryCard category={c} index={i} />
+            </Reveal>
           ))}
         </div>
+      </section>
 
-        <h2 className="mt-20 text-[34px] font-extrabold tracking-tight text-navy md:text-[44px]">
-          Thiết bị nổi bật
-        </h2>
-        <div className="mt-8 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((item) => (
-            <EquipmentCard key={item.slug} item={item} hotline={settings.hotline} />
-          ))}
+      {/* Full catalog — every item, filterable by category / brand / power */}
+      <section className="bg-bg">
+        <div className="mx-auto max-w-[1280px] px-8 pb-16 pt-10 lg:px-12 md:pb-20 md:pt-12">
+          <Reveal className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Toàn bộ</p>
+              <h2 className="mt-2 text-[26px] font-extrabold tracking-tight text-navy md:text-[32px]">
+                Tất cả thiết bị
+              </h2>
+            </div>
+            <p className="text-sm font-semibold text-muted">
+              <span className="text-navy">{equipment.length}</span> thiết bị sẵn kho
+            </p>
+          </Reveal>
+          <div className="mt-8">
+            <CategoryFilter items={equipment} hotline={settings.hotline} categories={catChips} />
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <CtaBand settings={settings} />
+    </>
   );
 }

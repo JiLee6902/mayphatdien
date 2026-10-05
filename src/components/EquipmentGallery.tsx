@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Img } from './ui/Img';
 
 export function EquipmentGallery({
   images,
@@ -18,20 +19,21 @@ export function EquipmentGallery({
 
   return (
     <div>
-      <div className="group relative overflow-hidden rounded-2xl border border-line bg-white shadow-[0_20px_50px_-20px_rgba(14,58,102,0.28)]">
+      <div className="group relative overflow-hidden rounded-2xl border border-line bg-white shadow-[0_20px_50px_-20px_rgba(20,36,59,0.20)]">
         <span
-          className={`absolute left-4 top-4 z-10 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white shadow ${
-            featured ? 'bg-accent' : 'bg-ok'
+          className={`absolute left-4 top-4 z-10 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wide shadow ${
+            featured ? 'bg-accent text-navy-dark' : 'bg-ok text-white'
           }`}
         >
           {featured ? '★ Nổi bật' : '● Còn hàng'}
         </span>
         <div className="aspect-[4/3] w-full overflow-hidden bg-navy-dark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Img
             key={main}
             src={main}
             alt={`Cho thuê ${name}`}
+            loading="eager"
+            fetchPriority="high"
             className="h-full w-full object-cover transition duration-300"
           />
         </div>
@@ -74,8 +76,7 @@ export function EquipmentGallery({
                 i === active ? 'border-accent' : 'border-line hover:border-steel'
               }`}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img} alt="" className="h-full w-full object-cover" />
+              <Img src={img} alt="" className="h-full w-full object-cover" />
             </button>
           ))}
         </div>

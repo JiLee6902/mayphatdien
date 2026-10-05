@@ -4,7 +4,7 @@ import { loadCategories, loadEquipmentByCategory, loadSettings } from '@/lib/con
 import { categoryHref } from '@/config/categories';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { JsonLd } from '@/components/JsonLd';
-import { graph, breadcrumbSchema } from '@/lib/schema';
+import { graph, breadcrumbSchema, itemListSchema } from '@/lib/schema';
 
 export async function CategoryView({ slug }: { slug: string }) {
   const [categories, items, settings] = await Promise.all([
@@ -22,40 +22,41 @@ export async function CategoryView({ slug }: { slug: string }) {
   ];
 
   return (
-    <section className="bg-bg py-24 md:py-32">
-      <JsonLd data={graph([breadcrumbSchema(crumbs)])} />
-      <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
-        <nav aria-label="Breadcrumb" className="text-sm text-muted">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li>
-              <Link href="/" className="hover:text-navy">
-                Trang chủ
-              </Link>
-            </li>
-            <li aria-hidden>›</li>
-            <li>
-              <Link href="/thiet-bi/" className="hover:text-navy">
-                Thiết bị
-              </Link>
-            </li>
-            <li aria-hidden>›</li>
-            <li className="font-semibold text-navy">{category.name}</li>
-          </ol>
-        </nav>
+    <>
+      <JsonLd
+        data={graph([
+          breadcrumbSchema(crumbs),
+          ...(items.length ? [itemListSchema(items, categoryHref(slug))] : []),
+        ])}
+      />
 
-        <p className="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-          <span className="h-px w-8 bg-accent" />
-          Danh mục thiết bị
-        </p>
-        <h1 className="mt-4 text-[34px] font-extrabold tracking-tight text-navy md:text-[44px]">
-          Cho thuê {category.name}
-        </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted">{category.meta}</p>
+      {/* Header — white with accent depth */}
+      <section className="relative overflow-hidden border-b border-line bg-white">
+        <div className="pointer-events-none absolute -right-32 -top-24 h-[380px] w-[380px] rounded-full bg-accent/[0.06] blur-[80px]" />
+        <div className="relative mx-auto max-w-[1280px] px-8 pb-8 pt-8 lg:px-12">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-muted">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li><Link href="/" className="transition-colors hover:text-navy">Trang chủ</Link></li>
+              <li aria-hidden className="text-muted/40">›</li>
+              <li><Link href="/thiet-bi/" className="transition-colors hover:text-navy">Thiết bị</Link></li>
+              <li aria-hidden className="text-muted/40">›</li>
+              <li className="font-semibold text-ink">{category.name}</li>
+            </ol>
+          </nav>
 
-        <div className="mt-10 border-t border-line pt-10">
+          <p className="mt-8 text-[13px] font-bold uppercase tracking-widest text-accent">Danh mục thiết bị</p>
+          <h1 className="mt-3 text-[32px] font-extrabold leading-tight tracking-tight text-navy md:text-[46px]">
+            Cho thuê {category.name}
+          </h1>
+        </div>
+      </section>
+
+      {/* Listing */}
+      <section className="bg-bg">
+        <div className="mx-auto max-w-[1280px] px-8 pb-14 pt-10 lg:px-12 md:pb-16 md:pt-11">
           <CategoryFilter items={items} hotline={settings.hotline} />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

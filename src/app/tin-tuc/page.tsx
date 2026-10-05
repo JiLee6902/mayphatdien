@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/motion/Reveal';
 import { postHref } from '@/config/posts';
+import { Img } from '@/components/ui/Img';
 import { loadPosts } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -24,22 +25,20 @@ export default async function TinTucPage() {
         crumb="Tin tức"
       />
 
-      <section className="mx-auto max-w-[1280px] px-8 py-24 md:py-32 lg:px-12">
+      <section className="mx-auto max-w-[1280px] px-8 py-10 md:py-14 lg:px-12">
         <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
           {articles.map((a, i) => (
             <Reveal
               key={a.title}
               delay={(i % 3) * 90}
               as="article"
-              className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
+              className="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(20,36,59,0.22)] hover:ring-accent/30"
             >
               <Link href={postHref(a.slug)} className="relative block h-52 overflow-hidden bg-navy-dark">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Img
                   src={a.image}
                   alt={a.title}
                   className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  loading="lazy"
                 />
                 <time className="absolute left-3 top-3 inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-navy shadow">
                   {a.date}

@@ -35,7 +35,7 @@ export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?
               </li>
             ))}
             <li className="p-2">
-              <a href={telHref(hotline)} className="block rounded-lg bg-accent px-4 py-3 text-center font-bold text-white">
+              <a href={telHref(hotline)} className="block rounded-lg bg-accent px-4 py-3 text-center font-bold text-navy-dark">
                 Gọi ngay 0936 899 431
               </a>
             </li>

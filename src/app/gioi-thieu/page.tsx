@@ -76,8 +76,8 @@ export default function GioiThieuPage() {
         crumb="Giới thiệu"
       />
 
-      <section className="mx-auto max-w-[1280px] px-8 py-24 md:py-32 lg:px-12">
-        <div className="max-w-3xl space-y-6 text-lg leading-relaxed text-ink">
+      <section className="mx-auto max-w-[1280px] px-8 py-10 md:py-14 lg:px-12">
+        <div className="space-y-6 text-lg leading-relaxed text-ink">
           <p>
             Công ty TNHH P.M.C được thành lập từ năm 2007, chuyên cung cấp dịch vụ cho thuê
             máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn công
@@ -103,9 +103,9 @@ export default function GioiThieuPage() {
           {stats.map((s) => (
             <div
               key={s.label}
-              className="rounded-2xl border border-line bg-white p-6 text-center shadow-sm"
+              className="flex flex-col items-center rounded-2xl border border-line bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-md"
             >
-              <p className="text-3xl font-extrabold tracking-tight text-navy md:text-4xl">
+              <p className="flex flex-1 items-center text-3xl font-extrabold tracking-tight text-accent md:text-4xl">
                 {s.value}
               </p>
               <p className="mt-2 text-sm text-muted">{s.label}</p>
@@ -115,10 +115,7 @@ export default function GioiThieuPage() {
 
         {/* Services */}
         <div className="mt-20">
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            <span className="h-px w-8 bg-accent" />
-            Dịch vụ trọn gói
-          </p>
+          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Dịch vụ trọn gói</p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
             Đồng hành từ khảo sát đến vận hành
           </h2>
@@ -126,9 +123,9 @@ export default function GioiThieuPage() {
             {services.map((sv) => (
               <div
                 key={sv.title}
-                className="rounded-2xl border border-line bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-15px_rgba(14,58,102,0.25)]"
+                className="group rounded-2xl border border-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/10 hover:ring-1 hover:ring-accent/20"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-navy/5 text-accent">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent-dark transition-colors group-hover:bg-accent group-hover:text-navy-dark">
                   {sv.icon}
                 </span>
                 <h3 className="mt-4 text-lg font-bold text-navy">{sv.title}</h3>
@@ -140,10 +137,7 @@ export default function GioiThieuPage() {
 
         {/* Service area */}
         <div className="mt-20 rounded-2xl border border-line bg-white p-8 shadow-sm md:p-10">
-          <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-accent">
-            <span className="h-px w-8 bg-accent" />
-            Khu vực phục vụ
-          </p>
+          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Khu vực phục vụ</p>
           <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
             Phủ khắp các tỉnh thành miền Nam
           </h2>

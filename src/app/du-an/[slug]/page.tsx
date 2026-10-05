@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { Img } from '@/components/ui/Img';
 import { notFound } from 'next/navigation';
-import { site } from '@/config/site';
+import { site, telHref } from '@/config/site';
 import { projectHref } from '@/config/projects';
 import { equipmentHref } from '@/config/equipment';
-import { loadProjects, loadProjectBySlug } from '@/lib/content';
+import { loadProjects, loadProjectBySlug, loadSettings } from '@/lib/content';
 import { JsonLd } from '@/components/JsonLd';
 import { graph, breadcrumbSchema } from '@/lib/schema';
 
@@ -39,6 +40,9 @@ export default async function ProjectPage({ params }: Props) {
   const project = await loadProjectBySlug(slug);
   if (!project) notFound();
 
+  const [allProjects, settings] = await Promise.all([loadProjects(), loadSettings()]);
+  const related = allProjects.filter((p) => p.slug !== project.slug).slice(0, 3);
+
   const canonical = projectHref(project.slug);
   const crumbs = [
     { name: 'Trang chủ', path: '/' },
@@ -47,69 +51,143 @@ export default async function ProjectPage({ params }: Props) {
   ];
 
   return (
-    <article className="bg-bg pb-24 pt-10 md:pb-32">
+    <>
       <JsonLd data={graph([breadcrumbSchema(crumbs)])} />
-      <div className="mx-auto max-w-[900px] px-8 lg:px-12">
-        <nav aria-label="Breadcrumb" className="text-sm text-muted">
-          <ol className="flex flex-wrap items-center gap-2">
-            <li><Link href="/" className="hover:text-accent">Trang chủ</Link></li>
-            <li aria-hidden>›</li>
-            <li><Link href="/du-an/" className="hover:text-accent">Dự án</Link></li>
-            <li aria-hidden>›</li>
-            <li className="font-semibold text-navy line-clamp-1">{project.title}</li>
-          </ol>
-        </nav>
 
-        <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-accent">Dự án tiêu biểu</p>
-        <h1 className="mt-3 text-[30px] font-extrabold leading-tight tracking-tight text-navy md:text-[40px]">
-          {project.title}
-        </h1>
-        {project.location && (
-          <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-muted">
-            <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-accent" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
-              <circle cx="12" cy="10" r="3" />
-            </svg>
-            {project.location}
-          </p>
-        )}
-
+      {/* ── HERO — full-bleed image + navy overlay ── */}
+      <section className="relative overflow-hidden bg-navy-dark">
         {project.image && (
-          <div className="mt-8 overflow-hidden rounded-2xl border border-line bg-navy-dark">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={project.image} alt={project.title} className="h-auto w-full object-cover" />
+          <div className="absolute inset-0">
+            <Img src={project.image} alt="" loading="eager" fetchPriority="high" className="h-full w-full scale-105 object-cover blur-[2px]" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-navy-dark via-navy-dark/92 to-navy-dark/70" />
           </div>
         )}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-accent/20 blur-[90px]" />
 
-        {project.desc && (
-          <p className="mt-10 text-lg leading-8 text-ink/80">{project.desc}</p>
-        )}
+        <div className="relative mx-auto max-w-[1140px] px-8 pb-14 pt-9 lg:px-12">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-white/45">
+            <ol className="flex flex-wrap items-center gap-1.5">
+              <li><Link href="/" className="transition-colors hover:text-white">Trang chủ</Link></li>
+              <li aria-hidden className="text-white/25">›</li>
+              <li><Link href="/du-an/" className="transition-colors hover:text-white">Dự án</Link></li>
+              <li aria-hidden className="text-white/25">›</li>
+              <li className="text-white/70 line-clamp-1">{project.title}</li>
+            </ol>
+          </nav>
 
-        {project.equipmentUsed?.length ? (
-          <div className="mt-12">
-            <h2 className="text-xl font-extrabold tracking-tight text-navy">Thiết bị đã sử dụng</h2>
-            <ul className="mt-4 flex flex-wrap gap-3">
-              {project.equipmentUsed.map((e) => (
-                <li key={e.slug}>
-                  <Link
-                    href={equipmentHref(e.slug)}
-                    className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-2.5 font-semibold text-navy transition hover:border-accent hover:text-accent"
-                  >
-                    {e.name}
-                    <span aria-hidden>→</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="mt-10 max-w-3xl">
+            <span className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-[12px] font-bold uppercase tracking-wider text-navy-dark">
+              Dự án
+            </span>
+            <h1 className="mt-5 text-[30px] font-extrabold leading-[1.12] tracking-tight text-white md:text-[44px]">
+              {project.title}
+            </h1>
+            {project.location && (
+              <p className="mt-5 inline-flex items-center gap-2 text-[15px] font-semibold text-white/75">
+                <svg aria-hidden viewBox="0 0 24 24" className="h-[18px] w-[18px] text-accent" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                {project.location}
+              </p>
+            )}
           </div>
-        ) : null}
-
-        <div className="mt-12 border-t border-line pt-8">
-          <Link href="/du-an/" className="inline-flex items-center gap-2 font-bold text-accent hover:underline">
-            <span aria-hidden>←</span> Quay lại Dự án
-          </Link>
         </div>
-      </div>
-    </article>
+      </section>
+
+      {/* ── BODY ── */}
+      <section className="bg-bg pb-20 pt-14 md:pb-28">
+        <div className="mx-auto max-w-[1140px] px-8 lg:px-12">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
+            {/* Main */}
+            <article className="max-w-[720px]">
+              {project.image && (
+                <figure className="overflow-hidden rounded-2xl border border-line shadow-sm">
+                  <Img
+                    src={project.image}
+                    alt={project.title}
+                    loading="eager"
+                    className="aspect-[16/9] w-full object-cover"
+                  />
+                  {project.location && (
+                    <figcaption className="flex items-center gap-2 border-t border-line bg-white px-5 py-3 text-[13px] font-semibold text-muted">
+                      <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                      </svg>
+                      {project.location}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
+              {project.desc && (
+                <p className="mt-8 text-lg leading-8 text-ink/80">{project.desc}</p>
+              )}
+
+              {project.equipmentUsed?.length ? (
+                <div className="mt-10">
+                  <h2 className="text-xl font-extrabold tracking-tight text-navy">Thiết bị đã sử dụng</h2>
+                  <ul className="mt-4 flex flex-wrap gap-3">
+                    {project.equipmentUsed.map((e) => (
+                      <li key={e.slug}>
+                        <Link
+                          href={equipmentHref(e.slug)}
+                          className="inline-flex items-center gap-2 rounded-xl border border-line bg-white px-4 py-2.5 font-semibold text-navy transition-colors hover:border-accent hover:text-accent-dark"
+                        >
+                          {e.name}
+                          <span aria-hidden>→</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+
+              <div className="mt-12 border-t border-line pt-6">
+                <Link href="/du-an/" className="inline-flex items-center gap-2 font-semibold text-accent-dark hover:underline">
+                  <span aria-hidden>←</span> Quay lại Dự án
+                </Link>
+              </div>
+            </article>
+
+            {/* Sticky sidebar */}
+            <aside className="lg:sticky lg:top-24 h-fit space-y-6">
+              <div className="rounded-2xl border border-line bg-white p-6 shadow-sm">
+                <p className="text-[12px] font-bold uppercase tracking-widest text-accent-dark">Liên hệ nhanh</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-muted">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
+                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3 text-sm font-bold text-navy-dark transition-colors hover:bg-accent-dark">
+                  Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
+                </a>
+                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl border border-line py-3 text-sm font-bold text-navy transition-colors hover:border-accent/50 hover:text-accent-dark">
+                  Chat Zalo
+                </a>
+              </div>
+
+              {related.length > 0 && (
+                <div className="rounded-2xl border border-line bg-white p-6 shadow-sm">
+                  <p className="text-[12px] font-bold uppercase tracking-widest text-muted">Dự án khác</p>
+                  <ul className="mt-4 space-y-4">
+                    {related.map((r) => (
+                      <li key={r.slug}>
+                        <Link href={projectHref(r.slug)} className="group flex gap-3">
+                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg bg-navy-dark">
+                            <Img src={r.image} alt={r.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="text-[14px] font-bold leading-snug text-navy line-clamp-2 transition-colors group-hover:text-accent-dark">{r.title}</p>
+                            {r.location && <p className="mt-1 text-[12px] text-muted line-clamp-1">{r.location}</p>}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </aside>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
