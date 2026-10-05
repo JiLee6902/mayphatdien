@@ -6,6 +6,7 @@
 // pricing is quote-based ("Liên hệ") — fabricating a price would be invalid.
 
 import { site } from '@/config/site';
+import { equipmentHref } from '@/config/equipment';
 import type { EquipmentDoc } from '@/lib/content';
 
 const ORIGIN = site.url;
@@ -54,27 +55,42 @@ export function websiteSchema() {
   };
 }
 
+const GEO: Record<string, { lat: number; lng: number }> = {
+  'Văn phòng TP.HCM': { lat: 10.8053, lng: 106.7117 },
+  'Trụ sở Vũng Tàu': { lat: 10.3461, lng: 107.0843 },
+};
+
 /** One LocalBusiness node per physical office — the core of local ranking. */
 export function localBusinessSchemas() {
-  return site.locations.map((loc, i) => ({
-    '@type': 'LocalBusiness',
-    '@id': `${ORIGIN}/#local-${i}`,
-    name: `${site.companyName} — ${loc.name}`,
-    image: absoluteUrl(site.ogImage),
-    url: `${ORIGIN}/`,
-    telephone: loc.phone,
-    email: site.email,
-    priceRange: '$$',
-    parentOrganization: { '@id': ORG_ID },
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: loc.address,
-      addressLocality: loc.addressLocality ?? '',
-      addressRegion: loc.addressRegion ?? '',
-      addressCountry: 'VN',
-    },
-    areaServed: site.areaServed,
-  }));
+  return site.locations.map((loc, i) => {
+    const geo = GEO[loc.name];
+    return {
+      '@type': 'LocalBusiness',
+      '@id': `${ORIGIN}/#local-${i}`,
+      name: `${site.companyName} — ${loc.name}`,
+      image: absoluteUrl(site.ogImage),
+      url: `${ORIGIN}/`,
+      telephone: loc.phone,
+      email: site.email,
+      priceRange: '$$',
+      parentOrganization: { '@id': ORG_ID },
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: loc.address,
+        addressLocality: loc.addressLocality ?? '',
+        addressRegion: loc.addressRegion ?? '',
+        addressCountry: 'VN',
+      },
+      ...(geo ? { geo: { '@type': 'GeoCoordinates', latitude: geo.lat, longitude: geo.lng } } : {}),
+      openingHoursSpecification: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+        opens: '07:00',
+        closes: '21:00',
+      },
+      areaServed: site.areaServed,
+    };
+  });
 }
 
 export type Crumb = { name: string; path: string };
@@ -115,6 +131,28 @@ export function productSchema(item: EquipmentDoc, path: string) {
   };
 }
 
+/**
+ * ItemList for an equipment listing/category page. Each entry links to a
+ * detail page so Google understands the page as a curated product list
+ * (eligible for list/carousel treatment in results).
+ */
+export function itemListSchema(
+  items: { name: string; slug: string }[],
+  listPath: string,
+) {
+  return {
+    '@type': 'ItemList',
+    '@id': `${absoluteUrl(listPath)}#itemlist`,
+    numberOfItems: items.length,
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.name,
+      url: absoluteUrl(equipmentHref(it.slug)),
+    })),
+  };
+}
+
 // Convert a "dd/mm/yyyy" display date to ISO "yyyy-mm-dd" (or undefined).
 function toIso(display: string): string | undefined {
   const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(display);
@@ -137,6 +175,21 @@ export function articleSchema(
     author: { '@id': ORG_ID },
     publisher: { '@id': ORG_ID },
     mainEntityOfPage: absoluteUrl(path),
+  };
+}
+
+export type Faq = { q: string; a: string };
+
+/** FAQPage schema. The same Q&A must be visible on the page (Google policy). */
+export function faqSchema(items: Faq[], path: string) {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${absoluteUrl(path)}#faq`,
+    mainEntity: items.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
   };
 }
 
