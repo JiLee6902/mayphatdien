@@ -1,5 +1,6 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
+import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -38,6 +39,11 @@ export const metadata: Metadata = {
     canonical: '/',
     languages: { 'vi-VN': '/' },
   },
+  manifest: '/manifest.webmanifest',
+  // Rendered only when a Search Console token is configured (empty = omitted).
+  ...(site.gscVerification
+    ? { verification: { google: site.gscVerification } }
+    : {}),
   keywords: [
     'cho thuê máy phát điện',
     'cho thuê máy nén khí',
@@ -69,6 +75,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: site.themeColor,
+};
+
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const settings = await loadSettings();
   return (
@@ -96,6 +106,22 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main>{children}</main>
         <Footer settings={settings} />
         <FloatingContact settings={settings} />
+
+        {/* Google Analytics 4 — loaded only when a measurement ID is set. */}
+        {site.gaId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${site.gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

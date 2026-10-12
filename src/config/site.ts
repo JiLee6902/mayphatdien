@@ -14,8 +14,17 @@ export const site = {
   url: 'https://chothuethietbipmc.com',
   description:
     'PMC cho thuê máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn công nghiệp. Khảo sát, giao lắp và vận hành tận công trình tại TP.HCM, Vũng Tàu và toàn miền Nam.',
-  // Default social-share image (1200×630 recommended). Relative to `url`.
-  ogImage: '/images/hero-compressor-lift.jpg',
+  // Default social-share image (1200×630). Relative to `url`.
+  ogImage: '/images/og-default.jpg',
+  // Brand color used for the web manifest + browser theme-color.
+  themeColor: '#14243b',
+  // Google Analytics 4 measurement ID (e.g. "G-XXXXXXXXXX"). Empty = disabled.
+  // Inject at build time via NEXT_PUBLIC_GA_ID, or hardcode here.
+  gaId: process.env.NEXT_PUBLIC_GA_ID ?? '',
+  // Google Search Console verification token (the `content` value of the
+  // google-site-verification meta tag). Empty = tag omitted.
+  // Inject via NEXT_PUBLIC_GSC_VERIFICATION, or hardcode here.
+  gscVerification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? '',
   hotline: '0936899431',
   email: 'pmc@pmcvn.com',
   zaloUrl: 'https://zalo.me/0936899431',
