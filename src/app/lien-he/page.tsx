@@ -72,7 +72,7 @@ const MAPS_EMBED =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.857!2d107.0816!3d10.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f21f9e7e7e8f%3A0x0!2s1591A+%C4%90%C6%B0%E1%BB%9Dng+30%2F4%2C+Ph%C6%B0%E1%BB%9Dng+12%2C+Th%C3%A0nh+ph%E1%BB%91+V%C5%A9ng+T%C3%A0u!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn';
 
 const fieldClass =
-  'w-full rounded-xl border border-line bg-white px-4 py-3 text-sm text-ink placeholder:text-muted/60 outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/20';
+  'w-full rounded-sm border border-edge bg-white px-4 py-3 text-sm text-paper placeholder:text-paper-mute outline-none transition focus:border-signal';
 
 export default async function LienHePage() {
   const settings = await loadSettings();
@@ -110,29 +110,29 @@ export default async function LienHePage() {
         crumb="Liên hệ"
       />
 
-      <section className="mx-auto max-w-[1280px] px-8 py-10 md:py-14 lg:px-12">
+      <section className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-2">
 
           {/* Left: channels + locations */}
           <div className="space-y-10">
             <div>
-              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Kênh liên hệ nhanh</p>
-              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Kết nối với PMC</h2>
+              <p className="eyebrow">Kênh liên hệ nhanh</p>
+              <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Kết nối với PMC</h2>
               <div className="mt-6 space-y-4">
                 {methods.map((m) => (
                   <div
                     key={m.label}
-                    className="flex items-center gap-5 rounded-2xl border border-line bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                    className="surface surface-hover flex items-center gap-5 rounded-sm p-5 hover:-translate-y-0.5"
                   >
-                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-xl bg-accent/10 text-accent">
+                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
                       {m.icon}
                     </span>
                     <div className="min-w-0 flex-1">
-                      <p className="text-xs font-bold uppercase tracking-wide text-muted">{m.label}</p>
+                      <p className="text-xs font-bold uppercase tracking-wide text-paper-mute">{m.label}</p>
                       <a
                         href={m.href}
                         {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                        className="mt-0.5 block truncate text-base font-extrabold text-navy transition-colors hover:text-accent"
+                        className="mt-0.5 block truncate text-base font-extrabold text-paper transition-colors hover:text-signal-dark"
                       >
                         {m.value}
                       </a>
@@ -140,7 +140,7 @@ export default async function LienHePage() {
                     <a
                       href={m.href}
                       {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="inline-flex flex-none items-center rounded-xl bg-accent px-4 py-2.5 text-sm font-bold text-navy-dark shadow-sm transition hover:bg-accent-dark"
+                      className="inline-flex flex-none items-center rounded-sm bg-signal px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-signal-dark"
                     >
                       {m.cta}
                     </a>
@@ -150,29 +150,29 @@ export default async function LienHePage() {
             </div>
 
             <div>
-              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Văn phòng</p>
-              <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Địa điểm của PMC</h2>
+              <p className="eyebrow">Văn phòng</p>
+              <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Địa điểm của PMC</h2>
               <div className="mt-6 space-y-4">
                 {settings.locations.map((loc) => (
                   <div
                     key={loc.name}
-                    className="rounded-2xl border border-line bg-white p-5 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                    className="surface surface-hover rounded-sm p-5 hover:-translate-y-0.5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
                         <PinIcon />
                       </span>
                       <div>
-                        <h3 className="font-bold text-navy">{loc.name}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-muted">{loc.address}</p>
+                        <h3 className="font-display uppercase tracking-tight text-paper">{loc.name}</h3>
+                        <p className="mt-1 text-sm leading-relaxed text-paper-dim">{loc.address}</p>
                       </div>
                     </div>
-                    <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-line pt-4">
-                      <a href={telHref(loc.phone)} className="inline-flex items-center gap-2 text-sm font-bold text-navy transition-colors hover:text-accent">
+                    <div className="mt-4 flex flex-wrap items-center gap-4 border-t border-edge pt-4">
+                      <a href={telHref(loc.phone)} className="inline-flex items-center gap-2 text-sm font-bold text-paper transition-colors hover:text-signal-dark">
                         <PhoneIcon />
                         {formatPhone(loc.phone)}
                       </a>
-                      <a href={mapsHref(loc.address)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:underline">
+                      <a href={mapsHref(loc.address)} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-bold text-signal-dark hover:underline">
                         Chỉ đường →
                       </a>
                     </div>
@@ -184,9 +184,9 @@ export default async function LienHePage() {
 
           {/* Right: contact form */}
           <div>
-            <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Gửi yêu cầu báo giá</p>
-            <h2 className="mt-3 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">Điền form — PMC gọi lại ngay</h2>
-            <p className="mt-2 text-sm text-muted">Phản hồi trong vòng 1 giờ (7:00 – 21:00 hàng ngày).</p>
+            <p className="eyebrow">Gửi yêu cầu báo giá</p>
+            <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Điền form — PMC gọi lại ngay</h2>
+            <p className="mt-2 text-sm text-paper-dim">Phản hồi trong vòng 1 giờ (7:00 – 21:00 hàng ngày).</p>
 
             <form
               action={`mailto:${settings.email}`}
@@ -196,22 +196,22 @@ export default async function LienHePage() {
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-name">Họ tên *</label>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-name">Họ tên *</label>
                   <input id="contact-name" name="ho_ten" type="text" required placeholder="Nguyễn Văn A" className={fieldClass} />
                 </div>
                 <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-phone">Số điện thoại *</label>
+                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-phone">Số điện thoại *</label>
                   <input id="contact-phone" name="so_dien_thoai" type="tel" required placeholder="0912 345 678" className={fieldClass} />
                 </div>
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-company">Công ty / Dự án</label>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-company">Công ty / Dự án</label>
                 <input id="contact-company" name="cong_ty" type="text" placeholder="Tên công ty hoặc dự án" className={fieldClass} />
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-equipment">Thiết bị cần thuê *</label>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-equipment">Thiết bị cần thuê *</label>
                 <select id="contact-equipment" name="thiet_bi" required className={fieldClass}>
                   <option value="">Chọn nhóm thiết bị…</option>
                   <option>Máy phát điện</option>
@@ -223,7 +223,7 @@ export default async function LienHePage() {
               </div>
 
               <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-muted" htmlFor="contact-message">Yêu cầu chi tiết</label>
+                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-message">Yêu cầu chi tiết</label>
                 <textarea
                   id="contact-message"
                   name="yeu_cau"
@@ -235,14 +235,14 @@ export default async function LienHePage() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-bold text-navy-dark shadow-md transition hover:bg-accent-dark hover:-translate-y-0.5 active:scale-95"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
               >
                 <SendIcon />
                 Gửi yêu cầu báo giá
               </button>
 
-              <p className="text-center text-xs text-muted">
-                Hoặc gọi ngay <a href={telHref(settings.hotline)} className="font-bold text-accent hover:underline">{formatPhone(settings.hotline)}</a> để được tư vấn tức thì.
+              <p className="text-center text-xs text-paper-dim">
+                Hoặc gọi ngay <a href={telHref(settings.hotline)} className="font-bold text-signal-dark hover:underline">{formatPhone(settings.hotline)}</a> để được tư vấn tức thì.
               </p>
             </form>
           </div>
@@ -250,13 +250,14 @@ export default async function LienHePage() {
       </section>
 
       {/* Google Maps */}
-      <section className="border-t border-line">
+      <section className="border-t border-edge">
         <iframe
           src={MAPS_EMBED}
           title="Vị trí PMC trên Google Maps"
           width="100%"
           height="400"
           style={{ border: 0, display: 'block' }}
+          className="border-edge"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

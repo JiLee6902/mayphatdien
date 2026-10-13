@@ -16,24 +16,24 @@ export function Faq({
   eyebrow?: string;
 }) {
   return (
-    <section className="mx-auto max-w-[820px] px-8 py-14 lg:px-12 md:py-18">
+    <section className="mx-auto max-w-[860px] px-6 py-16 lg:px-10 md:py-20">
       <Reveal>
-        <p className="text-[13px] font-bold uppercase tracking-widest text-accent">{eyebrow}</p>
-        <h2 className="mt-2 text-[26px] font-extrabold tracking-tight text-navy md:text-[32px]">
+        <p className="eyebrow">{eyebrow}</p>
+        <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[36px]">
           {title}
         </h2>
       </Reveal>
 
-      <div className="mt-8 divide-y divide-line border-y border-line">
+      <div className="mt-8 divide-y divide-edge border-y border-edge">
         {items.map((f, i) => (
           <Reveal key={f.q} delay={i * 50}>
             <details className="group py-2">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold text-navy transition-colors hover:text-accent-dark [&::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] font-bold text-paper transition-colors hover:text-signal [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <svg
                   aria-hidden
                   viewBox="0 0 24 24"
-                  className="h-5 w-5 flex-none text-muted transition-transform duration-300 group-open:rotate-45"
+                  className="h-5 w-5 flex-none text-paper-mute transition-transform duration-300 group-open:rotate-45 group-open:text-signal"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2.2"
@@ -42,7 +42,7 @@ export function Faq({
                   <path d="M12 5v14M5 12h14" />
                 </svg>
               </summary>
-              <p className="pb-5 pr-9 text-[15px] leading-7 text-ink/75">{f.a}</p>
+              <p className="pb-5 pr-9 text-[15px] leading-7 text-paper-dim">{f.a}</p>
             </details>
           </Reveal>
         ))}

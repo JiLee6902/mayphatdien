@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { mainNav } from '@/config/nav';
 import { defaultSiteSettings, type SiteSettings } from '@/config/site';
 import { Button } from './ui/Button';
+import { HeaderSearch } from './HeaderSearch';
 import { MobileMenu } from './MobileMenu';
 
 export function Header({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
@@ -19,59 +20,38 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
 
   return (
     <header
-      className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/85 shadow-[0_4px_24px_-8px_rgba(15,23,42,0.12)] backdrop-blur-xl'
-          : 'bg-white shadow-[0_1px_0_var(--color-line)]'
-      }`}
+      className="on-dark sticky top-0 z-40 border-b border-white/10 bg-ink"
     >
       {/* Main bar */}
       <div
-        className={`relative mx-auto flex max-w-[1280px] items-center gap-6 px-6 transition-all duration-300 lg:px-8 ${
-          scrolled ? 'h-[62px]' : 'h-[74px]'
+        className={`relative mx-auto flex max-w-[1320px] items-center gap-6 px-6 transition-all duration-300 lg:px-10 ${
+          scrolled ? 'h-[62px]' : 'h-[76px]'
         }`}
       >
         <Link
           href="/"
-          className={`font-extrabold tracking-tight text-navy transition-all duration-300 ${
-            scrolled ? 'text-[22px]' : 'text-[26px]'
+          className={`font-display font-extrabold tracking-tight text-white transition-all duration-300 ${
+            scrolled ? 'text-[22px]' : 'text-[25px]'
           }`}
         >
           {settings.brand}
-          <span className="ml-0.5 text-accent">.</span>
+          <span className="text-signal">.</span>
         </Link>
         <nav
           aria-label="Điều hướng chính"
-          className="ml-2 hidden gap-6 font-semibold text-[#2a3742] md:flex"
+          className="ml-3 hidden gap-7 text-[13px] font-bold uppercase tracking-wide text-white/70 md:flex"
         >
           {mainNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="relative whitespace-nowrap py-1.5 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-accent after:transition-transform after:duration-300 hover:text-accent hover:after:scale-x-100"
+              className="relative whitespace-nowrap py-1.5 transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-signal after:transition-transform after:duration-300 hover:text-white hover:after:scale-x-100"
             >
               {item.label}
             </Link>
           ))}
         </nav>
-        <div className="ml-auto hidden items-center gap-2 rounded-xl border border-line bg-bg px-3 py-2.5 transition-colors focus-within:border-accent/50 focus-within:bg-white lg:flex">
-          <svg
-            aria-hidden
-            viewBox="0 0 24 24"
-            className="h-4 w-4 text-muted"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.6"
-          >
-            <circle cx="11" cy="11" r="7" />
-            <path d="m20 20-3-3" strokeLinecap="round" />
-          </svg>
-          <input
-            className="w-56 bg-transparent text-sm outline-none"
-            placeholder="Tìm: 100kVA, cummins, máy hàn…"
-            aria-label="Tìm thiết bị"
-          />
-        </div>
+        <HeaderSearch />
         <Button href="/lien-he/" className="hidden md:ml-auto md:inline-flex lg:ml-0">
           Nhận báo giá
         </Button>

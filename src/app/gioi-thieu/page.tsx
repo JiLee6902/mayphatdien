@@ -76,8 +76,8 @@ export default function GioiThieuPage() {
         crumb="Giới thiệu"
       />
 
-      <section className="mx-auto max-w-[1280px] px-8 py-10 md:py-14 lg:px-12">
-        <div className="space-y-6 text-lg leading-relaxed text-ink">
+      <section className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
+        <div className="space-y-6 text-lg leading-relaxed text-paper-dim text-justify">
           <p>
             Công ty TNHH P.M.C được thành lập từ năm 2007, chuyên cung cấp dịch vụ cho thuê
             máy phát điện, máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn công
@@ -103,49 +103,49 @@ export default function GioiThieuPage() {
           {stats.map((s) => (
             <div
               key={s.label}
-              className="flex flex-col items-center rounded-2xl border border-line bg-white p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-md"
+              className="surface surface-hover flex flex-col items-center rounded-sm p-6 text-center hover:-translate-y-1"
             >
-              <p className="flex flex-1 items-center text-3xl font-extrabold tracking-tight text-accent md:text-4xl">
+              <p className="flex flex-1 items-center font-display text-3xl font-extrabold tracking-tight text-signal-dark md:text-4xl">
                 {s.value}
               </p>
-              <p className="mt-2 text-sm text-muted">{s.label}</p>
+              <p className="mt-2 text-sm text-paper-dim">{s.label}</p>
             </div>
           ))}
         </div>
 
         {/* Services */}
         <div className="mt-20">
-          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Dịch vụ trọn gói</p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
+          <p className="eyebrow">Dịch vụ trọn gói</p>
+          <h2 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">
             Đồng hành từ khảo sát đến vận hành
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((sv) => (
               <div
                 key={sv.title}
-                className="group rounded-2xl border border-line bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-navy/10 hover:ring-1 hover:ring-accent/20"
+                className="surface surface-hover group rounded-sm p-6 hover:-translate-y-1"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent-dark transition-colors group-hover:bg-accent group-hover:text-navy-dark">
+                <span className="flex h-12 w-12 items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
                   {sv.icon}
                 </span>
-                <h3 className="mt-4 text-lg font-bold text-navy">{sv.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{sv.desc}</p>
+                <h3 className="mt-4 font-display text-lg font-extrabold uppercase tracking-tight text-paper">{sv.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-paper-dim">{sv.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Service area */}
-        <div className="mt-20 rounded-2xl border border-line bg-white p-8 shadow-sm md:p-10">
-          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Khu vực phục vụ</p>
-          <h2 className="mt-4 text-2xl font-extrabold tracking-tight text-navy md:text-3xl">
+        <div className="surface mt-20 rounded-sm p-8 md:p-10">
+          <p className="eyebrow">Khu vực phục vụ</p>
+          <h2 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">
             Phủ khắp các tỉnh thành miền Nam
           </h2>
           <div className="mt-6 flex flex-wrap gap-3">
             {provinces.map((p) => (
               <span
                 key={p}
-                className="inline-flex items-center rounded-full border border-line bg-bg px-4 py-2 text-sm font-semibold text-navy"
+                className="inline-flex items-center rounded-sm border border-edge bg-graphite-3 px-4 py-2 text-sm font-semibold text-paper"
               >
                 {p}
               </span>

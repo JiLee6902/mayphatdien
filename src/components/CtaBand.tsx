@@ -4,34 +4,33 @@ import { Reveal } from './motion/Reveal';
 
 export function CtaBand({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
   return (
-    <section className="blueprint relative overflow-hidden bg-navy-dark">
-      {/* Accent glows */}
-      <div className="pointer-events-none absolute -left-24 top-1/2 h-[340px] w-[340px] -translate-y-1/2 rounded-full bg-accent/25 blur-[90px]" />
-      <div className="pointer-events-none absolute -right-20 -bottom-20 h-[300px] w-[300px] rounded-full bg-accent/15 blur-[90px]" />
+    <section className="on-dark relative overflow-hidden bg-ink">
+      <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
+      {/* Signal edge — top */}
+      <div className="absolute inset-x-0 top-0 h-0.5 bg-signal" />
 
-      <Reveal className="relative mx-auto max-w-[1200px] px-6 py-16 md:py-20">
+      <Reveal className="relative mx-auto max-w-[1280px] px-6 py-16 lg:px-10 md:py-20">
         <div className="flex flex-col gap-10 md:flex-row md:items-center md:justify-between">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[13px] font-semibold text-white/80">
-              <span className="pulse-dot h-2 w-2 rounded-full bg-accent" />
+            <div className="eyebrow">
               Phản hồi trong 15 phút
             </div>
-            <h2 className="mt-5 text-[28px] font-extrabold leading-tight text-white md:text-[40px]">
+            <h2 className="mt-5 font-display text-[28px] font-extrabold uppercase leading-[1.05] tracking-tight text-white md:text-[44px]">
               Cần thuê thiết bị cho dự án?
             </h2>
-            <p className="mt-4 text-[17px] leading-relaxed text-white/60">
+            <p className="mt-4 text-[16.5px] leading-relaxed text-white/65">
               Giao lắp tận công trình, hỗ trợ kỹ thuật 24/7.
             </p>
           </div>
-          <div className="flex flex-none flex-col gap-3 sm:min-w-[280px]">
+          <div className="flex flex-none flex-col gap-3 sm:min-w-[300px]">
             <Button href={telHref(settings.hotline)} className="py-4 text-[15px]">
               Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
             </Button>
             <Button href={settings.zaloUrl} variant="outline-light" className="py-4 text-[15px]">
               Chat Zalo — báo giá nhanh
             </Button>
-            <p className="mt-1 text-center text-[13px] text-white/40">
-              Hoặc email: {settings.email}
+            <p className="mt-1 text-center font-mono text-[12px] text-white/45">
+              Email: {settings.email}
             </p>
           </div>
         </div>

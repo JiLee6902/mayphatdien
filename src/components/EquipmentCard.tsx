@@ -12,55 +12,42 @@ export function EquipmentCard({
   hotline?: string;
 }) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-line transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_-16px_rgba(20,36,59,0.22)] hover:ring-accent/30">
+    <div className="group surface surface-hover flex h-full flex-col overflow-hidden rounded-sm transition-all duration-300 hover:-translate-y-1">
 
-      <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden bg-slate-100">
+      <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden">
         <Img
           src={item.image}
           alt={`Cho thuê ${item.name}`}
-          className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
+          className="photo-grade h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/30 via-transparent to-transparent" />
-        <span className="absolute right-3 top-3 rounded-lg bg-accent px-2.5 py-1 text-[12px] font-extrabold text-navy-dark shadow-md shadow-accent/30">
+        {/* Amber power tab */}
+        <span className="absolute left-0 top-4 bg-signal px-3.5 py-1.5 font-display text-[15px] font-extrabold text-ink">
           {item.power}
         </span>
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-accent-dark">{item.brand}</p>
-        <h3 className="mt-2 text-[17px] font-extrabold leading-snug tracking-tight text-navy">
-          <Link href={equipmentHref(item.slug)} className="transition-colors hover:text-accent-dark">{item.name}</Link>
+        <h3 className="font-display text-[17px] font-extrabold uppercase leading-snug tracking-tight text-paper">
+          <Link href={equipmentHref(item.slug)} className="transition-colors hover:text-signal-dark">{item.name}</Link>
         </h3>
 
         {item.specs.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[12.5px] text-muted">
-            {item.specs.slice(0, 2).map((s) => (
-              <span key={s.label} className="inline-flex items-center gap-1.5">
-                <span className="h-1 w-1 rounded-full bg-accent/60" />
-                {s.value}
-              </span>
+          <dl className="mt-4 border-t border-edge text-[13px]">
+            {item.specs.slice(0, 3).map((s) => (
+              <div key={s.label} className="flex items-center justify-between gap-3 border-b border-edge py-2">
+                <dt className="text-paper-dim">{s.label}</dt>
+                <dd className="font-semibold text-paper">{s.value}</dd>
+              </div>
             ))}
-          </div>
+          </dl>
         )}
 
-        <div className="mt-5 flex items-center gap-2 border-t border-line pt-4">
-          <a
-            href={telHref(hotline)}
-            className="group/btn flex flex-1 items-center justify-center gap-2 rounded-xl bg-navy py-3 text-sm font-bold text-white transition-colors hover:bg-accent hover:text-navy-dark"
-          >
-            Gọi báo giá
-            <span className="transition-transform duration-200 group-hover/btn:translate-x-0.5">→</span>
-          </a>
-          <Link
-            href={equipmentHref(item.slug)}
-            aria-label={`Xem chi tiết ${item.name}`}
-            className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-xl border border-line text-navy transition-colors hover:border-accent/50 hover:bg-accent/5 hover:text-accent-dark"
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M13 6l6 6-6 6" />
-            </svg>
-          </Link>
-        </div>
+        <a
+          href={telHref(hotline)}
+          className="mt-auto flex items-center justify-center gap-1.5 rounded-sm bg-ink py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal hover:text-ink"
+        >
+          Gọi báo giá →
+        </a>
       </div>
     </div>
   );

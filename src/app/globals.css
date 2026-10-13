@@ -1,156 +1,149 @@
 @import "tailwindcss";
 
 @theme {
-  /* Corporate Blue — B2B international, clean, trustworthy */
-  /* Industrial — deep navy authority + amber energy (power/electric/site) */
-  --color-navy: #14243b;        /* deep authoritative navy */
-  --color-navy-dark: #0c1826;   /* deepest — footer / dark bands */
-  --color-steel: #445a73;       /* steel blue-gray */
-  --color-emerald: #fbbf24;     /* amber light (on dark) */
-  --color-accent: #f59e0b;      /* amber — energy accent for CTAs */
-  --color-accent-dark: #d97706; /* amber-600 — hover / text-on-white */
-  --color-mint: #fbbf24;        /* amber-400 — on dark surfaces */
-  --color-ink: #0f1b2d;         /* near-black navy ink */
-  --color-muted: #5b6b7f;       /* muted steel */
-  --color-line: #e2e8f0;
-  --color-bg: #f1f5f9;          /* slate-100 — section gray with contrast vs white */
-  --color-ok: #16a34a;
+  /* ------------------------------------------------------------------
+     LIGHT CORPORATE system (Atlas Copco / Aggreko) — warm off-white
+     canvas, dark ink, one premium gold accent. Occasional dark bands
+     (hero scrim, footer, CTA) add gravitas.
+     Token NAMES are kept so every component keeps working:
+       graphite   = page canvas (now light)
+       graphite-2 = raised card surface (white)
+       graphite-3 = hover / input (light gray)
+       paper      = PRIMARY TEXT (now dark ink)
+       paper-dim / paper-mute = secondary / tertiary text
+       ink        = dark element / text-on-gold (always dark)
+  ------------------------------------------------------------------ */
+  --color-graphite: #f6f5f2;      /* page canvas — warm off-white */
+  --color-graphite-2: #ffffff;    /* raised card / panel surface */
+  --color-graphite-3: #efece6;    /* hover / input surface */
+  --color-edge: #e7e3da;          /* hairline border */
+  --color-edge-strong: #d6d1c6;   /* stronger hairline */
+  --color-signal: #f5a623;        /* construction amber accent (fills, on-dark) */
+  --color-signal-dark: #bd7b12;   /* hover / amber text on white */
+  --color-paper: #16181c;         /* PRIMARY TEXT — dark ink */
+  --color-paper-dim: #565a62;     /* secondary text */
+  --color-paper-mute: #8a8f98;    /* tertiary / labels */
+  --color-ink: #16181c;           /* dark bands / text on gold */
+  --color-ink-dim: #c7cacf;       /* dim text on dark bands */
+  --color-ok: #2e9e6b;
+
+  /* Legacy aliases */
+  --color-navy: #16181c;
+  --color-navy-dark: #16181c;
+  --color-steel: #565a62;
+  --color-emerald: #f5a623;
+  --color-accent: #f5a623;
+  --color-accent-dark: #bd7b12;
+  --color-mint: #f5a623;
+  --color-muted: #565a62;
+  --color-line: #e7e3da;
+  --color-bg: #f6f5f2;
+
+  /* Type — distinctive display + mono, avoids generic AI defaults */
   --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
+  --font-display: var(--font-archivo), system-ui, sans-serif;
+  /* No typewriter face — a corporate site reads as sans, not code. */
+  --font-mono: var(--font-be-vietnam), system-ui, sans-serif;
 }
 
-html { scroll-behavior: smooth; font-size: 17px; }
-body { background: #ffffff; color: var(--color-ink); }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--color-graphite);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Consistent, intentional grade so mixed (amateur) source photos read as a
+   cohesive set rather than random snapshots. */
+.photo-grade {
+  filter: saturate(0.9) contrast(1.04) brightness(0.98);
+}
+
+/* Elevated card surface — white panel with soft lift (premium, not boxy) */
+.surface {
+  background: #ffffff;
+  border: 1px solid var(--color-edge);
+  box-shadow: 0 1px 2px rgba(22, 24, 28, 0.04), 0 14px 34px -20px rgba(22, 24, 28, 0.22);
+}
+.surface-hover {
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.surface-hover:hover {
+  border-color: color-mix(in srgb, var(--color-signal) 60%, transparent);
+  box-shadow: 0 2px 4px rgba(22, 24, 28, 0.05), 0 26px 50px -22px rgba(22, 24, 28, 0.30);
+}
+
+/* Refined eyebrow — gold lead-rule + tracked caps (corporate) */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-signal-dark);
+}
+.eyebrow::before {
+  content: '';
+  width: 2rem;
+  height: 2px;
+  background: var(--color-signal);
+}
+/* On dark bands, use the lighter gold for contrast */
+.on-dark .eyebrow { color: var(--color-signal); }
+
+/* Accessible, on-brand focus ring */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Balance display headings so no single word orphans onto its own line */
+h1, h2 { text-wrap: balance; }
+
+::selection { background: var(--color-signal); color: #16181c; }
 
 /* ---------------------------------------------------------------------------
-   Motion layer — lightweight, dependency-free, respects reduced-motion.
-   Used by <Reveal>, <TiltCard>, <CountUp> and the animated hero background.
+   Motion — minimal, dependency-free, respects reduced-motion.
 --------------------------------------------------------------------------- */
 
-/* Scroll-reveal: hidden until JS adds .is-visible when the element enters view */
+/* Scroll-reveal: hidden until <Reveal> adds .is-visible on enter */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateY(22px);
   transition:
     opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Mono micro-label (// LABEL) */
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-/* 3D tilt: driven by CSS vars set from pointer move in <TiltCard> */
-.tilt {
-  transform: perspective(900px) rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg));
-  transition: transform 0.25s ease-out;
-  transform-style: preserve-3d;
-}
-
-/* Animated aurora blobs behind the hero */
-@keyframes aurora-drift {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  50%  { transform: translate3d(6%, -8%, 0) scale(1.15); }
-  100% { transform: translate3d(0, 0, 0) scale(1); }
-}
-.aurora { animation: aurora-drift 14s ease-in-out infinite; }
-.aurora-slow { animation: aurora-drift 20s ease-in-out infinite reverse; }
-
-/* Soft pulsing status dot */
-@keyframes pmc-pulse {
-  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6); }
-  50%      { opacity: 0.7; box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
-}
-.pulse-dot { animation: pmc-pulse 2.4s ease-in-out infinite; }
-
-/* Marquee for the brand strip */
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 32s linear infinite;
-}
-.marquee-mask:hover .marquee-track { animation-play-state: paused; }
-
-/* Blueprint dot-grid — industrial texture behind dark sections */
-.blueprint {
+/* Engineering grid texture for dark surfaces */
+.grid-texture {
   background-image:
-    radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
-  background-size: 22px 22px;
-}
-
-/* Fine grain/noise overlay for richness on flat gradients */
-.grain::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Animated gradient conic border — used on the hero image frame */
-@keyframes border-spin {
-  to { transform: rotate(360deg); }
-}
-.gradient-frame { position: relative; isolation: isolate; }
-.gradient-frame::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  padding: 1px;
-  background: conic-gradient(
-    from 0deg,
-    rgba(226, 129, 28, 0.9),
-    rgba(56, 132, 255, 0.7),
-    rgba(255, 255, 255, 0.15),
-    rgba(226, 129, 28, 0.9)
-  );
-  animation: border-spin 8s linear infinite;
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite: exclude;
-  z-index: -1;
-}
-
-/* Shimmer sweep across a surface */
-@keyframes shimmer {
-  0%   { transform: translateX(-120%) skewX(-12deg); }
-  60%, 100% { transform: translateX(220%) skewX(-12deg); }
-}
-.shimmer { animation: shimmer 4.5s ease-in-out infinite; }
-
-/* Gentle float for badges/pills */
-@keyframes float-y {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-.float-y { animation: float-y 4s ease-in-out infinite; }
-
-/* Animated gradient text */
-@keyframes gradient-x {
-  0%, 100% { background-position: 0% 50%; }
-  50%      { background-position: 100% 50%; }
-}
-.gradient-text {
-  background: linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d, #f59e0b);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradient-x 4s ease infinite;
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .tilt { transform: none !important; }
-  .aurora, .aurora-slow, .pulse-dot, .marquee-track,
-  .gradient-frame::before, .shimmer, .float-y, .gradient-text { animation: none !important; }
-  .gradient-text { -webkit-text-fill-color: var(--color-accent); }
 }

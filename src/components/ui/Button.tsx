@@ -4,12 +4,13 @@ import type { ReactNode } from 'react';
 type Variant = 'accent' | 'outline' | 'outline-light' | 'light';
 
 const base =
-  'relative overflow-hidden inline-flex items-center justify-center gap-2 rounded-xl font-bold px-6 py-3.5 text-sm transition-colors';
+  'inline-flex items-center justify-center gap-2 rounded-sm font-bold uppercase tracking-wide px-6 py-3.5 text-[13.5px] transition-all duration-200 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-signal focus-visible:ring-offset-2';
+
 const variants: Record<Variant, string> = {
-  accent: 'bg-accent text-navy-dark shadow-md shadow-accent/25 hover:bg-accent-dark hover:shadow-lg hover:shadow-accent/35 active:scale-[0.98] transition-all duration-150',
-  outline: 'border border-line text-navy hover:border-accent/40 hover:bg-accent/5 hover:text-accent transition-all duration-150',
-  'outline-light': 'border border-white/35 text-white hover:bg-white/12 hover:border-white/60 transition-all duration-150',
-  light: 'bg-white text-navy shadow-md shadow-black/10 hover:bg-white/95 hover:shadow-lg hover:shadow-black/15 active:scale-[0.98] transition-all duration-150',
+  accent: 'bg-signal text-ink hover:bg-signal-dark hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-10px_rgba(245,166,35,0.55)]',
+  outline: 'border border-edge-strong text-paper hover:border-signal hover:bg-signal/5 hover:text-signal-dark',
+  'outline-light': 'border border-white/35 text-white hover:border-signal hover:bg-white/10 hover:text-signal',
+  light: 'bg-white text-ink hover:-translate-y-0.5 hover:shadow-[0_12px_26px_-10px_rgba(22,24,28,0.3)]',
 };
 
 export function Button({
@@ -24,15 +25,12 @@ export function Button({
   className?: string;
 }) {
   const cls = `${base} ${variants[variant]} ${className}`;
-  const shimmer = variant === 'accent' ? (
-    <span aria-hidden className="shimmer pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-  ) : null;
 
   if (href) {
     if (href.startsWith('tel:') || href.startsWith('mailto:')) {
-      return <a href={href} className={cls}>{shimmer}{children}</a>;
+      return <a href={href} className={cls}>{children}</a>;
     }
-    return <Link href={href} className={cls}>{shimmer}{children}</Link>;
+    return <Link href={href} className={cls}>{children}</Link>;
   }
-  return <button type="button" className={cls}>{shimmer}{children}</button>;
+  return <button type="button" className={cls}>{children}</button>;
 }

@@ -30,30 +30,31 @@ export async function CategoryView({ slug }: { slug: string }) {
         ])}
       />
 
-      {/* Header — white with accent depth */}
-      <section className="relative overflow-hidden border-b border-line bg-white">
-        <div className="pointer-events-none absolute -right-32 -top-24 h-[380px] w-[380px] rounded-full bg-accent/[0.06] blur-[80px]" />
-        <div className="relative mx-auto max-w-[1280px] px-8 pb-8 pt-8 lg:px-12">
-          <nav aria-label="Breadcrumb" className="text-[13px] text-muted">
+      {/* Header — dark band (matches PageHeader) */}
+      <section className="on-dark relative overflow-hidden border-b border-white/10 bg-ink">
+        <div className="grid-texture pointer-events-none absolute inset-0 opacity-50" />
+        <div className="absolute inset-y-0 left-0 w-1 bg-signal" />
+        <div className="relative mx-auto max-w-[1320px] px-6 pb-14 pt-12 lg:px-10">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-white/50">
             <ol className="flex flex-wrap items-center gap-2">
-              <li><Link href="/" className="transition-colors hover:text-navy">Trang chủ</Link></li>
-              <li aria-hidden className="text-muted/40">›</li>
-              <li><Link href="/thiet-bi/" className="transition-colors hover:text-navy">Thiết bị</Link></li>
-              <li aria-hidden className="text-muted/40">›</li>
-              <li className="font-semibold text-ink">{category.name}</li>
+              <li><Link href="/" className="transition-colors hover:text-signal">Trang chủ</Link></li>
+              <li aria-hidden className="text-white/30">/</li>
+              <li><Link href="/thiet-bi/" className="transition-colors hover:text-signal">Thiết bị</Link></li>
+              <li aria-hidden className="text-white/30">/</li>
+              <li className="text-white/80">{category.name}</li>
             </ol>
           </nav>
 
-          <p className="mt-8 text-[13px] font-bold uppercase tracking-widest text-accent">Danh mục thiết bị</p>
-          <h1 className="mt-3 text-[32px] font-extrabold leading-tight tracking-tight text-navy md:text-[46px]">
+          <p className="eyebrow mt-8">Danh mục thiết bị</p>
+          <h1 className="mt-4 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-tight text-white md:text-[52px]">
             Cho thuê {category.name}
           </h1>
         </div>
       </section>
 
       {/* Listing */}
-      <section className="bg-bg">
-        <div className="mx-auto max-w-[1280px] px-8 pb-14 pt-10 lg:px-12 md:pb-16 md:pt-11">
+      <section className="bg-graphite-2 border-b border-edge">
+        <div className="mx-auto max-w-[1320px] px-6 pb-16 pt-16 lg:px-10 md:pb-20 md:pt-20">
           <CategoryFilter items={items} hotline={settings.hotline} />
         </div>
       </section>

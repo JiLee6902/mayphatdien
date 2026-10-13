@@ -4,7 +4,7 @@ function Stars({ className = '' }: { className?: string }) {
   return (
     <div className={`flex gap-0.5 ${className}`} aria-label="5 trên 5 sao">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-accent" aria-hidden>
+        <svg key={i} viewBox="0 0 20 20" className="h-4 w-4 fill-signal" aria-hidden>
           <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 15l-5.3 2.6 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
         </svg>
       ))}
@@ -33,55 +33,53 @@ const others = [
 
 export function Testimonials() {
   return (
-    <section className="bg-white py-14 md:py-18">
-      <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
+    <section className="border-b border-edge bg-graphite">
+      <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
 
-        <Reveal>
-          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Đánh giá</p>
-          <h2 className="mt-2 text-[30px] font-extrabold tracking-tight text-navy md:text-[38px]">Khách hàng nói gì về PMC</h2>
+        <Reveal className="border-b border-edge pb-6">
+          <p className="eyebrow">Đánh giá</p>
+          <h2 className="mt-3 font-display text-[30px] font-extrabold uppercase tracking-tight text-paper md:text-[44px]">Khách hàng nói gì</h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[3fr_2fr]">
+        <div className="mt-8 grid gap-4 lg:grid-cols-[3fr_2fr]">
 
           {/* Featured quote — large */}
           <Reveal>
-            <figure className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-navy-dark p-8 md:p-10">
-              {/* Accent glow + quote mark */}
-              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-accent/20 blur-[70px]" />
-              <span className="pointer-events-none absolute right-6 top-2 select-none text-[130px] font-black leading-none text-white/[0.06]">&rdquo;</span>
+            <figure className="relative flex h-full flex-col border border-edge bg-graphite-2 p-8 md:p-10">
+              <span className="pointer-events-none absolute right-6 top-2 select-none font-display text-[130px] font-black leading-none text-paper/[0.05]">&rdquo;</span>
 
               <Stars className="relative" />
-              <blockquote className="relative mt-6 text-[21px] font-medium leading-relaxed text-white/90 md:text-[24px]">
+              <blockquote className="relative mt-6 text-[21px] font-medium leading-relaxed text-paper md:text-[24px]">
                 {featured.quote}
               </blockquote>
-              <figcaption className="relative mt-auto flex items-center gap-4 border-t border-white/10 pt-6">
-                <div className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-accent text-[15px] font-extrabold text-navy-dark">
+              <figcaption className="relative mt-auto flex items-center gap-4 border-t border-edge pt-6">
+                <div className="flex h-11 w-11 flex-none items-center justify-center bg-signal font-display text-[15px] font-extrabold text-ink">
                   {featured.author.split(' ').pop()?.[0]}
                 </div>
                 <div>
-                  <p className="font-bold text-white">{featured.author}</p>
-                  <p className="text-sm text-white/50">{featured.role}</p>
+                  <p className="font-bold text-paper">{featured.author}</p>
+                  <p className="text-sm text-paper-dim">{featured.role}</p>
                 </div>
               </figcaption>
             </figure>
           </Reveal>
 
           {/* Secondary quotes — stacked */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4">
             {others.map((t, i) => (
               <Reveal key={i} delay={i * 100}>
-                <figure className="flex flex-1 flex-col rounded-2xl border border-line bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-md">
+                <figure className="flex flex-1 flex-col border border-edge bg-graphite-2 p-6 transition-colors duration-300 hover:border-edge-strong">
                   <Stars />
-                  <blockquote className="mt-3 text-[15px] leading-relaxed text-ink/75">
+                  <blockquote className="mt-3 text-[15px] leading-relaxed text-paper-dim">
                     &ldquo;{t.quote}&rdquo;
                   </blockquote>
-                  <figcaption className="mt-auto flex items-center gap-3 border-t border-line pt-4">
-                    <div className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-accent/10 text-[13px] font-extrabold text-accent">
+                  <figcaption className="mt-auto flex items-center gap-3 border-t border-edge pt-4">
+                    <div className="flex h-9 w-9 flex-none items-center justify-center border border-signal/40 font-display text-[13px] font-extrabold text-signal">
                       {t.author.split(' ').pop()?.[0]}
                     </div>
                     <div>
-                      <p className="text-sm font-bold text-navy">{t.author}</p>
-                      <p className="text-[12px] text-muted">{t.role}</p>
+                      <p className="text-sm font-bold text-paper">{t.author}</p>
+                      <p className="text-[12px] text-paper-mute">{t.role}</p>
                     </div>
                   </figcaption>
                 </figure>

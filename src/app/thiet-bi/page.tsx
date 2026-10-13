@@ -39,10 +39,10 @@ export default async function Page() {
       />
 
       {/* Categories — quick nav into each group */}
-      <section className="mx-auto max-w-[1280px] px-8 pb-14 pt-9 lg:px-12 md:pb-16 md:pt-11">
+      <section className="mx-auto max-w-[1320px] px-6 pb-16 pt-12 lg:px-10 md:pb-20">
         <Reveal>
-          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Danh mục</p>
-          <h2 className="mt-2 text-[26px] font-extrabold tracking-tight text-navy md:text-[32px]">
+          <p className="eyebrow">Danh mục</p>
+          <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[32px]">
             Chọn nhóm thiết bị
           </h2>
         </Reveal>
@@ -56,17 +56,17 @@ export default async function Page() {
       </section>
 
       {/* Full catalog — every item, filterable by category / brand / power */}
-      <section className="bg-bg">
-        <div className="mx-auto max-w-[1280px] px-8 pb-16 pt-10 lg:px-12 md:pb-20 md:pt-12">
+      <section className="bg-graphite-2 border-y border-edge">
+        <div className="mx-auto max-w-[1320px] px-6 pb-16 pt-16 lg:px-10 md:pb-20 md:pt-20">
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Toàn bộ</p>
-              <h2 className="mt-2 text-[26px] font-extrabold tracking-tight text-navy md:text-[32px]">
+              <p className="eyebrow">Toàn bộ</p>
+              <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[32px]">
                 Tất cả thiết bị
               </h2>
             </div>
-            <p className="text-sm font-semibold text-muted">
-              <span className="text-navy">{equipment.length}</span> thiết bị sẵn kho
+            <p className="text-sm font-semibold text-paper-dim">
+              <span className="font-bold text-paper">{equipment.length}</span> thiết bị sẵn kho
             </p>
           </Reveal>
           <div className="mt-8">

@@ -13,67 +13,50 @@ const steps = [
     n: '02',
     title: 'Khảo sát & báo giá',
     desc: 'Khảo sát công trình miễn phí, báo giá minh bạch theo ngày · tuần · tháng.',
-    icon: (
-      <>
-        <path d="M9 11H3v10h6M9 11V3h6v18H9M9 11h6m6 10V7h-6" />
-      </>
-    ),
+    icon: <path d="M9 11H3v10h6M9 11V3h6v18H9M9 11h6m6 10V7h-6" />,
   },
   {
     n: '03',
     title: 'Giao lắp tận nơi',
     desc: 'Vận chuyển và lắp đặt đến chân công trình trong 24–48h, hướng dẫn vận hành.',
-    icon: (
-      <>
-        <path d="M10 17h4V5H2v12h3M20 17h2v-5l-3-4h-4v9h2M5 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM15 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" />
-      </>
-    ),
+    icon: <path d="M10 17h4V5H2v12h3M20 17h2v-5l-3-4h-4v9h2M5 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0zM15 17a2 2 0 1 0 4 0 2 2 0 0 0-4 0z" />,
   },
   {
     n: '04',
     title: 'Vận hành & hỗ trợ',
     desc: 'Kỹ thuật túc trực 24/7, bảo dưỡng định kỳ, xử lý sự cố trong ngày.',
-    icon: (
-      <>
-        <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-2.1 2.5-2.5z" />
-      </>
-    ),
+    icon: <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6a2 2 0 1 0 2.8 2.8l6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.1-2.1 2.5-2.5z" />,
   },
 ];
 
 export function Process() {
   return (
-    <section className="relative bg-white">
-      <div className="mx-auto max-w-[1280px] px-8 py-14 lg:px-12 md:py-18">
+    <section className="border-b border-edge bg-graphite">
+      <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
         <Reveal className="max-w-2xl">
-          <p className="text-[13px] font-bold uppercase tracking-widest text-accent">Quy trình</p>
-          <h2 className="mt-2 text-[30px] font-extrabold tracking-tight text-navy md:text-[40px]">
-            Thuê thiết bị chỉ với 4 bước
+          <p className="eyebrow">Quy trình</p>
+          <h2 className="mt-3 font-display text-[30px] font-extrabold uppercase tracking-tight text-paper md:text-[44px]">
+            Thuê thiết bị · 4 bước
           </h2>
-          <p className="mt-3 text-base text-muted">
+          <p className="mt-4 text-[15.5px] leading-relaxed text-paper-dim">
             Nhanh gọn, minh bạch — từ cuộc gọi đầu tiên đến khi máy vận hành tại công trình.
           </p>
         </Reveal>
 
-        <div className="relative mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Connecting line — desktop */}
-          <div className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-line to-transparent lg:block" />
-
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 100}>
-              <div className="group relative">
-                {/* Icon node */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-navy-dark text-white shadow-lg shadow-navy/20 transition-all duration-300 group-hover:bg-accent group-hover:text-navy-dark group-hover:shadow-accent/30 group-hover:-translate-y-1">
-                  <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <Reveal key={s.n} delay={i * 90} className="h-full">
+              <div className="surface surface-hover group relative flex h-full flex-col overflow-hidden rounded-sm p-6">
+                {/* Big faded step number watermark */}
+                <span className="pointer-events-none absolute -right-2 -top-3 font-display text-[88px] font-extrabold leading-none text-signal/[0.08] transition-colors group-hover:text-signal/[0.14]">{s.n}</span>
+                {/* Filled icon badge */}
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-sm bg-ink text-white transition-colors duration-300 group-hover:bg-signal group-hover:text-ink">
+                  <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     {s.icon}
                   </svg>
-                  <span className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[11px] font-extrabold text-navy-dark ring-2 ring-white">
-                    {s.n.replace('0', '')}
-                  </span>
                 </div>
-
-                <h3 className="mt-5 text-[17px] font-bold text-navy">{s.title}</h3>
-                <p className="mt-2 text-[14px] leading-relaxed text-muted">{s.desc}</p>
+                <h3 className="relative mt-6 font-display text-[16px] font-extrabold uppercase tracking-tight text-paper">{s.title}</h3>
+                <p className="relative mt-2 text-[13.5px] leading-relaxed text-paper-dim">{s.desc}</p>
               </div>
             </Reveal>
           ))}

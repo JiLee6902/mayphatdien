@@ -24,19 +24,19 @@ function formatPhone(raw: string): string {
 
 export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
   return (
-    <footer className="bg-navy-dark text-[15px] text-[#8ba3ba]">
-      <div className="mx-auto grid max-w-[1200px] gap-10 px-6 py-14 sm:grid-cols-2 md:grid-cols-4 lg:gap-12">
+    <footer className="bg-ink text-[15px] text-white/55">
+      <div className="mx-auto grid max-w-[1320px] gap-10 px-6 py-16 sm:grid-cols-2 md:grid-cols-4 lg:gap-12 lg:px-10">
 
         {/* Brand + contact */}
         <div className="md:col-span-1">
-          <div className="text-[22px] font-extrabold text-white">
-            {settings.brand}<span className="text-accent">.</span>
+          <div className="font-display text-[22px] font-extrabold text-white">
+            {settings.brand}<span className="text-signal">.</span>
           </div>
           <div className="mt-5 space-y-1.5">
-            <a className="block text-[17px] font-bold text-white hover:text-accent transition-colors" href={telHref(settings.hotline)}>
+            <a className="block font-display text-[18px] font-bold text-white transition-colors hover:text-signal" href={telHref(settings.hotline)}>
               {formatPhone(settings.hotline)}
             </a>
-            <a className="block hover:text-white transition-colors" href={`mailto:${settings.email}`}>
+            <a className="block font-mono text-[13px] transition-colors hover:text-white" href={`mailto:${settings.email}`}>
               {settings.email}
             </a>
           </div>
@@ -44,11 +44,11 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
 
         {/* Equipment nav */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40">Thiết bị</p>
+          <p className="label text-white/40">Thiết bị</p>
           <ul className="mt-4 space-y-3">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link className="hover:text-white transition-colors" href={categoryHref(c.slug)}>
+                <Link className="transition-colors hover:text-white" href={categoryHref(c.slug)}>
                   {c.name}
                 </Link>
               </li>
@@ -58,11 +58,11 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
 
         {/* Company nav */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40">Công ty</p>
+          <p className="label text-white/40">Công ty</p>
           <ul className="mt-4 space-y-3">
             {quickLinks.map((l) => (
               <li key={l.href}>
-                <Link className="hover:text-white transition-colors" href={l.href}>
+                <Link className="transition-colors hover:text-white" href={l.href}>
                   {l.label}
                 </Link>
               </li>
@@ -72,12 +72,12 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
 
         {/* Offices — name + phone only */}
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-white/40">Văn phòng</p>
+          <p className="label text-white/40">Văn phòng</p>
           <div className="mt-4 space-y-4">
             {settings.locations.map((loc) => (
               <div key={loc.name}>
                 <p className="font-semibold text-white">{loc.name}</p>
-                <a className="hover:text-accent transition-colors" href={telHref(loc.phone)}>
+                <a className="font-mono text-[13px] transition-colors hover:text-signal" href={telHref(loc.phone)}>
                   {formatPhone(loc.phone)}
                 </a>
               </div>
@@ -86,7 +86,7 @@ export function Footer({ settings = defaultSiteSettings }: { settings?: SiteSett
         </div>
       </div>
 
-      <div className="border-t border-white/[0.07] py-4 text-center text-[13px] text-white/30">
+      <div className="border-t border-white/10 py-4 text-center font-mono text-[12px] text-white/35">
         © {new Date().getFullYear()} {settings.brand} · {settings.companyName}
       </div>
     </footer>

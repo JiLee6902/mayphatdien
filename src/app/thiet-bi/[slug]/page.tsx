@@ -55,7 +55,7 @@ const trust = [
 
 function CheckIcon() {
   return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-[18px] w-[18px] flex-none text-accent-dark" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
+    <svg aria-hidden viewBox="0 0 24 24" className="h-[18px] w-[18px] flex-none text-signal" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="m5 13 4 4L19 7" />
     </svg>
   );
@@ -101,48 +101,47 @@ export default async function Page({ params }: Props) {
       <JsonLd data={graph([productSchema(item, canonical), breadcrumbSchema(crumbs), faqSchema(generalFaqs, canonical)])} />
 
       {/* ── HERO STRIP ── */}
-      <div className="relative overflow-hidden bg-white">
+      <div className="relative overflow-hidden bg-graphite grid-texture">
         {/* Subtle depth */}
-        <div className="pointer-events-none absolute -right-32 -top-32 h-[480px] w-[480px] rounded-full bg-accent/[0.06] blur-[80px]" />
 
-        <div className="relative mx-auto max-w-[1280px] px-8 pb-14 pt-10 lg:px-12">
+        <div className="relative mx-auto max-w-[1320px] px-6 pb-14 pt-10 lg:px-10">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="text-[13px] text-muted">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-paper-mute">
             <ol className="flex flex-wrap items-center gap-1.5">
-              <li><Link href="/" className="transition-colors hover:text-navy">Trang chủ</Link></li>
-              <li aria-hidden className="text-muted/50">›</li>
-              <li><Link href="/thiet-bi/" className="transition-colors hover:text-navy">Thiết bị</Link></li>
+              <li><Link href="/" className="transition-colors hover:text-paper">Trang chủ</Link></li>
+              <li aria-hidden className="text-paper-mute/50">›</li>
+              <li><Link href="/thiet-bi/" className="transition-colors hover:text-paper">Thiết bị</Link></li>
               {category && (
                 <>
-                  <li aria-hidden className="text-muted/50">›</li>
-                  <li><Link href={categoryHref(category.slug)} className="transition-colors hover:text-navy">{category.name}</Link></li>
+                  <li aria-hidden className="text-paper-mute/50">›</li>
+                  <li><Link href={categoryHref(category.slug)} className="transition-colors hover:text-paper">{category.name}</Link></li>
                 </>
               )}
-              <li aria-hidden className="text-muted/50">›</li>
-              <li className="text-ink">{item.name}</li>
+              <li aria-hidden className="text-paper-mute/50">›</li>
+              <li className="text-paper">{item.name}</li>
             </ol>
           </nav>
 
           <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:items-center">
             {/* Left: title + quick specs */}
             <div>
-              <p className="text-[13px] font-bold uppercase tracking-widest text-accent">
+              <p className="eyebrow">
                 {category?.name ?? 'Cho thuê'} · PMC
               </p>
-              <h1 className="mt-4 text-[30px] font-extrabold leading-tight tracking-tight text-navy md:text-[40px] lg:text-[46px]">
+              <h1 className="mt-4 font-display text-[30px] font-extrabold uppercase leading-tight tracking-tight text-paper md:text-[40px] lg:text-[46px]">
                 {item.name}
               </h1>
 
               {/* hero spec pills */}
               <div className="mt-6 flex flex-wrap gap-3">
-                <span className="rounded-xl bg-accent px-4 py-2 text-sm font-extrabold text-navy-dark shadow-md shadow-accent/25">
+                <span className="rounded-sm bg-signal px-4 py-2 text-sm font-extrabold text-ink">
                   {item.power}
                 </span>
-                <span className="rounded-xl border border-line bg-white px-4 py-2 text-sm font-bold text-navy shadow-sm">
+                <span className="rounded-sm border border-edge-strong bg-graphite-2 px-4 py-2 text-sm font-bold text-paper">
                   {item.brand}
                 </span>
                 {item.featured && (
-                  <span className="rounded-xl border border-accent/30 bg-accent/8 px-4 py-2 text-sm font-bold text-accent">
+                  <span className="rounded-sm border border-signal/30 bg-signal/10 px-4 py-2 text-sm font-bold text-signal-dark">
                     Nổi bật
                   </span>
                 )}
@@ -151,7 +150,7 @@ export default async function Page({ params }: Props) {
               {/* quick trust checklist */}
               <ul className="mt-8 grid grid-cols-2 gap-y-3.5 gap-x-6">
                 {trust.map((t) => (
-                  <li key={t} className="flex items-center gap-2.5 text-[15px] font-medium text-ink/80">
+                  <li key={t} className="flex items-center gap-2.5 text-[15px] font-medium text-paper-dim">
                     <CheckIcon /> {t}
                   </li>
                 ))}
@@ -161,7 +160,7 @@ export default async function Page({ params }: Props) {
               <div className="mt-8 flex flex-wrap gap-3 lg:hidden">
                 <a
                   href={telHref(settings.hotline)}
-                  className="inline-flex items-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-bold text-navy-dark shadow-md shadow-accent/25 transition-all duration-150 hover:bg-accent-dark hover:shadow-lg"
+                  className="inline-flex items-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition-colors duration-150 hover:bg-signal-dark"
                 >
                   <PhoneIcon /> Gọi thuê ngay
                 </a>
@@ -169,7 +168,7 @@ export default async function Page({ params }: Props) {
                   href={settings.zaloUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-line px-6 py-3.5 font-bold text-navy transition-all duration-150 hover:border-accent/40 hover:text-accent"
+                  className="inline-flex items-center gap-2 rounded-sm border border-edge-strong px-6 py-3.5 font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
                 >
                   <ZaloIcon /> Zalo
                 </a>
@@ -178,7 +177,7 @@ export default async function Page({ params }: Props) {
 
             {/* Right: hero image thumbnail */}
             {item.image && (
-              <div className="hidden overflow-hidden rounded-[24px] shadow-[0_24px_64px_-16px_rgba(20,36,59,0.16)] ring-1 ring-black/[0.06] lg:block">
+              <div className="hidden overflow-hidden rounded-sm border border-edge lg:block">
                 <Img
                   src={item.image}
                   alt={item.name}
@@ -193,50 +192,48 @@ export default async function Page({ params }: Props) {
       </div>
 
       {/* ── BODY ── */}
-      <div className="bg-bg pb-20 pt-10 md:pb-28">
-        <div className="mx-auto max-w-[1280px] px-8 lg:px-12">
+      <div className="bg-graphite pb-20 pt-16 md:pb-28 md:pt-20">
+        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
 
-            {/* ── LEFT COLUMN ── */}
-            <div className="lg:col-span-7 space-y-8">
+            {/* ── LEFT COLUMN — flat, hairline-separated (no boxes) ── */}
+            <div className="lg:col-span-7">
 
               {/* Gallery */}
               <EquipmentGallery images={item.images} name={item.name} featured={item.featured} />
 
-              {/* Spec highlight cards */}
+              {/* Quick specs — one hairline strip, not separate cards */}
               {item.specs.length > 0 && (
-                <div className="grid grid-cols-3 gap-3">
+                <div className="mt-8 flex border-y border-edge">
                   {item.specs.slice(0, 3).map((s) => (
-                    <div key={s.label} className="rounded-2xl bg-white px-4 py-4 text-center ring-1 ring-line transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_14px_32px_-14px_rgba(20,36,59,0.25)] hover:ring-accent/30">
-                      <p className="text-[11px] font-bold uppercase tracking-widest text-accent-dark">{s.label}</p>
-                      <p className="mt-1.5 text-[18px] font-extrabold tracking-tight text-navy">{s.value}</p>
+                    <div key={s.label} className="flex-1 border-l border-edge px-5 py-5 first:border-l-0 first:pl-0">
+                      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-signal-dark">{s.label}</p>
+                      <p className="mt-2 text-[19px] font-extrabold tracking-tight text-paper">{s.value}</p>
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Description */}
-              <div className="rounded-2xl bg-white p-6 ring-1 ring-line">
-                <h2 className="text-base font-extrabold tracking-tight text-navy">Mô tả thiết bị</h2>
-                <p className="mt-3 text-[15px] leading-7 text-ink/75">{item.description}</p>
-              </div>
+              {/* Description — flat section */}
+              <section className="mt-12">
+                <p className="eyebrow">Mô tả thiết bị</p>
+                <p className="mt-4 text-[15.5px] leading-8 text-paper-dim text-justify">{item.description}</p>
+              </section>
 
-              {/* Full spec table */}
-              <div className="overflow-hidden rounded-2xl bg-white ring-1 ring-line">
-                <div className="border-b border-line px-5 py-3.5">
-                  <h2 className="text-base font-extrabold tracking-tight text-navy">Thông số kỹ thuật</h2>
-                </div>
-                <table className="w-full text-sm">
-                  <tbody className="divide-y divide-line">
+              {/* Full spec table — flat, hairline rows */}
+              <section className="mt-12">
+                <p className="eyebrow">Thông số kỹ thuật</p>
+                <table className="mt-4 w-full text-sm">
+                  <tbody className="divide-y divide-edge border-y border-edge">
                     {item.specs.map((spec) => (
-                      <tr key={spec.label} className="hover:bg-accent/[0.025] transition-colors">
-                        <th scope="row" className="w-1/2 px-5 py-3.5 text-left font-medium text-muted">{spec.label}</th>
-                        <td className="px-5 py-3.5 text-right font-bold text-navy">{spec.value}</td>
+                      <tr key={spec.label} className="transition-colors hover:bg-graphite-2">
+                        <th scope="row" className="w-1/2 py-4 pr-4 text-left font-medium text-paper-dim">{spec.label}</th>
+                        <td className="py-4 pl-4 text-right font-bold text-paper">{spec.value}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
-              </div>
+              </section>
 
             </div>
 
@@ -245,51 +242,51 @@ export default async function Page({ params }: Props) {
               <div className="lg:sticky lg:top-24">
 
                 {/* Single unified card */}
-                <div className="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-line">
+                <div className="surface overflow-hidden rounded-sm">
 
                   {/* Pricing header */}
-                  <div className="border-b border-line px-6 py-5">
-                    <p className="text-[12px] font-semibold uppercase tracking-widest text-muted">Báo giá thuê</p>
-                    <p className="mt-1 text-[22px] font-extrabold text-navy">Liên hệ nhận giá tốt nhất</p>
-                    <p className="mt-0.5 text-[13px] text-muted">Theo ngày · tuần · tháng · dài hạn</p>
+                  <div className="border-b border-edge px-6 py-5">
+                    <p className="eyebrow">Báo giá thuê</p>
+                    <p className="mt-1.5 font-display text-[22px] font-extrabold uppercase tracking-tight text-paper">Liên hệ nhận giá tốt nhất</p>
+                    <p className="mt-0.5 text-[13px] text-paper-dim">Theo ngày · tuần · tháng · dài hạn</p>
                   </div>
 
                   {/* CTA buttons */}
                   <div className="space-y-2.5 px-6 py-5">
                     <a
                       href={telHref(settings.hotline)}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3.5 text-[15px] font-bold text-navy-dark shadow-md shadow-accent/25 transition-all duration-150 hover:bg-accent-dark hover:shadow-lg hover:shadow-accent/30 active:scale-[0.98]"
+                      className="flex w-full items-center justify-center gap-2 rounded-sm bg-signal py-3.5 text-[15px] font-bold text-ink transition-colors duration-150 hover:bg-signal-dark active:scale-[0.98]"
                     >
-                      <PhoneIcon /> Gọi ngay · {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
+                      <PhoneIcon /> Gọi ngay · <span>{settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}</span>
                     </a>
                     <a
                       href={settings.zaloUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-bg py-3.5 text-[15px] font-bold text-navy transition-all duration-150 hover:border-accent/50 hover:text-accent"
+                      className="flex w-full items-center justify-center gap-2 rounded-sm border border-edge bg-graphite-3 py-3.5 text-[15px] font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
                     >
                       <ZaloIcon /> Chat Zalo — báo giá nhanh
                     </a>
                   </div>
 
                   {/* Quick info */}
-                  <div className="border-t border-line px-6 py-5">
-                    <dl className="space-y-2.5">
-                      <div className="flex items-center justify-between gap-4 text-sm">
-                        <dt className="text-muted">Thương hiệu</dt>
-                        <dd className="font-bold text-navy">{item.brand}</dd>
+                  <div className="border-t border-edge px-6 py-5">
+                    <dl className="divide-y divide-edge">
+                      <div className="flex items-center justify-between gap-4 py-2.5 text-sm">
+                        <dt className="text-paper-dim">Thương hiệu</dt>
+                        <dd className="font-bold text-paper">{item.brand}</dd>
                       </div>
-                      <div className="flex items-center justify-between gap-4 text-sm">
-                        <dt className="text-muted">Công suất</dt>
-                        <dd className="font-bold text-navy">{item.power}</dd>
+                      <div className="flex items-center justify-between gap-4 py-2.5 text-sm">
+                        <dt className="text-paper-dim">Công suất</dt>
+                        <dd className="font-bold text-paper">{item.power}</dd>
                       </div>
-                      <div className="flex items-center justify-between gap-4 text-sm">
-                        <dt className="text-muted">Danh mục</dt>
-                        <dd className="font-bold text-navy">{category?.name}</dd>
+                      <div className="flex items-center justify-between gap-4 py-2.5 text-sm">
+                        <dt className="text-paper-dim">Danh mục</dt>
+                        <dd className="font-bold text-paper">{category?.name}</dd>
                       </div>
-                      <div className="flex items-center justify-between gap-4 text-sm">
-                        <dt className="text-muted">Khu vực phục vụ</dt>
-                        <dd className="font-bold text-navy">Toàn miền Nam</dd>
+                      <div className="flex items-center justify-between gap-4 py-2.5 text-sm">
+                        <dt className="text-paper-dim">Khu vực phục vụ</dt>
+                        <dd className="font-bold text-paper">Toàn miền Nam</dd>
                       </div>
                     </dl>
                   </div>
@@ -303,9 +300,9 @@ export default async function Page({ params }: Props) {
           {related.length > 0 && (
             <div className="mt-20">
               <div className="flex items-end justify-between gap-4">
-                <h2 className="text-2xl font-extrabold tracking-tight text-navy md:text-[28px]">Thiết bị liên quan</h2>
+                <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-[28px]">Thiết bị liên quan</h2>
                 {category && (
-                  <Link href={categoryHref(category.slug)} className="text-sm font-semibold text-accent transition-colors hover:text-accent-dark">
+                  <Link href={categoryHref(category.slug)} className="text-sm font-semibold text-signal-dark transition-colors hover:text-signal">
                     Xem tất cả →
                   </Link>
                 )}

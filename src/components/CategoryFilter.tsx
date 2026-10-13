@@ -28,14 +28,14 @@ function Select({
 }) {
   return (
     <label className="block flex-1 sm:max-w-[240px]">
-      <span className="mb-1.5 block text-xs font-bold uppercase tracking-[0.15em] text-muted">
+      <span className="mb-1.5 block text-xs font-bold uppercase tracking-[0.18em] text-paper-mute">
         {label}
       </span>
       <div className="relative">
         <select
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value || null)}
-          className="w-full cursor-pointer appearance-none rounded-xl border border-line bg-white py-3 pl-4 pr-10 text-sm font-semibold text-navy shadow-sm outline-none transition-colors hover:border-steel focus:border-accent focus:ring-2 focus:ring-accent/20"
+          className="w-full cursor-pointer appearance-none rounded-sm border border-edge bg-graphite-3 py-3 pl-4 pr-10 text-sm font-semibold text-paper outline-none transition-colors hover:border-edge-strong focus:border-signal"
         >
           <option value="">{allLabel}</option>
           {options.map((o) => (
@@ -47,7 +47,7 @@ function Select({
         <svg
           aria-hidden
           viewBox="0 0 24 24"
-          className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted"
+          className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-paper-mute"
           fill="none"
           stroke="currentColor"
           strokeWidth="2.2"
@@ -146,21 +146,21 @@ export function CategoryFilter({
       </div>
 
       {filtered.length > 0 ? (
-        <div className="mt-6 grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((item) => (
             <EquipmentCard key={item.slug} item={item} hotline={hotline} />
           ))}
         </div>
       ) : (
-        <div className="mt-6 rounded-2xl border border-line bg-white p-12 text-center shadow-sm">
-          <p className="text-lg font-bold text-navy">Không có thiết bị phù hợp</p>
-          <p className="mt-2 text-sm text-muted">
+        <div className="surface mt-8 rounded-sm p-12 text-center">
+          <p className="text-lg font-bold text-paper">Không có thiết bị phù hợp</p>
+          <p className="mt-2 text-sm text-paper-dim">
             Thử điều chỉnh bộ lọc hoặc xóa để xem toàn bộ thiết bị.
           </p>
           <button
             type="button"
             onClick={reset}
-            className="mt-6 inline-flex items-center rounded-xl bg-accent px-6 py-3 font-bold text-navy-dark shadow-sm transition hover:bg-accent-dark"
+            className="mt-6 inline-flex items-center rounded-sm bg-signal px-6 py-3 font-bold text-ink transition hover:bg-signal-dark"
           >
             Xóa bộ lọc
           </button>

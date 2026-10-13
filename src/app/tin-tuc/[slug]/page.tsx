@@ -40,32 +40,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const ptComponents: PortableTextComponents = {
   block: {
     normal: ({ children }: { children?: ReactNode }) => (
-      <p className="mt-5 leading-8 text-ink/80">{children}</p>
+      <p className="mt-5 leading-8 text-paper-dim text-justify">{children}</p>
     ),
     h2: ({ children }: { children?: ReactNode }) => (
-      <h2 className="mt-10 text-2xl font-extrabold tracking-tight text-navy">{children}</h2>
+      <h2 className="mt-10 text-2xl font-extrabold tracking-tight text-paper">{children}</h2>
     ),
     h3: ({ children }: { children?: ReactNode }) => (
-      <h3 className="mt-8 text-xl font-bold text-navy">{children}</h3>
+      <h3 className="mt-8 text-xl font-bold text-paper">{children}</h3>
     ),
     blockquote: ({ children }: { children?: ReactNode }) => (
-      <blockquote className="mt-6 border-l-4 border-accent pl-5 italic text-muted">{children}</blockquote>
+      <blockquote className="mt-6 border-l-4 border-signal pl-5 italic text-paper-dim">{children}</blockquote>
     ),
   },
   list: {
     bullet: ({ children }: { children?: ReactNode }) => (
-      <ul className="mt-5 list-disc space-y-2 pl-6 text-ink/80">{children}</ul>
+      <ul className="mt-5 list-disc space-y-2 pl-6 text-paper-dim">{children}</ul>
     ),
     number: ({ children }: { children?: ReactNode }) => (
-      <ol className="mt-5 list-decimal space-y-2 pl-6 text-ink/80">{children}</ol>
+      <ol className="mt-5 list-decimal space-y-2 pl-6 text-paper-dim">{children}</ol>
     ),
   },
   marks: {
     strong: ({ children }: { children?: ReactNode }) => (
-      <strong className="font-bold text-navy">{children}</strong>
+      <strong className="font-bold text-paper">{children}</strong>
     ),
     link: ({ children, value }: { children?: ReactNode; value?: { href?: string } }) => (
-      <a href={value?.href} className="font-semibold text-accent hover:underline">
+      <a href={value?.href} className="font-semibold text-signal-dark hover:underline">
         {children}
       </a>
     ),
@@ -91,42 +91,42 @@ export default async function PostPage({ params }: Props) {
     <>
       <JsonLd data={graph([articleSchema(post, canonical), breadcrumbSchema(crumbs)])} />
 
-      {/* ── HERO — full-bleed image + navy overlay (masks low-res source) ── */}
-      <section className="relative overflow-hidden bg-navy-dark">
+      {/* ── HERO — full-bleed image + graphite overlay (masks low-res source) ── */}
+      <section className="relative overflow-hidden bg-graphite">
         {post.image && (
           <div className="absolute inset-0">
             <Img src={post.image} alt="" loading="eager" fetchPriority="high" className="h-full w-full scale-105 object-cover blur-[2px]" />
-            {/* Heavy navy gradient — image becomes a subtle textured backdrop */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-navy-dark via-navy-dark/92 to-navy-dark/70" />
+            {/* Heavy graphite gradient — image becomes a subtle textured backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-graphite via-graphite/92 to-graphite/70" />
           </div>
         )}
-        <div className="pointer-events-none absolute -right-24 -top-24 h-[360px] w-[360px] rounded-full bg-accent/20 blur-[90px]" />
+        <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
 
         <div className="relative mx-auto max-w-[1140px] px-8 pb-14 pt-9 lg:px-12">
-          <nav aria-label="Breadcrumb" className="text-[13px] text-white/45">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-paper-mute">
             <ol className="flex flex-wrap items-center gap-1.5">
-              <li><Link href="/" className="transition-colors hover:text-white">Trang chủ</Link></li>
-              <li aria-hidden className="text-white/25">›</li>
-              <li><Link href="/tin-tuc/" className="transition-colors hover:text-white">Tin tức</Link></li>
-              <li aria-hidden className="text-white/25">›</li>
-              <li className="text-white/70 line-clamp-1">{post.title}</li>
+              <li><Link href="/" className="transition-colors hover:text-paper">Trang chủ</Link></li>
+              <li aria-hidden className="text-paper-mute/60">›</li>
+              <li><Link href="/tin-tuc/" className="transition-colors hover:text-paper">Tin tức</Link></li>
+              <li aria-hidden className="text-paper-mute/60">›</li>
+              <li className="text-paper-dim line-clamp-1">{post.title}</li>
             </ol>
           </nav>
 
           <div className="mt-10 max-w-3xl">
-            <span className="inline-flex items-center rounded-full bg-accent px-3 py-1 text-[12px] font-bold uppercase tracking-wider text-navy-dark">
+            <span className="label inline-flex items-center rounded-sm bg-signal px-3 py-1 text-ink">
               Tin tức
             </span>
-            <h1 className="mt-5 text-[30px] font-extrabold leading-[1.12] tracking-tight text-white md:text-[44px]">
+            <h1 className="mt-5 text-[30px] font-extrabold leading-[1.12] tracking-tight text-paper md:text-[44px]">
               {post.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-white/70">{post.excerpt}</p>
+            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-paper-dim">{post.excerpt}</p>
           </div>
         </div>
       </section>
 
       {/* ── BODY ── */}
-      <section className="bg-bg pb-20 pt-14 md:pb-28">
+      <section className="bg-graphite-2 border-y border-edge pb-20 pt-14 md:pb-28">
         <div className="mx-auto max-w-[1140px] px-8 lg:px-12">
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-14">
             {/* Article */}
@@ -134,24 +134,24 @@ export default async function PostPage({ params }: Props) {
               {post.body?.length ? (
                 <PortableText value={post.body} components={ptComponents} />
               ) : (
-                <p className="text-lg leading-8 text-ink/80">{post.excerpt}</p>
+                <p className="text-lg leading-8 text-paper-dim">{post.excerpt}</p>
               )}
 
               {/* Inline end CTA */}
-              <div className="mt-12 flex flex-col gap-4 rounded-2xl bg-navy-dark p-7 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-12 flex flex-col gap-4 rounded-sm border border-edge bg-graphite p-7 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-lg font-extrabold text-white">Cần tư vấn thiết bị cho dự án?</p>
+                  <p className="text-lg font-extrabold text-paper">Cần tư vấn thiết bị cho dự án?</p>
                 </div>
                 <a
                   href={telHref(settings.hotline)}
-                  className="inline-flex flex-none items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3.5 font-bold text-navy-dark shadow-md shadow-accent/25 transition-all hover:bg-accent-dark active:scale-[0.98]"
+                  className="inline-flex flex-none items-center justify-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition-all hover:bg-signal-dark active:scale-[0.98]"
                 >
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
               </div>
 
-              <div className="mt-10 border-t border-line pt-6">
-                <Link href="/tin-tuc/" className="inline-flex items-center gap-2 font-semibold text-accent-dark hover:underline">
+              <div className="mt-10 border-t border-edge pt-6">
+                <Link href="/tin-tuc/" className="inline-flex items-center gap-2 font-semibold text-signal-dark hover:underline">
                   <span aria-hidden>←</span> Quay lại Tin tức
                 </Link>
               </div>
@@ -160,31 +160,31 @@ export default async function PostPage({ params }: Props) {
             {/* Sticky sidebar */}
             <aside className="lg:sticky lg:top-24 h-fit space-y-6">
               {/* Contact card */}
-              <div className="rounded-2xl border border-line bg-white p-6 shadow-sm">
-                <p className="text-[12px] font-bold uppercase tracking-widest text-accent-dark">Liên hệ nhanh</p>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
-                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3 text-sm font-bold text-navy-dark transition-colors hover:bg-accent-dark">
+              <div className="rounded-sm border border-edge bg-graphite p-6">
+                <p className="eyebrow">Liên hệ nhanh</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-paper-dim">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
+                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
-                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-xl border border-line py-3 text-sm font-bold text-navy transition-colors hover:border-accent/50 hover:text-accent-dark">
+                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-sm border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">
                   Chat Zalo
                 </a>
               </div>
 
               {/* Related posts */}
               {related.length > 0 && (
-                <div className="rounded-2xl border border-line bg-white p-6 shadow-sm">
-                  <p className="text-[12px] font-bold uppercase tracking-widest text-muted">Bài viết liên quan</p>
+                <div className="rounded-sm border border-edge bg-graphite p-6">
+                  <p className="eyebrow">Bài viết liên quan</p>
                   <ul className="mt-4 space-y-4">
                     {related.map((r) => (
                       <li key={r.slug}>
                         <Link href={postHref(r.slug)} className="group flex gap-3">
-                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg bg-navy-dark">
+                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-sm bg-graphite-2">
                             <Img src={r.image} alt={r.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                           </div>
                           <div className="min-w-0">
-                            <p className="text-[14px] font-bold leading-snug text-navy line-clamp-2 transition-colors group-hover:text-accent-dark">{r.title}</p>
-                            <p className="mt-1 text-[12px] text-muted">{r.date}</p>
+                            <p className="text-[14px] font-bold leading-snug text-paper line-clamp-2 transition-colors group-hover:text-signal">{r.title}</p>
+                            <p className="mt-1 text-[12px] text-paper-mute">{r.date}</p>
                           </div>
                         </Link>
                       </li>
