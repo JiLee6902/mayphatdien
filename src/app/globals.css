@@ -19,10 +19,10 @@
   --color-edge: #e7e3da;          /* hairline border */
   --color-edge-strong: #d6d1c6;   /* stronger hairline */
   --color-signal: #f5a623;        /* construction amber accent (fills, on-dark) */
-  --color-signal-dark: #bd7b12;   /* hover / amber text on white */
+  --color-signal-dark: #a86d0f;   /* deeper amber — readable text/eyebrow on white */
   --color-paper: #16181c;         /* PRIMARY TEXT — dark ink */
-  --color-paper-dim: #565a62;     /* secondary text */
-  --color-paper-mute: #8a8f98;    /* tertiary / labels */
+  --color-paper-dim: #474b52;     /* secondary text — darker for contrast */
+  --color-paper-mute: #6f747c;    /* tertiary / labels */
   --color-ink: #16181c;           /* dark bands / text on gold */
   --color-ink-dim: #c7cacf;       /* dim text on dark bands */
   --color-ok: #2e9e6b;
@@ -33,7 +33,7 @@
   --color-steel: #565a62;
   --color-emerald: #f5a623;
   --color-accent: #f5a623;
-  --color-accent-dark: #bd7b12;
+  --color-accent-dark: #a86d0f;
   --color-mint: #f5a623;
   --color-muted: #565a62;
   --color-line: #e7e3da;
