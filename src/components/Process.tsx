@@ -46,11 +46,11 @@ export function Process() {
         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 90} className="h-full">
-              <div className="surface surface-hover group relative flex h-full flex-col overflow-hidden rounded-sm p-6">
+              <div className="surface surface-hover group relative flex h-full flex-col overflow-hidden rounded-lg p-6">
                 {/* Big faded step number watermark */}
                 <span className="pointer-events-none absolute -right-2 -top-3 font-display text-[88px] font-extrabold leading-none text-signal/[0.08] transition-colors group-hover:text-signal/[0.14]">{s.n}</span>
                 {/* Filled icon badge */}
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-sm bg-ink text-white transition-colors duration-300 group-hover:bg-signal group-hover:text-ink">
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-lg bg-ink text-white transition-colors duration-300 group-hover:bg-signal group-hover:text-ink">
                   <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     {s.icon}
                   </svg>

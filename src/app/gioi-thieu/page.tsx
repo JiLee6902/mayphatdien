@@ -103,7 +103,7 @@ export default function GioiThieuPage() {
           {stats.map((s) => (
             <div
               key={s.label}
-              className="surface surface-hover flex flex-col items-center rounded-sm p-6 text-center hover:-translate-y-1"
+              className="surface surface-hover flex flex-col items-center rounded-lg p-6 text-center hover:-translate-y-1"
             >
               <p className="flex flex-1 items-center font-display text-3xl font-extrabold tracking-tight text-signal-dark md:text-4xl">
                 {s.value}
@@ -123,9 +123,9 @@ export default function GioiThieuPage() {
             {services.map((sv) => (
               <div
                 key={sv.title}
-                className="surface surface-hover group rounded-sm p-6 hover:-translate-y-1"
+                className="surface surface-hover group rounded-lg p-6 hover:-translate-y-1"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">
                   {sv.icon}
                 </span>
                 <h3 className="mt-4 font-display text-lg font-extrabold uppercase tracking-tight text-paper">{sv.title}</h3>
@@ -136,7 +136,7 @@ export default function GioiThieuPage() {
         </div>
 
         {/* Service area */}
-        <div className="surface mt-20 rounded-sm p-8 md:p-10">
+        <div className="surface mt-20 rounded-lg p-8 md:p-10">
           <p className="eyebrow">Khu vực phục vụ</p>
           <h2 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">
             Phủ khắp các tỉnh thành miền Nam
@@ -145,7 +145,7 @@ export default function GioiThieuPage() {
             {provinces.map((p) => (
               <span
                 key={p}
-                className="inline-flex items-center rounded-sm border border-edge bg-graphite-3 px-4 py-2 text-sm font-semibold text-paper"
+                className="inline-flex items-center rounded-lg border border-edge bg-graphite-3 px-4 py-2 text-sm font-semibold text-paper"
               >
                 {p}
               </span>

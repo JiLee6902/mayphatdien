@@ -38,7 +38,7 @@ export function HeaderSearch() {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
       }}
     >
-      <div className="flex items-center gap-2 rounded-sm border border-white/15 bg-white/10 px-3 py-2.5 transition-colors focus-within:border-signal">
+      <div className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2.5 transition-colors focus-within:border-signal">
         <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-white/50" fill="none" stroke="currentColor" strokeWidth="1.6">
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3-3" strokeLinecap="round" />
@@ -58,7 +58,7 @@ export function HeaderSearch() {
       </div>
 
       {open && q.trim() && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-sm border border-edge bg-graphite-2 shadow-[0_20px_48px_-16px_rgba(0,0,0,0.6)]">
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-lg border border-edge bg-graphite-2 shadow-[0_20px_48px_-16px_rgba(0,0,0,0.6)]">
           {results.length > 0 ? (
             <ul className="max-h-[320px] overflow-auto py-1">
               {results.map((e) => (
@@ -69,7 +69,7 @@ export function HeaderSearch() {
                     className="flex items-center justify-between gap-3 px-4 py-2.5 text-sm transition-colors hover:bg-graphite-3"
                   >
                     <span className="min-w-0 truncate font-semibold text-paper">{e.name}</span>
-                    <span className="flex-none rounded-sm bg-graphite-3 px-2 py-0.5 font-mono text-[11px] font-bold text-signal">
+                    <span className="flex-none rounded-lg bg-graphite-3 px-2 py-0.5 font-mono text-[11px] font-bold text-signal">
                       {e.power}
                     </span>
                   </Link>

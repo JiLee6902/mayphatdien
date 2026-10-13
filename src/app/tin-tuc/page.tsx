@@ -32,7 +32,7 @@ export default async function TinTucPage() {
               key={a.title}
               delay={(i % 3) * 90}
               as="article"
-              className="group surface surface-hover flex flex-col overflow-hidden rounded-sm transition-all duration-300 hover:-translate-y-1"
+              className="group surface surface-hover flex flex-col overflow-hidden rounded-lg transition-all duration-300 hover:-translate-y-1"
             >
               <Link href={postHref(a.slug)} className="relative block h-52 overflow-hidden bg-graphite">
                 <Img
@@ -40,7 +40,7 @@ export default async function TinTucPage() {
                   alt={a.title}
                   className="h-full w-full object-cover brightness-[0.92] contrast-[1.07] saturate-[1.05] transition duration-500 group-hover:scale-105"
                 />
-                <time className="absolute left-3 top-3 inline-flex items-center rounded-sm bg-ink/80 px-3 py-1 text-xs font-bold text-white">
+                <time className="absolute left-3 top-3 inline-flex items-center rounded-lg bg-ink/80 px-3 py-1 text-xs font-bold text-white">
                   {a.date}
                 </time>
               </Link>

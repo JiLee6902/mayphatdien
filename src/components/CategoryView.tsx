@@ -31,7 +31,7 @@ export async function CategoryView({ slug }: { slug: string }) {
       />
 
       {/* Header — dark band (matches PageHeader) */}
-      <section className="on-dark relative overflow-hidden border-b border-white/10 bg-ink">
+      <section className="on-dark relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-[#1b1f26] via-ink to-[#101216]">
         <div className="grid-texture pointer-events-none absolute inset-0 opacity-50" />
         <div className="absolute inset-y-0 left-0 w-1 bg-signal" />
         <div className="relative mx-auto max-w-[1320px] px-6 pb-14 pt-12 lg:px-10">

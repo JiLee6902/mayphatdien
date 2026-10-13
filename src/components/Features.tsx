@@ -24,7 +24,7 @@ export function Features() {
             <p className="mt-5 text-[15.5px] leading-relaxed text-white/60">
               Từ khảo sát đến tháo dỡ — PMC đồng hành toàn bộ dự án.
             </p>
-            <div className="mt-8 inline-flex items-center gap-2 rounded-sm bg-signal px-4 py-2.5 text-[13px] font-bold text-ink">
+            <div className="mt-8 inline-flex items-center gap-2 rounded-lg bg-signal px-4 py-2.5 text-[13px] font-bold text-ink">
               <span className="pulse-dot h-2 w-2 rounded-full bg-ink" />
               Hỗ trợ kỹ thuật 24/7
             </div>
@@ -34,8 +34,8 @@ export function Features() {
           <div className="grid gap-4 sm:grid-cols-2">
             {items.map((item, i) => (
               <Reveal key={item.n} delay={i * 80} className="h-full">
-                <div className="group flex h-full gap-4 rounded-sm border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-signal/50 hover:bg-white/[0.07]">
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-sm bg-signal font-display text-[18px] font-extrabold text-ink">{item.n}</span>
+                <div className="group flex h-full gap-4 rounded-lg border border-white/10 bg-white/[0.04] p-6 transition-colors duration-300 hover:border-signal/50 hover:bg-white/[0.07]">
+                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-signal font-display text-[18px] font-extrabold text-ink">{item.n}</span>
                   <div>
                     <h3 className="font-display text-[15px] font-extrabold uppercase tracking-tight text-white">{item.title}</h3>
                     <p className="mt-1.5 text-[13.5px] leading-relaxed text-white/55">{item.desc}</p>

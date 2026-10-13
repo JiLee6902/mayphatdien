@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: Props) {
           </nav>
 
           <div className="mt-10 max-w-3xl">
-            <span className="label inline-flex items-center rounded-sm bg-signal px-3 py-1 text-ink">
+            <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-ink">
               Dự án
             </span>
             <h1 className="mt-5 font-display text-[30px] font-extrabold uppercase leading-[1.12] tracking-tight text-paper md:text-[44px]">
@@ -102,7 +102,7 @@ export default async function ProjectPage({ params }: Props) {
             {/* Main */}
             <article className="max-w-[720px]">
               {project.image && (
-                <figure className="overflow-hidden rounded-sm border border-edge">
+                <figure className="overflow-hidden rounded-lg border border-edge">
                   <Img
                     src={project.image}
                     alt={project.title}
@@ -133,7 +133,7 @@ export default async function ProjectPage({ params }: Props) {
                       <li key={e.slug}>
                         <Link
                           href={equipmentHref(e.slug)}
-                          className="inline-flex items-center gap-2 rounded-sm border border-edge bg-graphite px-4 py-2.5 font-semibold text-paper transition-colors hover:border-signal hover:text-signal"
+                          className="inline-flex items-center gap-2 rounded-lg border border-edge bg-graphite px-4 py-2.5 font-semibold text-paper transition-colors hover:border-signal hover:text-signal"
                         >
                           {e.name}
                           <span aria-hidden>→</span>
@@ -153,25 +153,25 @@ export default async function ProjectPage({ params }: Props) {
 
             {/* Sticky sidebar */}
             <aside className="lg:sticky lg:top-24 h-fit space-y-6">
-              <div className="rounded-sm border border-edge bg-graphite p-6">
+              <div className="rounded-lg border border-edge bg-graphite p-6">
                 <p className="eyebrow">Liên hệ nhanh</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-paper-dim">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
-                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
+                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
-                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-sm border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">
+                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-lg border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">
                   Chat Zalo
                 </a>
               </div>
 
               {related.length > 0 && (
-                <div className="rounded-sm border border-edge bg-graphite p-6">
+                <div className="rounded-lg border border-edge bg-graphite p-6">
                   <p className="eyebrow">Dự án khác</p>
                   <ul className="mt-4 space-y-4">
                     {related.map((r) => (
                       <li key={r.slug}>
                         <Link href={projectHref(r.slug)} className="group flex gap-3">
-                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-sm bg-graphite-2">
+                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg bg-graphite-2">
                             <Img src={r.image} alt={r.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                           </div>
                           <div className="min-w-0">

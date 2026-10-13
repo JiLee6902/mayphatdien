@@ -19,9 +19,9 @@ export function EquipmentGallery({
 
   return (
     <div>
-      <div className="surface group relative overflow-hidden rounded-sm">
+      <div className="surface group relative overflow-hidden rounded-lg">
         <span
-          className={`absolute left-4 top-4 z-10 rounded-sm px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${
+          className={`absolute left-4 top-4 z-10 rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${
             featured ? 'bg-signal text-ink' : 'bg-ok text-white'
           }`}
         >
@@ -56,7 +56,7 @@ export function EquipmentGallery({
             >
               <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="m9 18 6-6-6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
             </button>
-            <span className="absolute bottom-3 right-3 z-10 rounded-sm bg-ink/80 px-2.5 py-1 text-xs font-semibold text-white">
+            <span className="absolute bottom-3 right-3 z-10 rounded-lg bg-ink/80 px-2.5 py-1 text-xs font-semibold text-white">
               {active + 1}/{count}
             </span>
           </>
@@ -72,7 +72,7 @@ export function EquipmentGallery({
               onClick={() => setActive(i)}
               aria-label={`Ảnh ${i + 1}`}
               aria-current={i === active}
-              className={`relative aspect-[4/3] overflow-hidden rounded-sm border-2 bg-graphite transition ${
+              className={`relative aspect-[4/3] overflow-hidden rounded-lg border-2 bg-graphite transition ${
                 i === active ? 'border-signal' : 'border-edge hover:border-edge-strong'
               }`}
             >

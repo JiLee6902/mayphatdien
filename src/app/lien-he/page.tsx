@@ -72,7 +72,7 @@ const MAPS_EMBED =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.857!2d107.0816!3d10.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f21f9e7e7e8f%3A0x0!2s1591A+%C4%90%C6%B0%E1%BB%9Dng+30%2F4%2C+Ph%C6%B0%E1%BB%9Dng+12%2C+Th%C3%A0nh+ph%E1%BB%91+V%C5%A9ng+T%C3%A0u!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn';
 
 const fieldClass =
-  'w-full rounded-sm border border-edge bg-white px-4 py-3 text-sm text-paper placeholder:text-paper-mute outline-none transition focus:border-signal';
+  'w-full rounded-lg border border-edge bg-white px-4 py-3 text-sm text-paper placeholder:text-paper-mute outline-none transition focus:border-signal';
 
 export default async function LienHePage() {
   const settings = await loadSettings();
@@ -122,9 +122,9 @@ export default async function LienHePage() {
                 {methods.map((m) => (
                   <div
                     key={m.label}
-                    className="surface surface-hover flex items-center gap-5 rounded-sm p-5 hover:-translate-y-0.5"
+                    className="surface surface-hover flex items-center gap-5 rounded-lg p-5 hover:-translate-y-0.5"
                   >
-                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
+                    <span className="flex h-12 w-12 flex-none items-center justify-center rounded-lg bg-signal/10 text-signal-dark">
                       {m.icon}
                     </span>
                     <div className="min-w-0 flex-1">
@@ -140,7 +140,7 @@ export default async function LienHePage() {
                     <a
                       href={m.href}
                       {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="inline-flex flex-none items-center rounded-sm bg-signal px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-signal-dark"
+                      className="inline-flex flex-none items-center rounded-lg bg-signal px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-signal-dark"
                     >
                       {m.cta}
                     </a>
@@ -156,10 +156,10 @@ export default async function LienHePage() {
                 {settings.locations.map((loc) => (
                   <div
                     key={loc.name}
-                    className="surface surface-hover rounded-sm p-5 hover:-translate-y-0.5"
+                    className="surface surface-hover rounded-lg p-5 hover:-translate-y-0.5"
                   >
                     <div className="flex items-start gap-4">
-                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-sm bg-signal/10 text-signal-dark">
+                      <span className="flex h-10 w-10 flex-none items-center justify-center rounded-lg bg-signal/10 text-signal-dark">
                         <PinIcon />
                       </span>
                       <div>
@@ -235,7 +235,7 @@ export default async function LienHePage() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-ink transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
               >
                 <SendIcon />
                 Gửi yêu cầu báo giá

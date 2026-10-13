@@ -12,7 +12,7 @@ export function EquipmentCard({
   hotline?: string;
 }) {
   return (
-    <div className="group surface surface-hover flex h-full flex-col overflow-hidden rounded-sm transition-all duration-300 hover:-translate-y-1">
+    <div className="group surface surface-hover flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 hover:-translate-y-1">
 
       <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden">
         <Img
@@ -44,7 +44,7 @@ export function EquipmentCard({
 
         <a
           href={telHref(hotline)}
-          className="mt-auto flex items-center justify-center gap-1.5 rounded-sm bg-ink py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal hover:text-ink"
+          className="mt-auto flex items-center justify-center gap-1.5 rounded-lg bg-ink py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal hover:text-ink"
         >
           Gọi báo giá →
         </a>

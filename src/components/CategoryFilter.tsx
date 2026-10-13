@@ -35,7 +35,7 @@ function Select({
         <select
           value={value ?? ''}
           onChange={(e) => onChange(e.target.value || null)}
-          className="w-full cursor-pointer appearance-none rounded-sm border border-edge bg-graphite-3 py-3 pl-4 pr-10 text-sm font-semibold text-paper outline-none transition-colors hover:border-edge-strong focus:border-signal"
+          className="w-full cursor-pointer appearance-none rounded-lg border border-edge bg-graphite-3 py-3 pl-4 pr-10 text-sm font-semibold text-paper outline-none transition-colors hover:border-edge-strong focus:border-signal"
         >
           <option value="">{allLabel}</option>
           {options.map((o) => (
@@ -152,7 +152,7 @@ export function CategoryFilter({
           ))}
         </div>
       ) : (
-        <div className="surface mt-8 rounded-sm p-12 text-center">
+        <div className="surface mt-8 rounded-lg p-12 text-center">
           <p className="text-lg font-bold text-paper">Không có thiết bị phù hợp</p>
           <p className="mt-2 text-sm text-paper-dim">
             Thử điều chỉnh bộ lọc hoặc xóa để xem toàn bộ thiết bị.
@@ -160,7 +160,7 @@ export function CategoryFilter({
           <button
             type="button"
             onClick={reset}
-            className="mt-6 inline-flex items-center rounded-sm bg-signal px-6 py-3 font-bold text-ink transition hover:bg-signal-dark"
+            className="mt-6 inline-flex items-center rounded-lg bg-signal px-6 py-3 font-bold text-ink transition hover:bg-signal-dark"
           >
             Xóa bộ lọc
           </button>

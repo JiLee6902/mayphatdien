@@ -134,14 +134,14 @@ export default async function Page({ params }: Props) {
 
               {/* hero spec pills */}
               <div className="mt-6 flex flex-wrap gap-3">
-                <span className="rounded-sm bg-signal px-4 py-2 text-sm font-extrabold text-ink">
+                <span className="rounded-lg bg-signal px-4 py-2 text-sm font-extrabold text-ink">
                   {item.power}
                 </span>
-                <span className="rounded-sm border border-edge-strong bg-graphite-2 px-4 py-2 text-sm font-bold text-paper">
+                <span className="rounded-lg border border-edge-strong bg-graphite-2 px-4 py-2 text-sm font-bold text-paper">
                   {item.brand}
                 </span>
                 {item.featured && (
-                  <span className="rounded-sm border border-signal/30 bg-signal/10 px-4 py-2 text-sm font-bold text-signal-dark">
+                  <span className="rounded-lg border border-signal/30 bg-signal/10 px-4 py-2 text-sm font-bold text-signal-dark">
                     Nổi bật
                   </span>
                 )}
@@ -160,7 +160,7 @@ export default async function Page({ params }: Props) {
               <div className="mt-8 flex flex-wrap gap-3 lg:hidden">
                 <a
                   href={telHref(settings.hotline)}
-                  className="inline-flex items-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition-colors duration-150 hover:bg-signal-dark"
+                  className="inline-flex items-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-ink transition-colors duration-150 hover:bg-signal-dark"
                 >
                   <PhoneIcon /> Gọi thuê ngay
                 </a>
@@ -168,7 +168,7 @@ export default async function Page({ params }: Props) {
                   href={settings.zaloUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-sm border border-edge-strong px-6 py-3.5 font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
+                  className="inline-flex items-center gap-2 rounded-lg border border-edge-strong px-6 py-3.5 font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
                 >
                   <ZaloIcon /> Zalo
                 </a>
@@ -177,7 +177,7 @@ export default async function Page({ params }: Props) {
 
             {/* Right: hero image thumbnail */}
             {item.image && (
-              <div className="hidden overflow-hidden rounded-sm border border-edge lg:block">
+              <div className="hidden overflow-hidden rounded-lg border border-edge lg:block">
                 <Img
                   src={item.image}
                   alt={item.name}
@@ -242,7 +242,7 @@ export default async function Page({ params }: Props) {
               <div className="lg:sticky lg:top-24">
 
                 {/* Single unified card */}
-                <div className="surface overflow-hidden rounded-sm">
+                <div className="surface overflow-hidden rounded-lg">
 
                   {/* Pricing header */}
                   <div className="border-b border-edge px-6 py-5">
@@ -255,7 +255,7 @@ export default async function Page({ params }: Props) {
                   <div className="space-y-2.5 px-6 py-5">
                     <a
                       href={telHref(settings.hotline)}
-                      className="flex w-full items-center justify-center gap-2 rounded-sm bg-signal py-3.5 text-[15px] font-bold text-ink transition-colors duration-150 hover:bg-signal-dark active:scale-[0.98]"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-signal py-3.5 text-[15px] font-bold text-ink transition-colors duration-150 hover:bg-signal-dark active:scale-[0.98]"
                     >
                       <PhoneIcon /> Gọi ngay · <span>{settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}</span>
                     </a>
@@ -263,7 +263,7 @@ export default async function Page({ params }: Props) {
                       href={settings.zaloUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex w-full items-center justify-center gap-2 rounded-sm border border-edge bg-graphite-3 py-3.5 text-[15px] font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
+                      className="flex w-full items-center justify-center gap-2 rounded-lg border border-edge bg-graphite-3 py-3.5 text-[15px] font-bold text-paper transition-colors duration-150 hover:border-signal hover:text-signal"
                     >
                       <ZaloIcon /> Chat Zalo — báo giá nhanh
                     </a>

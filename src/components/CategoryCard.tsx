@@ -13,7 +13,7 @@ export function CategoryCard({
   return (
     <Link
       href={categoryHref(category.slug)}
-      className="group relative flex h-[340px] overflow-hidden rounded-sm shadow-[0_14px_34px_-20px_rgba(22,24,28,0.35)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_26px_50px_-22px_rgba(22,24,28,0.45)]"
+      className="group relative flex h-[340px] overflow-hidden rounded-lg shadow-[0_14px_34px_-20px_rgba(22,24,28,0.35)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_26px_50px_-22px_rgba(22,24,28,0.45)]"
     >
       <picture>
         <source srcSet={category.image.replace(/\.jpe?g$/i, '.webp')} type="image/webp" />
@@ -39,7 +39,7 @@ export function CategoryCard({
         <h3 className="font-display text-[20px] font-extrabold uppercase leading-tight tracking-tight text-white">
           {category.name}
         </h3>
-        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-sm bg-signal text-ink transition-transform duration-300 group-hover:translate-x-1">→</span>
+        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-signal text-ink transition-transform duration-300 group-hover:translate-x-1">→</span>
       </div>
     </Link>
   );

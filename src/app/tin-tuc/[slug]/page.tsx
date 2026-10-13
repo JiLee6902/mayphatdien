@@ -114,7 +114,7 @@ export default async function PostPage({ params }: Props) {
           </nav>
 
           <div className="mt-10 max-w-3xl">
-            <span className="label inline-flex items-center rounded-sm bg-signal px-3 py-1 text-ink">
+            <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-ink">
               Tin tức
             </span>
             <h1 className="mt-5 text-[30px] font-extrabold leading-[1.12] tracking-tight text-paper md:text-[44px]">
@@ -138,13 +138,13 @@ export default async function PostPage({ params }: Props) {
               )}
 
               {/* Inline end CTA */}
-              <div className="mt-12 flex flex-col gap-4 rounded-sm border border-edge bg-graphite p-7 sm:flex-row sm:items-center sm:justify-between">
+              <div className="mt-12 flex flex-col gap-4 rounded-lg border border-edge bg-graphite p-7 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-lg font-extrabold text-paper">Cần tư vấn thiết bị cho dự án?</p>
                 </div>
                 <a
                   href={telHref(settings.hotline)}
-                  className="inline-flex flex-none items-center justify-center gap-2 rounded-sm bg-signal px-6 py-3.5 font-bold text-ink transition-all hover:bg-signal-dark active:scale-[0.98]"
+                  className="inline-flex flex-none items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-ink transition-all hover:bg-signal-dark active:scale-[0.98]"
                 >
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
@@ -160,26 +160,26 @@ export default async function PostPage({ params }: Props) {
             {/* Sticky sidebar */}
             <aside className="lg:sticky lg:top-24 h-fit space-y-6">
               {/* Contact card */}
-              <div className="rounded-sm border border-edge bg-graphite p-6">
+              <div className="rounded-lg border border-edge bg-graphite p-6">
                 <p className="eyebrow">Liên hệ nhanh</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-paper-dim">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
-                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
+                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
-                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-sm border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">
+                <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-lg border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">
                   Chat Zalo
                 </a>
               </div>
 
               {/* Related posts */}
               {related.length > 0 && (
-                <div className="rounded-sm border border-edge bg-graphite p-6">
+                <div className="rounded-lg border border-edge bg-graphite p-6">
                   <p className="eyebrow">Bài viết liên quan</p>
                   <ul className="mt-4 space-y-4">
                     {related.map((r) => (
                       <li key={r.slug}>
                         <Link href={postHref(r.slug)} className="group flex gap-3">
-                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-sm bg-graphite-2">
+                          <div className="aspect-square w-16 flex-none overflow-hidden rounded-lg bg-graphite-2">
                             <Img src={r.image} alt={r.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
                           </div>
                           <div className="min-w-0">
