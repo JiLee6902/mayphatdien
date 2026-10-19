@@ -50,7 +50,7 @@ export function Process() {
                 {/* Big faded step number watermark */}
                 <span className="pointer-events-none absolute -right-2 -top-3 font-display text-[88px] font-extrabold leading-none text-signal/[0.08] transition-colors group-hover:text-signal/[0.14]">{s.n}</span>
                 {/* Filled icon badge */}
-                <div className="relative flex h-14 w-14 items-center justify-center rounded-lg bg-ink text-white transition-colors duration-300 group-hover:bg-signal group-hover:text-ink">
+                <div className="relative flex h-14 w-14 items-center justify-center rounded-lg bg-ink text-white transition-colors duration-300 group-hover:bg-signal group-hover:text-white">
                   <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
                     {s.icon}
                   </svg>

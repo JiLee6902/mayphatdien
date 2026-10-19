@@ -160,7 +160,7 @@ export function CategoryFilter({
           <button
             type="button"
             onClick={reset}
-            className="mt-6 inline-flex items-center rounded-lg bg-signal px-6 py-3 font-bold text-ink transition hover:bg-signal-dark"
+            className="mt-6 inline-flex items-center rounded-lg bg-signal px-6 py-3 font-bold text-white transition hover:bg-signal-dark"
           >
             Xóa bộ lọc
           </button>

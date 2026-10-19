@@ -21,7 +21,7 @@ export function EquipmentCard({
           className="photo-grade h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
         />
         {/* Amber power tab */}
-        <span className="absolute left-0 top-4 bg-signal px-3.5 py-1.5 font-display text-[15px] font-extrabold text-ink">
+        <span className="absolute left-0 top-4 bg-signal px-3.5 py-1.5 font-display text-[15px] font-extrabold text-white">
           {item.power}
         </span>
       </Link>
@@ -44,7 +44,7 @@ export function EquipmentCard({
 
         <a
           href={telHref(hotline)}
-          className="mt-auto flex items-center justify-center gap-1.5 rounded-lg bg-ink py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal hover:text-ink"
+          className="mt-auto flex items-center justify-center gap-1.5 rounded-lg bg-signal py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal-dark"
         >
           Gọi báo giá →
         </a>

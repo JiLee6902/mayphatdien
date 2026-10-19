@@ -38,7 +38,7 @@ export function FloatingContact({ settings = defaultSiteSettings }: { settings?:
       <a
         href={telHref(settings.hotline)}
         aria-label="Gọi ngay"
-        className="group flex items-center gap-0 overflow-hidden rounded-full bg-signal text-ink shadow-[0_4px_20px_rgba(255,90,31,0.45)] transition-all duration-300 hover:gap-2 hover:px-4 hover:shadow-[0_6px_28px_rgba(255,90,31,0.55)] active:scale-95"
+        className="group flex items-center gap-0 overflow-hidden rounded-full bg-signal text-white shadow-[0_4px_20px_rgba(255,90,31,0.45)] transition-all duration-300 hover:gap-2 hover:px-4 hover:shadow-[0_6px_28px_rgba(255,90,31,0.55)] active:scale-95"
       >
         <span className="flex h-12 w-12 shrink-0 items-center justify-center">
           <PhoneIcon />

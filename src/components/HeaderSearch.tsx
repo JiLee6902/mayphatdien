@@ -38,8 +38,8 @@ export function HeaderSearch() {
         if (!e.currentTarget.contains(e.relatedTarget as Node)) setOpen(false);
       }}
     >
-      <div className="flex items-center gap-2 rounded-lg border border-white/15 bg-white/10 px-3 py-2.5 transition-colors focus-within:border-signal">
-        <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-white/50" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <div className="flex items-center gap-2 rounded-lg border border-edge bg-graphite-3 px-3 py-2.5 transition-colors focus-within:border-signal focus-within:bg-white">
+        <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-paper-mute" fill="none" stroke="currentColor" strokeWidth="1.6">
           <circle cx="11" cy="11" r="7" />
           <path d="m20 20-3-3" strokeLinecap="round" />
         </svg>
@@ -50,7 +50,7 @@ export function HeaderSearch() {
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          className="w-56 bg-transparent text-sm text-white outline-none placeholder:text-white/50"
+          className="w-56 bg-transparent text-sm text-paper outline-none placeholder:text-paper-mute"
           placeholder="Tìm: 100kVA, cummins, máy hàn…"
           aria-label="Tìm thiết bị"
           autoComplete="off"

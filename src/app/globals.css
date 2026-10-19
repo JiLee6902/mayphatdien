@@ -13,31 +13,31 @@
        paper-dim / paper-mute = secondary / tertiary text
        ink        = dark element / text-on-gold (always dark)
   ------------------------------------------------------------------ */
-  --color-graphite: #f6f5f2;      /* page canvas — warm off-white */
+  --color-graphite: #f4f4f5;      /* page canvas — cool light gray (Hilti) */
   --color-graphite-2: #ffffff;    /* raised card / panel surface */
-  --color-graphite-3: #efece6;    /* hover / input surface */
-  --color-edge: #e7e3da;          /* hairline border */
-  --color-edge-strong: #d6d1c6;   /* stronger hairline */
-  --color-signal: #f5a623;        /* construction amber accent (fills, on-dark) */
-  --color-signal-dark: #a86d0f;   /* deeper amber — readable text/eyebrow on white */
-  --color-paper: #16181c;         /* PRIMARY TEXT — dark ink */
-  --color-paper-dim: #474b52;     /* secondary text — darker for contrast */
-  --color-paper-mute: #6f747c;    /* tertiary / labels */
-  --color-ink: #16181c;           /* dark bands / text on gold */
+  --color-graphite-3: #ebebed;    /* hover / input surface */
+  --color-edge: #e2e2e5;          /* hairline border */
+  --color-edge-strong: #cfcfd3;   /* stronger hairline */
+  --color-signal: #d2051e;        /* Hilti red — primary accent (fills, CTAs) */
+  --color-signal-dark: #a60418;   /* hover / pressed red */
+  --color-paper: #15171a;         /* PRIMARY TEXT — near-black */
+  --color-paper-dim: #44474d;     /* secondary text */
+  --color-paper-mute: #6c7077;    /* tertiary / labels */
+  --color-ink: #15171a;           /* dark bands / footer / text on red */
   --color-ink-dim: #c7cacf;       /* dim text on dark bands */
   --color-ok: #2e9e6b;
 
   /* Legacy aliases */
-  --color-navy: #16181c;
-  --color-navy-dark: #16181c;
+  --color-navy: #15171a;
+  --color-navy-dark: #15171a;
   --color-steel: #565a62;
-  --color-emerald: #f5a623;
-  --color-accent: #f5a623;
-  --color-accent-dark: #a86d0f;
-  --color-mint: #f5a623;
-  --color-muted: #565a62;
-  --color-line: #e7e3da;
-  --color-bg: #f6f5f2;
+  --color-emerald: #d2051e;
+  --color-accent: #d2051e;
+  --color-accent-dark: #a60418;
+  --color-mint: #d2051e;
+  --color-muted: #44474d;
+  --color-line: #e2e2e5;
+  --color-bg: #f4f4f5;
 
   /* Type — distinctive display + mono, avoids generic AI defaults */
   --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
@@ -111,7 +111,7 @@ summary:focus-visible,
 /* Balance display headings so no single word orphans onto its own line */
 h1, h2 { text-wrap: balance; }
 
-::selection { background: var(--color-signal); color: #16181c; }
+::selection { background: var(--color-signal); color: #ffffff; }
 
 /* ---------------------------------------------------------------------------
    Motion — minimal, dependency-free, respects reduced-motion.

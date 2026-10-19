@@ -30,23 +30,22 @@ export async function CategoryView({ slug }: { slug: string }) {
         ])}
       />
 
-      {/* Header — dark band (matches PageHeader) */}
-      <section className="on-dark relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-[#1b1f26] via-ink to-[#101216]">
-        <div className="grid-texture pointer-events-none absolute inset-0 opacity-50" />
+      {/* Header — light band (Hilti, matches PageHeader) */}
+      <section className="relative overflow-hidden border-b border-edge bg-white">
         <div className="absolute inset-y-0 left-0 w-1 bg-signal" />
-        <div className="relative mx-auto max-w-[1320px] px-6 pb-14 pt-12 lg:px-10">
-          <nav aria-label="Breadcrumb" className="text-[13px] text-white/50">
+        <div className="relative mx-auto max-w-[1320px] px-6 pb-12 pt-10 lg:px-10">
+          <nav aria-label="Breadcrumb" className="text-[13px] text-paper-mute">
             <ol className="flex flex-wrap items-center gap-2">
               <li><Link href="/" className="transition-colors hover:text-signal">Trang chủ</Link></li>
-              <li aria-hidden className="text-white/30">/</li>
+              <li aria-hidden className="text-paper-mute/60">/</li>
               <li><Link href="/thiet-bi/" className="transition-colors hover:text-signal">Thiết bị</Link></li>
-              <li aria-hidden className="text-white/30">/</li>
-              <li className="text-white/80">{category.name}</li>
+              <li aria-hidden className="text-paper-mute/60">/</li>
+              <li className="text-paper">{category.name}</li>
             </ol>
           </nav>
 
           <p className="eyebrow mt-8">Danh mục thiết bị</p>
-          <h1 className="mt-4 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-tight text-white md:text-[52px]">
+          <h1 className="mt-4 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-tight text-paper md:text-[52px]">
             Cho thuê {category.name}
           </h1>
         </div>

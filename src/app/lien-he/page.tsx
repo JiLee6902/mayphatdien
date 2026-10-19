@@ -140,7 +140,7 @@ export default async function LienHePage() {
                     <a
                       href={m.href}
                       {...(m.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                      className="inline-flex flex-none items-center rounded-lg bg-signal px-4 py-2.5 text-sm font-bold text-ink transition hover:bg-signal-dark"
+                      className="inline-flex flex-none items-center rounded-lg bg-signal px-4 py-2.5 text-sm font-bold text-white transition hover:bg-signal-dark"
                     >
                       {m.cta}
                     </a>
@@ -235,7 +235,7 @@ export default async function LienHePage() {
 
               <button
                 type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-ink transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-white transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
               >
                 <SendIcon />
                 Gửi yêu cầu báo giá

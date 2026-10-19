@@ -39,7 +39,7 @@ export function CategoryCard({
         <h3 className="font-display text-[20px] font-extrabold uppercase leading-tight tracking-tight text-white">
           {category.name}
         </h3>
-        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-signal text-ink transition-transform duration-300 group-hover:translate-x-1">→</span>
+        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-signal text-white transition-transform duration-300 group-hover:translate-x-1">→</span>
       </div>
     </Link>
   );

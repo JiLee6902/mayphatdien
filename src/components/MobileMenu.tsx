@@ -13,7 +13,7 @@ export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?
         aria-label={open ? 'Đóng menu' : 'Mở menu'}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/20 text-white"
+        className="flex h-11 w-11 items-center justify-center rounded-lg border border-edge-strong text-paper"
       >
         <span aria-hidden className="text-xl leading-none">{open ? '✕' : '☰'}</span>
       </button>
@@ -35,7 +35,7 @@ export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?
               </li>
             ))}
             <li className="p-2">
-              <a href={telHref(hotline)} className="block rounded-lg bg-signal px-4 py-3 text-center font-bold text-ink">
+              <a href={telHref(hotline)} className="block rounded-lg bg-signal px-4 py-3 text-center font-bold text-white">
                 Gọi ngay 0936 899 431
               </a>
             </li>

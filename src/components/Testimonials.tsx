@@ -53,7 +53,7 @@ export function Testimonials() {
                 {featured.quote}
               </blockquote>
               <figcaption className="relative mt-auto flex items-center gap-4 border-t border-edge pt-6">
-                <div className="flex h-11 w-11 flex-none items-center justify-center bg-signal font-display text-[15px] font-extrabold text-ink">
+                <div className="flex h-11 w-11 flex-none items-center justify-center bg-signal font-display text-[15px] font-extrabold text-white">
                   {featured.author.split(' ').pop()?.[0]}
                 </div>
                 <div>

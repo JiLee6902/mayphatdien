@@ -76,7 +76,7 @@ export default async function ProjectPage({ params }: Props) {
           </nav>
 
           <div className="mt-10 max-w-3xl">
-            <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-ink">
+            <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-white">
               Dự án
             </span>
             <h1 className="mt-5 font-display text-[30px] font-extrabold uppercase leading-[1.12] tracking-tight text-paper md:text-[44px]">
@@ -156,7 +156,7 @@ export default async function ProjectPage({ params }: Props) {
               <div className="rounded-lg border border-edge bg-graphite p-6">
                 <p className="eyebrow">Liên hệ nhanh</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-paper-dim">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
-                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-signal py-3 text-sm font-bold text-ink transition-colors hover:bg-signal-dark">
+                <a href={telHref(settings.hotline)} className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-signal py-3 text-sm font-bold text-white transition-colors hover:bg-signal-dark">
                   Gọi {settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3')}
                 </a>
                 <a href={settings.zaloUrl} target="_blank" rel="noopener noreferrer" className="mt-2.5 flex w-full items-center justify-center gap-2 rounded-lg border border-edge py-3 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal">

@@ -22,7 +22,7 @@ export function EquipmentGallery({
       <div className="surface group relative overflow-hidden rounded-lg">
         <span
           className={`absolute left-4 top-4 z-10 rounded-lg px-3 py-1.5 text-xs font-bold uppercase tracking-wide ${
-            featured ? 'bg-signal text-ink' : 'bg-ok text-white'
+            featured ? 'bg-signal text-white' : 'bg-ok text-white'
           }`}
         >
           {featured ? '★ Nổi bật' : '● Còn hàng'}
