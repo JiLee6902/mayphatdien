@@ -63,18 +63,18 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
         </div>
       </div>
 
-      {/* Stats band — dark */}
-      <div className="bg-ink">
+      {/* Stats band — light */}
+      <div className="border-b border-edge bg-white">
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
           <div className="grid grid-cols-2 md:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.label} className="border-l border-white/10 px-5 py-7 first:border-l-0 md:px-6">
+              <div key={s.label} className="border-l border-edge px-5 py-7 first:border-l-0 md:px-6">
                 <CountUp
                   value={s.value}
                   suffix={s.suffix}
                   className="font-display text-[30px] font-extrabold leading-none tracking-tight text-signal md:text-[38px]"
                 />
-                <p className="mt-2 text-[12.5px] font-medium text-white/55">{s.label}</p>
+                <p className="mt-2 text-[12.5px] font-medium text-paper-dim">{s.label}</p>
               </div>
             ))}
           </div>

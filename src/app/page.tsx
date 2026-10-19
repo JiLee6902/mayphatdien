@@ -47,12 +47,12 @@ export default async function Home() {
       </section>
 
       {/* Sectors served — trust / scope */}
-      <section className="border-y border-edge bg-ink on-dark">
+      <section className="border-y border-edge bg-graphite">
         <div className="mx-auto flex max-w-[1320px] flex-col gap-5 px-6 py-8 lg:flex-row lg:items-center lg:gap-10 lg:px-10">
           <p className="eyebrow shrink-0">Lĩnh vực phục vụ</p>
           <div className="flex flex-wrap gap-x-7 gap-y-3">
             {sectors.map((s) => (
-              <span key={s} className="inline-flex items-center gap-2 text-[15px] font-semibold text-white/85">
+              <span key={s} className="inline-flex items-center gap-2 text-[15px] font-semibold text-paper">
                 <span className="h-1.5 w-1.5 flex-none rounded-full bg-signal" />
                 {s}
               </span>
