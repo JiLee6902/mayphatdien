@@ -1,12 +1,11 @@
 import { Img } from './ui/Img';
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
-import { CountUp } from './motion/CountUp';
 
 const stats = [
-  { value: 18, suffix: '+', label: 'Năm kinh nghiệm' },
-  { value: 70, suffix: '+', label: 'Thiết bị sẵn kho' },
-  { value: 1000, suffix: '+', label: 'Công trình phục vụ' },
-  { value: 24, suffix: '/7', label: 'Hỗ trợ kỹ thuật' },
+  { v: '18+', l: 'Năm kinh nghiệm' },
+  { v: '70+', l: 'Thiết bị sẵn kho' },
+  { v: '1000+', l: 'Công trình' },
+  { v: '24/7', l: 'Kỹ thuật túc trực' },
 ];
 
 const brands = ['CUMMINS', 'MITSUBISHI', 'DENYO', 'MTU', 'AIRMAN', 'KOMATSU', 'INGERSOLL RAND'];
@@ -15,77 +14,73 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
   const phone = settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
   return (
     <section>
-      {/* Red hero band (Hilti) */}
-      <div className="relative overflow-hidden bg-signal">
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <div className="grid items-center gap-10 py-14 lg:grid-cols-[1.08fr_1fr] lg:gap-12 lg:py-20">
-            {/* Left */}
-            <div>
-              <p className="text-[13px] font-bold uppercase tracking-[0.18em] text-white/85">
-                Sẵn kho · Giao 24–48h · Toàn miền Nam
-              </p>
-              <h1 className="mt-5 font-display text-[40px] font-extrabold leading-[1.05] tracking-tight text-ink md:text-[58px]">
-                Cho thuê thiết bị<br />công nghiệp.
-              </h1>
-              <p className="mt-5 max-w-lg text-[16.5px] leading-relaxed text-ink/80">
-                Máy phát điện, máy nén khí, thiết bị UHP &amp; máy hàn — khảo sát,
-                giao lắp và vận hành tận công trình, kỹ thuật túc trực 24/7.
-              </p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href={telHref(settings.hotline)}
-                  className="inline-flex items-center gap-2 rounded-lg bg-white px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-signal transition-transform duration-150 hover:-translate-y-0.5"
-                >
-                  Gọi báo giá · {phone}
-                </a>
-                <a
-                  href="/thiet-bi/"
-                  className="inline-flex items-center gap-2 rounded-lg border border-white/70 px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-signal"
-                >
-                  Xem thiết bị
-                </a>
-              </div>
-            </div>
-
-            {/* Right — equipment image */}
-            <div className="relative">
-              <div className="overflow-hidden rounded-lg border-4 border-white/20 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.45)]">
-                <Img
-                  src="/images/showcase-genset-yard.jpg"
-                  alt="Máy phát điện PMC lắp đặt tại công trình"
-                  className="aspect-[4/3] w-full object-cover"
-                  loading="eager"
-                  fetchPriority="high"
-                />
-              </div>
-            </div>
-          </div>
+      {/* Immersive photo hero with a red-to-dark brand wash */}
+      <div className="relative isolate overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <Img
+            src="/images/showcase-genset-yard.jpg"
+            alt="Máy phát điện PMC tại công trình công nghiệp"
+            className="h-full w-full object-cover"
+            loading="eager"
+            fetchPriority="high"
+          />
+          {/* dark base for legibility + red brand wash from the left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/75 to-ink/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-signal/55 via-signal/10 to-transparent mix-blend-multiply" />
         </div>
-      </div>
 
-      {/* Stats band — light */}
-      <div className="border-b border-edge bg-white">
+        {/* red accent edge */}
+        <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-signal" />
+
         <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <div className="grid grid-cols-2 md:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.label} className="border-l border-edge px-5 py-7 first:border-l-0 md:px-6">
-                <CountUp
-                  value={s.value}
-                  suffix={s.suffix}
-                  className="font-display text-[30px] font-extrabold leading-none tracking-tight text-signal md:text-[38px]"
-                />
-                <p className="mt-2 text-[12.5px] font-medium text-paper-dim">{s.label}</p>
-              </div>
-            ))}
+          <div className="flex min-h-[600px] max-w-[760px] flex-col justify-center py-20 md:min-h-[680px]">
+            <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-signal drop-shadow">
+              <span className="text-white/90">Sẵn kho</span> · Giao 24–48h · Toàn miền Nam
+            </p>
+
+            <h1 className="mt-5 font-display text-[46px] font-extrabold leading-[0.98] tracking-tight text-white drop-shadow-sm md:text-[72px]">
+              Cho thuê thiết bị<br />công nghiệp<span className="text-signal">.</span>
+            </h1>
+
+            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/85">
+              Máy phát điện, máy nén khí, thiết bị UHP &amp; máy hàn — khảo sát,
+              giao lắp và vận hành tận công trình, kỹ thuật túc trực 24/7.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={telHref(settings.hotline)}
+                className="inline-flex items-center gap-2 rounded-lg bg-signal px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-white shadow-lg shadow-signal/30 transition-transform duration-150 hover:-translate-y-0.5"
+              >
+                Gọi báo giá · {phone}
+              </a>
+              <a
+                href="/thiet-bi/"
+                className="inline-flex items-center gap-2 rounded-lg border-2 border-white/70 px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-ink"
+              >
+                Xem thiết bị
+              </a>
+            </div>
+
+            {/* Trust chips */}
+            <div className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {stats.map((s) => (
+                <div key={s.l} className="rounded-lg border border-white/15 bg-white/10 px-3 py-3 backdrop-blur-sm">
+                  <div className="font-display text-[24px] font-extrabold leading-none text-white">{s.v}</div>
+                  <div className="mt-1 text-[11px] font-medium leading-tight text-white/70">{s.l}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Brand strip */}
       <div className="border-b border-edge bg-white">
-        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 py-5 lg:px-10">
+        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-center gap-x-9 gap-y-3 px-6 py-5 lg:justify-between lg:px-10">
+          <span className="text-[12px] font-bold uppercase tracking-wide text-paper-mute">Thương hiệu phân phối</span>
           {brands.map((b) => (
-            <span key={b} className="whitespace-nowrap text-[13px] font-bold tracking-[0.1em] text-paper-mute">
+            <span key={b} className="whitespace-nowrap text-[13px] font-bold tracking-[0.08em] text-paper-dim">
               {b}
             </span>
           ))}
