@@ -13,7 +13,7 @@ export function CategoryCard({
   return (
     <Link
       href={categoryHref(category.slug)}
-      className="group relative flex h-[340px] overflow-hidden rounded-lg shadow-[0_14px_34px_-20px_rgba(22,24,28,0.35)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_26px_50px_-22px_rgba(22,24,28,0.45)]"
+      className="group relative flex h-[400px] overflow-hidden rounded-lg shadow-[0_16px_38px_-22px_rgba(22,24,28,0.45)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_28px_56px_-24px_rgba(210,5,30,0.4)] hover:ring-signal"
     >
       <picture>
         <source srcSet={category.image.replace(/\.jpe?g$/i, '.webp')} type="image/webp" />
@@ -21,25 +21,32 @@ export function CategoryCard({
         <img
           src={category.image}
           alt={`Cho thuê ${category.name}`}
-          className="photo-grade absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+          className="photo-grade absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
           loading={index < 2 ? 'eager' : 'lazy'}
           decoding="async"
           fetchPriority={index === 0 ? 'high' : 'auto'}
         />
       </picture>
 
-      {/* Dark gradient so the label is always legible */}
+      {/* gradient + brand wash */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
 
-      {/* Index — top */}
-      <span className="absolute left-5 top-4 font-display text-[22px] font-extrabold leading-none text-white/90">{num}</span>
+      {/* Index — top, in a red tab */}
+      <span className="absolute left-0 top-5 bg-signal px-3 py-1.5 font-display text-[18px] font-extrabold leading-none text-white">
+        {num}
+      </span>
 
-      {/* Title + arrow — bottom */}
-      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5">
-        <h3 className="font-display text-[20px] font-extrabold uppercase leading-tight tracking-tight text-white">
+      {/* Content — bottom */}
+      <div className="absolute inset-x-0 bottom-0 p-6">
+        <h3 className="font-display text-[26px] font-extrabold uppercase leading-[0.98] tracking-tight text-white">
           {category.name}
         </h3>
-        <span className="flex h-9 w-9 flex-none items-center justify-center rounded-lg bg-signal text-white transition-transform duration-300 group-hover:translate-x-1">→</span>
+        {/* red underline grows on hover */}
+        <span className="mt-3 block h-[3px] w-10 bg-signal transition-all duration-300 group-hover:w-20" />
+        <span className="mt-4 inline-flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-white">
+          Xem chi tiết
+          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </span>
       </div>
     </Link>
   );
