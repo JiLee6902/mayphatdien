@@ -1,87 +1,65 @@
 import { Img } from './ui/Img';
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 
-const stats = [
-  { v: '18+', l: 'Năm kinh nghiệm' },
-  { v: '70+', l: 'Thiết bị sẵn kho' },
-  { v: '1000+', l: 'Công trình' },
-  { v: '24/7', l: 'Kỹ thuật túc trực' },
-];
-
-const brands = ['CUMMINS', 'MITSUBISHI', 'DENYO', 'MTU', 'AIRMAN', 'KOMATSU', 'INGERSOLL RAND'];
+const brands = ['CUMMINS', 'MITSUBISHI', 'DENYO', 'MTU', 'AIRMAN', 'KOMATSU'];
 
 export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
   const phone = settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
   return (
-    <section>
-      {/* Immersive photo hero with a red-to-dark brand wash */}
-      <div className="relative isolate overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <Img
-            src="/images/showcase-genset-yard.jpg"
-            alt="Máy phát điện PMC tại công trình công nghiệp"
-            className="h-full w-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-          />
-          {/* dark base for legibility — red stays an accent, not a flood */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/68 to-ink/28" />
-        </div>
+    <section className="relative isolate -mt-[72px] overflow-hidden bg-ink">
+      {/* Cinematic backdrop */}
+      <div className="absolute inset-0 -z-10">
+        <Img
+          src="/images/showcase-genset-yard.jpg"
+          alt="Máy phát điện PMC tại công trình công nghiệp"
+          className="h-full w-full object-cover brightness-[0.52] contrast-[1.08] saturate-[1.05]"
+          loading="eager"
+          fetchPriority="high"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/20 to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/70 via-transparent to-transparent" />
+        {/* warm brand glow */}
+        <div className="pointer-events-none absolute -right-20 top-24 h-[560px] w-[560px] rounded-full bg-signal/35 blur-[130px]" />
+      </div>
 
-        {/* red accent edge */}
-        <div className="absolute inset-y-0 left-0 z-10 w-1.5 bg-signal" />
+      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+        <div className="flex min-h-[760px] flex-col justify-end pb-20 pt-36 md:min-h-[88vh]">
+          <p className="mb-7 text-[13px] font-medium uppercase tracking-[0.3em] text-white/70">
+            Cho thuê thiết bị công nghiệp · Miền Nam
+          </p>
 
-        <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
-          <div className="flex min-h-[600px] max-w-[760px] flex-col justify-center py-20 md:min-h-[680px]">
-            <p className="text-[13px] font-bold uppercase tracking-[0.2em] text-signal drop-shadow">
-              <span className="text-white/90">Sẵn kho</span> · Giao 24–48h · Toàn miền Nam
-            </p>
+          <h1 className="max-w-[16ch] font-light leading-[1.01] tracking-tight text-white text-[48px] md:text-[82px]">
+            Nguồn điện &amp; thiết bị cho <span className="font-semibold text-white">mọi công trình</span><span className="text-signal">.</span>
+          </h1>
 
-            <h1 className="mt-5 font-display text-[46px] font-extrabold leading-[0.98] tracking-tight text-white drop-shadow-sm md:text-[72px]">
-              Cho thuê thiết bị<br />công nghiệp<span className="text-signal">.</span>
-            </h1>
+          <p className="mt-7 max-w-xl text-[18px] font-light leading-relaxed text-white/75">
+            Máy phát điện, máy nén khí, UHP &amp; máy hàn — khảo sát, giao lắp
+            và vận hành tận nơi, kỹ thuật túc trực 24/7.
+          </p>
 
-            <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-white/85">
-              Máy phát điện, máy nén khí, thiết bị UHP &amp; máy hàn — khảo sát,
-              giao lắp và vận hành tận công trình, kỹ thuật túc trực 24/7.
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <a
-                href={telHref(settings.hotline)}
-                className="inline-flex items-center gap-2 rounded-lg bg-signal px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-white shadow-lg shadow-signal/30 transition-transform duration-150 hover:-translate-y-0.5"
-              >
-                Gọi báo giá · {phone}
-              </a>
-              <a
-                href="/thiet-bi/"
-                className="inline-flex items-center gap-2 rounded-lg border-2 border-white/70 px-7 py-4 text-[15px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-white hover:text-ink"
-              >
-                Xem thiết bị
-              </a>
-            </div>
-
-            {/* Trust chips */}
-            <div className="mt-10 grid max-w-xl grid-cols-2 gap-3 sm:grid-cols-4">
-              {stats.map((s) => (
-                <div key={s.l} className="rounded-lg border border-white/15 bg-white/10 px-3 py-3 backdrop-blur-sm">
-                  <div className="font-display text-[24px] font-extrabold leading-none text-white">{s.v}</div>
-                  <div className="mt-1 text-[11px] font-medium leading-tight text-white/70">{s.l}</div>
-                </div>
-              ))}
-            </div>
+          <div className="mt-10 flex flex-wrap items-center gap-5">
+            <a
+              href={telHref(settings.hotline)}
+              className="inline-flex items-center gap-2 rounded-full bg-signal px-8 py-4 text-[15.5px] font-semibold text-white shadow-lg shadow-signal/30 transition-all duration-200 hover:-translate-y-0.5 hover:bg-signal-dark"
+            >
+              Gọi báo giá · {phone}
+            </a>
+            <a href="/thiet-bi/" className="group inline-flex items-center gap-3 text-[15.5px] font-medium text-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 transition-colors group-hover:border-white group-hover:bg-white group-hover:text-ink">
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+              </span>
+              Xem thiết bị
+            </a>
           </div>
         </div>
       </div>
 
-      {/* Brand strip */}
-      <div className="border-b border-edge bg-white">
-        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-center gap-x-9 gap-y-3 px-6 py-5 lg:justify-between lg:px-10">
-          <span className="text-[12px] font-bold uppercase tracking-wide text-paper-mute">Thương hiệu phân phối</span>
+      {/* Brand trust row */}
+      <div className="relative border-t border-white/12">
+        <div className="mx-auto flex max-w-[1320px] flex-wrap items-center gap-x-9 gap-y-3 px-6 py-5 lg:px-10">
+          <span className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/45">Tin dùng</span>
           {brands.map((b) => (
-            <span key={b} className="whitespace-nowrap text-[13px] font-bold tracking-[0.08em] text-paper-dim">
-              {b}
-            </span>
+            <span key={b} className="text-[13px] font-semibold tracking-wide text-white/60">{b}</span>
           ))}
         </div>
       </div>

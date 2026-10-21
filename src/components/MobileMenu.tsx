@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { mainNav } from '@/config/nav';
 import { telHref, defaultSiteSettings } from '@/config/site';
 
-export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?: string }) {
+export function MobileMenu({ hotline = defaultSiteSettings.hotline, dark = false }: { hotline?: string; dark?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative ml-auto md:hidden">
@@ -13,7 +13,7 @@ export function MobileMenu({ hotline = defaultSiteSettings.hotline }: { hotline?
         aria-label={open ? 'Đóng menu' : 'Mở menu'}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-11 w-11 items-center justify-center rounded-lg border border-edge-strong text-paper"
+        className={`flex h-11 w-11 items-center justify-center rounded-lg border ${dark && !open ? 'border-white/40 text-white' : 'border-edge-strong text-paper'}`}
       >
         <span aria-hidden className="text-xl leading-none">{open ? '✕' : '☰'}</span>
       </button>
