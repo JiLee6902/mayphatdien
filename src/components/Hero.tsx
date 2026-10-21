@@ -1,5 +1,5 @@
 import { Img } from './ui/Img';
-import { MachineShowcase } from './MachineShowcase';
+import { Hero3D } from './Hero3D';
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 
 const brands = ['CUMMINS', 'MITSUBISHI', 'DENYO', 'MTU', 'AIRMAN', 'KOMATSU'];
@@ -50,9 +50,16 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
             </div>
           </div>
 
-          {/* Right — machine as a 3D-tilt card */}
-          <div className="hidden lg:block">
-            <MachineShowcase />
+          {/* Right — real 3D genset (drag to rotate) */}
+          <div className="relative hidden h-[520px] lg:block">
+            <Hero3D />
+            <div className="pointer-events-none absolute bottom-3 left-3 rounded-xl bg-white px-5 py-3 shadow-xl">
+              <div className="font-display text-[22px] font-extrabold leading-none text-ink">550 kVA</div>
+              <div className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-paper-mute">Cummins · sẵn kho</div>
+            </div>
+            <div className="pointer-events-none absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-white/25 px-3 py-1 text-[11px] font-medium text-white/70">
+              ↻ Kéo để xoay
+            </div>
           </div>
         </div>
       </div>
