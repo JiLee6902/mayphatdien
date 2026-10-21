@@ -24,9 +24,8 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
             loading="eager"
             fetchPriority="high"
           />
-          {/* dark base for legibility + red brand wash from the left */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/75 to-ink/25" />
-          <div className="absolute inset-0 bg-gradient-to-r from-signal/55 via-signal/10 to-transparent mix-blend-multiply" />
+          {/* dark base for legibility — red stays an accent, not a flood */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/68 to-ink/28" />
         </div>
 
         {/* red accent edge */}
