@@ -1,4 +1,5 @@
 import { Img } from './ui/Img';
+import { Hero3D } from './Hero3D';
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 
 const brands = ['CUMMINS', 'MITSUBISHI', 'DENYO', 'MTU', 'AIRMAN', 'KOMATSU'];
@@ -22,14 +23,19 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
         <div className="pointer-events-none absolute -right-20 top-24 h-[560px] w-[560px] rounded-full bg-signal/35 blur-[130px]" />
       </div>
 
-      <div className="mx-auto max-w-[1320px] px-6 lg:px-10">
+      {/* WebGL 3D accent (desktop) */}
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-0 hidden w-[52%] lg:block">
+        <Hero3D />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="flex min-h-[760px] flex-col justify-end pb-20 pt-36 md:min-h-[88vh]">
           <p className="mb-7 text-[13px] font-medium uppercase tracking-[0.3em] text-white/70">
             Cho thuê thiết bị công nghiệp · Miền Nam
           </p>
 
-          <h1 className="max-w-[16ch] font-light leading-[1.01] tracking-tight text-white text-[48px] md:text-[82px]">
-            Nguồn điện &amp; thiết bị cho <span className="font-semibold text-white">mọi công trình</span><span className="text-signal">.</span>
+          <h1 className="max-w-[18ch] font-display text-[44px] font-semibold leading-[1.0] tracking-tight text-white md:text-[76px]">
+            Nguồn điện &amp; thiết bị cho <span className="font-extrabold">mọi công trình</span><span className="text-signal">.</span>
           </h1>
 
           <p className="mt-7 max-w-xl text-[18px] font-light leading-relaxed text-white/75">
