@@ -27,7 +27,7 @@ export function EquipmentCard({
       </Link>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-[17px] font-extrabold uppercase leading-snug tracking-tight text-paper">
+        <h3 className="font-display text-[17px] font-extrabold leading-snug tracking-tight text-paper">
           <Link href={equipmentHref(item.slug)} className="transition-colors hover:text-signal-dark">{item.name}</Link>
         </h3>
 

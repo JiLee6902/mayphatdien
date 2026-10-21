@@ -23,7 +23,7 @@ export function ProjectCard({ project }: { project: Project }) {
         </span>
       </Link>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-lg font-extrabold uppercase leading-snug tracking-tight text-paper transition-colors group-hover:text-signal-dark">
+        <h3 className="font-display text-lg font-extrabold leading-snug tracking-tight text-paper transition-colors group-hover:text-signal-dark">
           <Link href={projectHref(project.slug)}>{project.title}</Link>
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-paper-dim">{project.desc}</p>

@@ -116,7 +116,7 @@ export default function GioiThieuPage() {
         {/* Services */}
         <div className="mt-20">
           <p className="eyebrow">Dịch vụ trọn gói</p>
-          <h2 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">
+          <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">
             Đồng hành từ khảo sát đến vận hành
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -128,7 +128,7 @@ export default function GioiThieuPage() {
                 <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">
                   {sv.icon}
                 </span>
-                <h3 className="mt-4 font-display text-lg font-extrabold uppercase tracking-tight text-paper">{sv.title}</h3>
+                <h3 className="mt-4 font-display text-lg font-extrabold tracking-tight text-paper">{sv.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-paper-dim">{sv.desc}</p>
               </div>
             ))}
@@ -138,7 +138,7 @@ export default function GioiThieuPage() {
         {/* Service area */}
         <div className="surface mt-20 rounded-lg p-8 md:p-10">
           <p className="eyebrow">Khu vực phục vụ</p>
-          <h2 className="mt-4 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">
+          <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">
             Phủ khắp các tỉnh thành miền Nam
           </h2>
           <div className="mt-6 flex flex-wrap gap-3">

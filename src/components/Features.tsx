@@ -16,7 +16,7 @@ export function Features() {
           {/* Left — statement */}
           <Reveal>
             <p className="eyebrow">Tại sao chọn PMC</p>
-            <h2 className="mt-4 font-display text-[32px] font-extrabold uppercase leading-[1.05] tracking-tight text-paper md:text-[42px]">
+            <h2 className="mt-4 font-display text-[32px] font-extrabold leading-[1.05] tracking-tight text-paper md:text-[42px]">
               18 năm cho thuê thiết bị công nghiệp
             </h2>
             <p className="mt-5 text-[15.5px] leading-relaxed text-paper-dim">
@@ -35,7 +35,7 @@ export function Features() {
                 <div className="surface surface-hover group flex h-full gap-4 rounded-lg p-6">
                   <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-signal font-display text-[18px] font-extrabold text-white">{item.n}</span>
                   <div>
-                    <h3 className="font-display text-[15px] font-extrabold uppercase tracking-tight text-paper">{item.title}</h3>
+                    <h3 className="font-display text-[15px] font-extrabold tracking-tight text-paper">{item.title}</h3>
                     <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{item.desc}</p>
                   </div>
                 </div>

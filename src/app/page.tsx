@@ -70,7 +70,7 @@ export default async function Home() {
                 <svg viewBox="0 0 24 24" className="h-6 w-6" fill="currentColor">{u.icon}</svg>
               </span>
               <div>
-                <p className="font-display text-[15px] font-extrabold uppercase tracking-tight text-paper">{u.title}</p>
+                <p className="font-display text-[15px] font-extrabold tracking-tight text-paper">{u.title}</p>
                 <p className="mt-1 text-[13px] leading-snug text-paper-dim">{u.desc}</p>
               </div>
             </div>

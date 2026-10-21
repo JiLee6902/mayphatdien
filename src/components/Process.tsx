@@ -35,7 +35,7 @@ export function Process() {
       <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Quy trình</p>
-          <h2 className="mt-3 font-display text-[30px] font-extrabold uppercase tracking-tight text-paper md:text-[44px]">
+          <h2 className="mt-3 font-display text-[30px] font-extrabold tracking-tight text-paper md:text-[44px]">
             Thuê thiết bị · 4 bước
           </h2>
           <p className="mt-4 text-[15.5px] leading-relaxed text-paper-dim">
@@ -55,7 +55,7 @@ export function Process() {
                     {s.icon}
                   </svg>
                 </div>
-                <h3 className="relative mt-6 font-display text-[16px] font-extrabold uppercase tracking-tight text-paper">{s.title}</h3>
+                <h3 className="relative mt-6 font-display text-[16px] font-extrabold tracking-tight text-paper">{s.title}</h3>
                 <p className="relative mt-2 text-[13.5px] leading-relaxed text-paper-dim">{s.desc}</p>
               </div>
             </Reveal>

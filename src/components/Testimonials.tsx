@@ -38,7 +38,7 @@ export function Testimonials() {
 
         <Reveal className="border-b border-edge pb-6">
           <p className="eyebrow">Đánh giá</p>
-          <h2 className="mt-3 font-display text-[30px] font-extrabold uppercase tracking-tight text-paper md:text-[44px]">Khách hàng nói gì</h2>
+          <h2 className="mt-3 font-display text-[30px] font-extrabold tracking-tight text-paper md:text-[44px]">Khách hàng nói gì</h2>
         </Reveal>
 
         <div className="mt-8 grid gap-4 lg:grid-cols-[3fr_2fr]">

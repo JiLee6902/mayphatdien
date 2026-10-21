@@ -14,7 +14,7 @@ export function SectionHeader({
     <div className="flex flex-wrap items-end justify-between gap-4 border-b border-edge pb-6">
       <div>
         <p className="eyebrow">{eyebrow}</p>
-        <h2 className="mt-3 font-display text-[28px] font-extrabold uppercase leading-[1.05] tracking-tight text-paper md:text-[40px]">
+        <h2 className="mt-3 font-display text-[28px] font-extrabold leading-[1.05] tracking-tight text-paper md:text-[40px]">
           {title}
         </h2>
       </div>

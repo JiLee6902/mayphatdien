@@ -19,7 +19,7 @@ export function Faq({
     <section className="mx-auto max-w-[860px] px-6 py-16 lg:px-10 md:py-20">
       <Reveal>
         <p className="eyebrow">{eyebrow}</p>
-        <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[36px]">
+        <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[36px]">
           {title}
         </h2>
       </Reveal>

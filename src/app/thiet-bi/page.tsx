@@ -42,7 +42,7 @@ export default async function Page() {
       <section className="mx-auto max-w-[1320px] px-6 pb-16 pt-12 lg:px-10 md:pb-20">
         <Reveal>
           <p className="eyebrow">Danh mục</p>
-          <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[32px]">
+          <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[32px]">
             Chọn nhóm thiết bị
           </h2>
         </Reveal>
@@ -61,7 +61,7 @@ export default async function Page() {
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Toàn bộ</p>
-              <h2 className="mt-3 font-display text-[26px] font-extrabold uppercase tracking-tight text-paper md:text-[32px]">
+              <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[32px]">
                 Tất cả thiết bị
               </h2>
             </div>

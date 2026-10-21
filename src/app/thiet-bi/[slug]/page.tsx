@@ -128,7 +128,7 @@ export default async function Page({ params }: Props) {
               <p className="eyebrow">
                 {category?.name ?? 'Cho thuê'} · PMC
               </p>
-              <h1 className="mt-4 font-display text-[30px] font-extrabold uppercase leading-tight tracking-tight text-paper md:text-[40px] lg:text-[46px]">
+              <h1 className="mt-4 font-display text-[30px] font-extrabold leading-tight tracking-tight text-paper md:text-[40px] lg:text-[46px]">
                 {item.name}
               </h1>
 
@@ -247,7 +247,7 @@ export default async function Page({ params }: Props) {
                   {/* Pricing header */}
                   <div className="border-b border-edge px-6 py-5">
                     <p className="eyebrow">Báo giá thuê</p>
-                    <p className="mt-1.5 font-display text-[22px] font-extrabold uppercase tracking-tight text-paper">Liên hệ nhận giá tốt nhất</p>
+                    <p className="mt-1.5 font-display text-[22px] font-extrabold tracking-tight text-paper">Liên hệ nhận giá tốt nhất</p>
                     <p className="mt-0.5 text-[13px] text-paper-dim">Theo ngày · tuần · tháng · dài hạn</p>
                   </div>
 
@@ -300,7 +300,7 @@ export default async function Page({ params }: Props) {
           {related.length > 0 && (
             <div className="mt-20">
               <div className="flex items-end justify-between gap-4">
-                <h2 className="font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-[28px]">Thiết bị liên quan</h2>
+                <h2 className="font-display text-2xl font-extrabold tracking-tight text-paper md:text-[28px]">Thiết bị liên quan</h2>
                 {category && (
                   <Link href={categoryHref(category.slug)} className="text-sm font-semibold text-signal-dark transition-colors hover:text-signal">
                     Xem tất cả →

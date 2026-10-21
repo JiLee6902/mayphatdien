@@ -79,7 +79,7 @@ export default async function ProjectPage({ params }: Props) {
             <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-white">
               Dự án
             </span>
-            <h1 className="mt-5 font-display text-[30px] font-extrabold uppercase leading-[1.12] tracking-tight text-paper md:text-[44px]">
+            <h1 className="mt-5 font-display text-[30px] font-extrabold leading-[1.12] tracking-tight text-paper md:text-[44px]">
               {project.title}
             </h1>
             {project.location && (
@@ -127,7 +127,7 @@ export default async function ProjectPage({ params }: Props) {
 
               {project.equipmentUsed?.length ? (
                 <div className="mt-10">
-                  <h2 className="font-display text-xl font-extrabold uppercase tracking-tight text-paper">Thiết bị đã sử dụng</h2>
+                  <h2 className="font-display text-xl font-extrabold tracking-tight text-paper">Thiết bị đã sử dụng</h2>
                   <ul className="mt-4 flex flex-wrap gap-3">
                     {project.equipmentUsed.map((e) => (
                       <li key={e.slug}>

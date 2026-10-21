@@ -117,7 +117,7 @@ export default async function LienHePage() {
           <div className="space-y-10">
             <div>
               <p className="eyebrow">Kênh liên hệ nhanh</p>
-              <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Kết nối với PMC</h2>
+              <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">Kết nối với PMC</h2>
               <div className="mt-6 space-y-4">
                 {methods.map((m) => (
                   <div
@@ -151,7 +151,7 @@ export default async function LienHePage() {
 
             <div>
               <p className="eyebrow">Văn phòng</p>
-              <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Địa điểm của PMC</h2>
+              <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">Địa điểm của PMC</h2>
               <div className="mt-6 space-y-4">
                 {settings.locations.map((loc) => (
                   <div
@@ -163,7 +163,7 @@ export default async function LienHePage() {
                         <PinIcon />
                       </span>
                       <div>
-                        <h3 className="font-display uppercase tracking-tight text-paper">{loc.name}</h3>
+                        <h3 className="font-display tracking-tight text-paper">{loc.name}</h3>
                         <p className="mt-1 text-sm leading-relaxed text-paper-dim">{loc.address}</p>
                       </div>
                     </div>
@@ -185,7 +185,7 @@ export default async function LienHePage() {
           {/* Right: contact form */}
           <div>
             <p className="eyebrow">Gửi yêu cầu báo giá</p>
-            <h2 className="mt-3 font-display text-2xl font-extrabold uppercase tracking-tight text-paper md:text-3xl">Điền form — PMC gọi lại ngay</h2>
+            <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">Điền form — PMC gọi lại ngay</h2>
             <p className="mt-2 text-sm text-paper-dim">Phản hồi trong vòng 1 giờ (7:00 – 21:00 hàng ngày).</p>
 
             <form

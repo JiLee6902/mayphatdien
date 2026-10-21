@@ -38,7 +38,7 @@ export function CategoryCard({
 
       {/* Content — bottom */}
       <div className="absolute inset-x-0 bottom-0 p-6">
-        <h3 className="font-display text-[26px] font-extrabold uppercase leading-[0.98] tracking-tight text-white">
+        <h3 className="font-display text-[26px] font-extrabold leading-[0.98] tracking-tight text-white">
           {category.name}
         </h3>
         {/* red underline grows on hover */}

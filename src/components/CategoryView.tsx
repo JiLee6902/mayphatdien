@@ -45,7 +45,7 @@ export async function CategoryView({ slug }: { slug: string }) {
           </nav>
 
           <p className="eyebrow mt-8">Danh mục thiết bị</p>
-          <h1 className="mt-4 font-display text-[34px] font-extrabold uppercase leading-[1.02] tracking-tight text-paper md:text-[52px]">
+          <h1 className="mt-4 font-display text-[34px] font-extrabold leading-[1.02] tracking-tight text-paper md:text-[52px]">
             Cho thuê {category.name}
           </h1>
         </div>
