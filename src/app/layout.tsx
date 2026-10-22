@@ -5,6 +5,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { FloatingContact } from '@/components/FloatingContact';
+import { MobileCallBar } from '@/components/MobileCallBar';
 import { JsonLd } from '@/components/JsonLd';
 import { site } from '@/config/site';
 import { loadSettings } from '@/lib/content';
@@ -102,7 +103,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           fetchPriority="high"
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased pb-14 md:pb-0">
         {/* Site-wide entity graph: Organization + WebSite + LocalBusiness ×2 */}
         <JsonLd
           data={graph([
@@ -115,6 +116,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <main>{children}</main>
         <Footer settings={settings} />
         <FloatingContact settings={settings} />
+        <MobileCallBar settings={settings} />
 
         {/* Google Analytics 4 — loaded only when a measurement ID is set. */}
         {site.gaId && (

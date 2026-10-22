@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
 import { PageHeader } from '@/components/PageHeader';
+import { ContactForm } from '@/components/ContactForm';
 import { telHref } from '@/config/site';
 import { loadSettings } from '@/lib/content';
 
@@ -51,14 +52,6 @@ function PinIcon() {
     </svg>
   );
 }
-function SendIcon() {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m22 2-7 20-4-9-9-4 20-7z" /><path d="M22 2 11 13" />
-    </svg>
-  );
-}
-
 type Method = {
   icon: ReactNode;
   label: string;
@@ -68,11 +61,11 @@ type Method = {
   external?: boolean;
 };
 
+// Reliable address-search embed (always pins the exact address, no fake place id).
 const MAPS_EMBED =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.857!2d107.0816!3d10.3456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3174f21f9e7e7e8f%3A0x0!2s1591A+%C4%90%C6%B0%E1%BB%9Dng+30%2F4%2C+Ph%C6%B0%E1%BB%9Dng+12%2C+Th%C3%A0nh+ph%E1%BB%91+V%C5%A9ng+T%C3%A0u!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn';
-
-const fieldClass =
-  'w-full rounded-lg border border-edge bg-white px-4 py-3 text-sm text-paper placeholder:text-paper-mute outline-none transition focus:border-signal';
+  'https://www.google.com/maps?q=' +
+  encodeURIComponent('246/40A11 Xô Viết Nghệ Tĩnh, Phường 21, Bình Thạnh, TP.HCM') +
+  '&output=embed';
 
 export default async function LienHePage() {
   const settings = await loadSettings();
@@ -188,63 +181,7 @@ export default async function LienHePage() {
             <h2 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-paper md:text-3xl">Điền form — PMC gọi lại ngay</h2>
             <p className="mt-2 text-sm text-paper-dim">Phản hồi trong vòng 1 giờ (7:00 – 21:00 hàng ngày).</p>
 
-            <form
-              action={`mailto:${settings.email}`}
-              method="POST"
-              encType="text/plain"
-              className="mt-6 space-y-4"
-            >
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-name">Họ tên *</label>
-                  <input id="contact-name" name="ho_ten" type="text" required placeholder="Nguyễn Văn A" className={fieldClass} />
-                </div>
-                <div>
-                  <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-phone">Số điện thoại *</label>
-                  <input id="contact-phone" name="so_dien_thoai" type="tel" required placeholder="0912 345 678" className={fieldClass} />
-                </div>
-              </div>
-
-              <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-company">Công ty / Dự án</label>
-                <input id="contact-company" name="cong_ty" type="text" placeholder="Tên công ty hoặc dự án" className={fieldClass} />
-              </div>
-
-              <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-equipment">Thiết bị cần thuê *</label>
-                <select id="contact-equipment" name="thiet_bi" required className={fieldClass}>
-                  <option value="">Chọn nhóm thiết bị…</option>
-                  <option>Máy phát điện</option>
-                  <option>Máy nén khí</option>
-                  <option>Thiết bị phun rửa UHP</option>
-                  <option>Máy hàn / máy phát hàn</option>
-                  <option>Nhiều loại thiết bị</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-paper-dim" htmlFor="contact-message">Yêu cầu chi tiết</label>
-                <textarea
-                  id="contact-message"
-                  name="yeu_cau"
-                  rows={4}
-                  placeholder="Công suất cần thiết, địa điểm công trình, thời gian thuê…"
-                  className={`${fieldClass} resize-none`}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-signal px-6 py-3.5 font-bold text-white transition hover:bg-signal-dark hover:-translate-y-0.5 active:scale-95"
-              >
-                <SendIcon />
-                Gửi yêu cầu báo giá
-              </button>
-
-              <p className="text-center text-xs text-paper-dim">
-                Hoặc gọi ngay <a href={telHref(settings.hotline)} className="font-bold text-signal-dark hover:underline">{formatPhone(settings.hotline)}</a> để được tư vấn tức thì.
-              </p>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>

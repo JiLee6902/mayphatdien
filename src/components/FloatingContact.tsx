@@ -34,7 +34,7 @@ function ZaloIcon() {
 
 export function FloatingContact({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
   return (
-    <div className="fixed right-5 bottom-6 z-50 flex flex-col items-end gap-3">
+    <div className="fixed right-5 bottom-6 z-50 hidden flex-col items-end gap-3 md:flex">
       <a
         href={telHref(settings.hotline)}
         aria-label="Gọi ngay"

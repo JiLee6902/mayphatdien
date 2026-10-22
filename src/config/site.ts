@@ -25,6 +25,10 @@ export const site = {
   // google-site-verification meta tag). Empty = tag omitted.
   // Inject via NEXT_PUBLIC_GSC_VERIFICATION, or hardcode here.
   gscVerification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? '',
+  // Web3Forms access key for the contact form (free, static-friendly).
+  // Get one at web3forms.com → paste here or set NEXT_PUBLIC_WEB3FORMS_KEY.
+  // Empty = the form falls back to opening the user's email client (mailto).
+  web3formsKey: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '',
   hotline: '0936899431',
   email: 'pmc@pmcvn.com',
   zaloUrl: 'https://zalo.me/0936899431',
