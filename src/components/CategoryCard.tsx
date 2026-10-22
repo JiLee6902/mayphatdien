@@ -17,7 +17,6 @@ export function CategoryCard({
     >
       <picture>
         <source srcSet={category.image.replace(/\.jpe?g$/i, '.webp')} type="image/webp" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={category.image}
           alt={`Cho thuê ${category.name}`}

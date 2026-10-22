@@ -29,7 +29,6 @@ export function Img({
   return (
     <picture className="contents">
       {webp !== src && <source srcSet={webp} type="image/webp" />}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={src}
         alt={alt}

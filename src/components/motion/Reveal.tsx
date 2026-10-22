@@ -24,10 +24,6 @@ export function Reveal({
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
-    if (typeof IntersectionObserver === 'undefined') {
-      setVisible(true);
-      return;
-    }
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

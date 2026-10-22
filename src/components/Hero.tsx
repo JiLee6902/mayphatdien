@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Img } from './ui/Img';
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 
@@ -40,12 +41,12 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
             >
               Gọi báo giá · {phone}
             </a>
-            <a href="/thiet-bi/" className="group inline-flex items-center gap-3 text-[15.5px] font-medium text-white">
+            <Link href="/thiet-bi/" className="group inline-flex items-center gap-3 text-[15.5px] font-medium text-white">
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-white/40 transition-colors group-hover:border-white group-hover:bg-white group-hover:text-ink">
                 <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
               </span>
               Xem thiết bị
-            </a>
+            </Link>
           </div>
         </div>
       </div>
