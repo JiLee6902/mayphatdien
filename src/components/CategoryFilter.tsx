@@ -1,11 +1,26 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import type { Equipment } from '@/config/equipment';
 import { EquipmentCard } from '@/components/EquipmentCard';
 
+const PAGE_SIZE = 12;
+
 function distinct(values: string[]): string[] {
   return Array.from(new Set(values));
+}
+
+/** Page numbers to render, with gaps ("…") collapsed for long ranges. */
+function pageList(current: number, total: number): (number | '…')[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const out: (number | '…')[] = [1];
+  const lo = Math.max(2, current - 1);
+  const hi = Math.min(total - 1, current + 1);
+  if (lo > 2) out.push('…');
+  for (let i = lo; i <= hi; i++) out.push(i);
+  if (hi < total - 1) out.push('…');
+  out.push(total);
+  return out;
 }
 
 /** Sort power labels numerically by their leading number ("75 kVA" < "550 kVA"). */
@@ -75,6 +90,8 @@ export function CategoryFilter({
   const [category, setCategory] = useState<string | null>(null);
   const [brand, setBrand] = useState<string | null>(null);
   const [power, setPower] = useState<string | null>(null);
+  const [page, setPage] = useState(1);
+  const topRef = useRef<HTMLDivElement>(null);
 
   // Category narrows the pool first; brand/power options cascade from it.
   const pool = useMemo(
@@ -103,21 +120,36 @@ export function CategoryFilter({
     [pool, brand, power],
   );
 
+  // Any filter change returns to page 1 so results never land on an empty page.
   const reset = () => {
     setCategory(null);
     setBrand(null);
     setPower(null);
+    setPage(1);
   };
+  const pickBrand = (v: string | null) => { setBrand(v); setPage(1); };
+  const pickPower = (v: string | null) => { setPower(v); setPage(1); };
 
   // Switching category invalidates brand/power picks from the previous pool.
   const pickCategory = (slug: string | null) => {
     setCategory(slug);
     setBrand(null);
     setPower(null);
+    setPage(1);
+  };
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const current = Math.min(page, totalPages);
+  const start = (current - 1) * PAGE_SIZE;
+  const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
+  const goTo = (p: number) => {
+    setPage(p);
+    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
-    <div>
+    <div ref={topRef} className="scroll-mt-28">
       {/* Filter toolbar */}
       <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-end">
           {categories && categories.length > 0 && (
@@ -132,25 +164,71 @@ export function CategoryFilter({
           <Select
             label="Thương hiệu"
             value={brand}
-            onChange={setBrand}
+            onChange={pickBrand}
             allLabel="Tất cả thương hiệu"
             options={brandOptions}
           />
           <Select
             label="Công suất"
             value={power}
-            onChange={setPower}
+            onChange={pickPower}
             allLabel="Tất cả công suất"
             options={powerOptions}
           />
       </div>
 
       {filtered.length > 0 ? (
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((item) => (
-            <EquipmentCard key={item.slug} item={item} hotline={hotline} />
-          ))}
-        </div>
+        <>
+          <p className="mt-6 text-sm text-paper-dim">
+            Hiển thị <span className="font-bold text-paper">{start + 1}–{start + pageItems.length}</span>{' '}
+            trong <span className="font-bold text-paper">{filtered.length}</span> thiết bị
+          </p>
+          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {pageItems.map((item) => (
+              <EquipmentCard key={item.slug} item={item} hotline={hotline} />
+            ))}
+          </div>
+
+          {totalPages > 1 && (
+            <nav aria-label="Phân trang" className="mt-10 flex flex-wrap items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => goTo(current - 1)}
+                disabled={current === 1}
+                className="inline-flex h-10 items-center gap-1 rounded-lg border border-edge px-4 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal disabled:pointer-events-none disabled:opacity-40"
+              >
+                ← Trước
+              </button>
+              {pageList(current, totalPages).map((p, i) =>
+                p === '…' ? (
+                  <span key={`gap-${i}`} className="px-2 text-paper-mute">…</span>
+                ) : (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => goTo(p)}
+                    aria-current={p === current ? 'page' : undefined}
+                    className={
+                      p === current
+                        ? 'inline-flex h-10 w-10 items-center justify-center rounded-lg bg-signal text-sm font-bold text-white'
+                        : 'inline-flex h-10 w-10 items-center justify-center rounded-lg border border-edge text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal'
+                    }
+                  >
+                    {p}
+                  </button>
+                ),
+              )}
+              <button
+                type="button"
+                onClick={() => goTo(current + 1)}
+                disabled={current === totalPages}
+                className="inline-flex h-10 items-center gap-1 rounded-lg border border-edge px-4 text-sm font-bold text-paper transition-colors hover:border-signal hover:text-signal disabled:pointer-events-none disabled:opacity-40"
+              >
+                Sau →
+              </button>
+            </nav>
+          )}
+        </>
       ) : (
         <div className="surface mt-8 rounded-lg p-12 text-center">
           <p className="text-lg font-bold text-paper">Không có thiết bị phù hợp</p>

@@ -41,6 +41,23 @@ export const equipment: Equipment[] = [
       'Tổ máy phát điện công suất cực lớn MTU 1250kVA, động cơ MTU (Đức) đặt trong container cách âm — dòng máy đầu bảng của PMC cho nhà máy, cảng, lọc hóa dầu và dự án đòi hỏi nguồn điện công suất lớn, liên tục.',
   },
   {
+    slug: 'may-phat-dien-cummins-qst-1250kva',
+    name: 'Máy phát điện Cummins QST 1250kVA',
+    categorySlug: 'may-phat-dien',
+    brand: 'Cummins',
+    power: '1250 kVA',
+    image: '/images/equipment/mpd-cummins-qst-1250kva.jpg',
+    specs: [
+      { label: 'Công suất', value: '1250 kVA / 1000 kW' },
+      { label: 'Động cơ', value: 'Cummins QST30' },
+      DIESEL,
+      { label: 'Vỏ máy', value: 'Container cách âm' },
+      VOLT,
+    ],
+    description:
+      'Tổ máy phát điện Cummins QST30 1250kVA đặt trong container cách âm — công suất cực lớn, vận hành dài ngày cho nhà máy, cảng và dự án dầu khí. Cùng với MTU 1250kVA, đây là cặp máy đầu bảng trong đội máy PMC.',
+  },
+  {
     slug: 'may-phat-dien-perkins-750kva',
     name: 'Máy phát điện Perkins 750kVA',
     categorySlug: 'may-phat-dien',

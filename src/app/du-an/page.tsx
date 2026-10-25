@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { PageHeader } from '@/components/PageHeader';
-import { ProjectCard } from '@/components/ProjectCard';
+import { ProjectList } from '@/components/ProjectList';
 import { loadProjects } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -36,11 +36,7 @@ export default async function DuAnPage() {
             </div>
           ))}
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((p) => (
-            <ProjectCard key={p.slug} project={p} />
-          ))}
-        </div>
+        <ProjectList projects={projects} />
       </section>
     </>
   );
