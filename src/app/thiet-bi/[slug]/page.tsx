@@ -11,6 +11,7 @@ import {
 } from '@/lib/content';
 import { equipmentHref } from '@/config/equipment';
 import { categoryHref } from '@/config/categories';
+import { categoryInfo } from '@/config/categoryInfo';
 import { EquipmentCard } from '@/components/EquipmentCard';
 import { EquipmentGallery } from '@/components/EquipmentGallery';
 import { Img } from '@/components/ui/Img';
@@ -87,6 +88,7 @@ export default async function Page({ params }: Props) {
   ]);
   const category = categories.find((c) => c.slug === item.categorySlug);
   const related = categoryEquipment.filter((e) => e.slug !== item.slug).slice(0, 3);
+  const catInfo = categoryInfo[item.categorySlug];
 
   const canonical = equipmentHref(item.slug);
   const crumbs = [
@@ -219,6 +221,21 @@ export default async function Page({ params }: Props) {
                 <p className="eyebrow">Mô tả thiết bị</p>
                 <p className="mt-4 text-[15.5px] leading-8 text-paper-dim text-justify">{item.description}</p>
               </section>
+
+              {/* Applications — from category info */}
+              {catInfo && (
+                <section className="mt-12">
+                  <p className="eyebrow">Ứng dụng phù hợp</p>
+                  <div className="mt-4 flex flex-wrap gap-2.5">
+                    {catInfo.applications.map((a) => (
+                      <span key={a} className="inline-flex items-center gap-2 rounded-lg border border-edge bg-graphite-2 px-3.5 py-2 text-[13.5px] font-semibold text-paper">
+                        <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+                        {a}
+                      </span>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {/* Full spec table — flat, hairline rows */}
               <section className="mt-12">

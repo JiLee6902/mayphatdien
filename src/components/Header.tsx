@@ -37,7 +37,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
 
         <nav
           aria-label="Điều hướng chính"
-          className={`ml-2 hidden gap-7 text-[14px] font-semibold transition-colors md:flex ${
+          className={`ml-2 hidden gap-6 text-[14px] font-semibold transition-colors lg:flex ${
             solid ? 'text-paper' : 'text-white/90'
           }`}
         >
@@ -56,7 +56,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
           {solid && <HeaderSearch />}
           <a
             href={telHref(settings.hotline)}
-            className={`hidden text-[14px] font-bold transition-colors lg:block ${
+            className={`hidden whitespace-nowrap text-[14px] font-bold transition-colors xl:block ${
               solid ? 'text-paper hover:text-signal' : 'text-white'
             }`}
           >
@@ -64,7 +64,7 @@ export function Header({ settings = defaultSiteSettings }: { settings?: SiteSett
           </a>
           <Link
             href="/lien-he/"
-            className="hidden rounded-full bg-signal px-5 py-2.5 text-[13.5px] font-bold text-white transition-colors hover:bg-signal-dark md:inline-flex"
+            className="hidden whitespace-nowrap rounded-full bg-signal px-5 py-2.5 text-[13.5px] font-bold text-white transition-colors hover:bg-signal-dark lg:inline-flex"
           >
             Nhận báo giá
           </Link>

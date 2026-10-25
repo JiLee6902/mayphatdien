@@ -56,6 +56,87 @@ const li = (text: string): PortableTextBlock =>
 // CMS has no `post` documents yet).
 export const posts: Post[] = [
   {
+    slug: 'thue-may-phat-dien-may-phat-han-du-an-dau-khi-ngoai-khoi',
+    title: 'Thuê máy phát điện & máy phát hàn cho dự án dầu khí ngoài khơi',
+    date: '24/10/2026',
+    excerpt:
+      'Môi trường dầu khí ngoài khơi yêu cầu khắt khe về an toàn, độ ổn định và khả năng vận hành dài ngày. PMC đã cấp nguồn cho các giàn Kình Ngư, Lạc Đà Vàng, POS.',
+    image: '/images/projects/gian-khoan-kinh-ngu/hero.jpg',
+    body: [
+      p(
+        'Trên các giàn khoan và bãi chế tạo kết cấu dầu khí, nguồn điện và dòng hàn không được phép gián đoạn. Một sự cố nhỏ cũng có thể làm chậm cả tiến độ dự án trị giá hàng trăm tỷ. Vì vậy, thiết bị cấp nguồn phải thật sự tin cậy và được vận hành bởi đội kỹ thuật kinh nghiệm.',
+      ),
+      h2('Vì sao dự án dầu khí cần thiết bị chuyên dụng'),
+      li('Vận hành liên tục, dài ngày trong điều kiện thời tiết khắc nghiệt.'),
+      li('Yêu cầu an toàn nghiêm ngặt (HSE), tiếp địa và chống cháy nổ đúng chuẩn.'),
+      li('Máy phát hàn cơ động — vừa hàn vừa phát điện ở nơi không có điện lưới.'),
+      li('Thiết bị dạng container chịu được môi trường biển, dễ cẩu lắp.'),
+      h2('Kinh nghiệm của PMC'),
+      p(
+        'PMC đã cấp máy phát điện và máy phát hàn cho nhiều dự án dầu khí: giàn Kình Ngư Trắng & Nam Kình Ngư, Lạc Đà Vàng (PTSC M&C), giàn POS, cùng các cảng dịch vụ như PTSC Phú Mỹ. Thiết bị đa dạng công suất đến 1250kVA, có kỹ thuật viên trực máy 24/7.',
+      ),
+      p(
+        'Liên hệ PMC để được khảo sát và tư vấn giải pháp cấp nguồn cho công trình dầu khí — đúng công suất, an toàn và đúng tiến độ.',
+      ),
+    ],
+  },
+  {
+    slug: 'uhp-la-gi-ung-dung-phun-rua-sieu-cao-ap-2500bar',
+    title: 'UHP là gì? Ứng dụng phun rửa siêu cao áp đến 2500 bar',
+    date: '18/10/2026',
+    excerpt:
+      'Phun rửa siêu cao áp (UHP) tẩy cáu cặn, bóc sơn và gỉ cứng đầu hiệu quả hơn phun cát trong nhiều trường hợp, lại sạch và ít bụi. Tìm hiểu nguyên lý và ứng dụng.',
+    image: '/images/equipment/uhp-densin-c1400.jpg',
+    body: [
+      p(
+        'UHP (Ultra-High Pressure) là công nghệ phun nước ở áp suất siêu cao — từ 1.400 đến 2.500 bar, thậm chí hơn. Với áp lực lớn như vậy, tia nước đủ sức bóc tách lớp sơn, gỉ sét, cáu cặn bám chắc mà không cần hóa chất hay cát.',
+      ),
+      h2('Ưu điểm so với phun cát'),
+      li('Không phát sinh bụi cát độc hại, thân thiện môi trường hơn.'),
+      li('Làm sạch được bên trong đường ống, bồn bể, khe hẹp.'),
+      li('Không làm biến dạng bề mặt kim loại mỏng.'),
+      li('Thu gom và xử lý chất thải dễ hơn.'),
+      h2('Ứng dụng phổ biến'),
+      li('Tẩy cáu cặn trong bồn bể, thiết bị trao đổi nhiệt.'),
+      li('Làm sạch và thông đường ống công nghiệp.'),
+      li('Bóc sơn, gỉ sét, chuẩn bị bề mặt trước khi sơn phủ.'),
+      li('Vệ sinh kết cấu trong nhà máy và dầu khí.'),
+      h2('Lưu ý an toàn'),
+      p(
+        'UHP là công việc nguy hiểm: tia nước áp suất cao có thể gây thương tích nghiêm trọng. PMC luôn cử kỹ thuật viên được đào tạo vận hành theo đúng quy trình an toàn, kèm đầy đủ thiết bị bảo hộ. Ngoài máy UHP, PMC còn cho thuê hệ thống thử áp Hydrotest và Gas booster để kiểm tra đường ống.',
+      ),
+    ],
+  },
+  {
+    slug: 'cach-chon-may-nen-khi-theo-cfm-va-ap-suat',
+    title: 'Cách chọn máy nén khí theo lưu lượng (cfm) và áp suất (bar)',
+    date: '12/10/2026',
+    excerpt:
+      'Chọn sai lưu lượng hoặc áp suất khiến thiết bị chạy yếu hoặc lãng phí nhiên liệu. Hướng dẫn chọn máy nén khí đúng nhu cầu công trình.',
+    image: '/images/equipment/mnk-airman-pdsf830s.jpg',
+    body: [
+      p(
+        'Hai thông số quan trọng nhất của máy nén khí là lưu lượng (cfm hoặc m³/phút) và áp suất (bar). Chọn đúng cả hai mới đảm bảo thiết bị hạ nguồn hoạt động ổn định mà không tốn nhiên liệu vô ích.',
+      ),
+      h2('Lưu lượng (cfm) — đủ khí hay không'),
+      p(
+        'Lưu lượng là lượng khí máy cung cấp mỗi phút. Hãy cộng nhu cầu khí của tất cả thiết bị sẽ dùng cùng lúc, rồi cộng thêm 20–30% dự phòng. Thiếu cfm, thiết bị sẽ chạy yếu và ngắt quãng.',
+      ),
+      h2('Áp suất (bar) — đủ mạnh hay không'),
+      p(
+        'Áp suất phải đạt mức tối thiểu mà thiết bị yêu cầu. Phun cát hay test đường ống thường cần áp cao (10–15 bar); dụng cụ khí nén thông thường chỉ cần 7–8 bar.',
+      ),
+      h2('Gợi ý nhanh'),
+      li('Dụng cụ khí nén, vệ sinh nhẹ: 125–175 cfm, 8 bar.'),
+      li('Phun cát, thi công cơ khí: 390–750 cfm, 8–12 bar.'),
+      li('Phun cát lớn, áp cao: 750–850 cfm, 12–15 bar.'),
+      li('Dự án lớn, nhiều điểm dùng: 1300 cfm, 13 bar.'),
+      p(
+        'PMC có đầy đủ máy nén khí Airman, Denyo, Hitachi, Ingersoll Rand kèm bình chứa và bộ sấy khí. Gọi hotline để được tư vấn chọn đúng máy cho công trình của bạn.',
+      ),
+    ],
+  },
+  {
     slug: 'cach-chon-cong-suat-may-phat-dien-cong-nghiep',
     title: 'Cách chọn công suất máy phát điện công nghiệp',
     date: '25/05/2020',

@@ -7,7 +7,7 @@ import { telHref, defaultSiteSettings } from '@/config/site';
 export function MobileMenu({ hotline = defaultSiteSettings.hotline, dark = false }: { hotline?: string; dark?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="relative ml-auto md:hidden">
+    <div className="relative ml-auto lg:hidden">
       <button
         type="button"
         aria-label={open ? 'Đóng menu' : 'Mở menu'}
