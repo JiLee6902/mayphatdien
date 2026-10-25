@@ -476,8 +476,69 @@ export const equipment: Equipment[] = [
     description:
       'Máy phát điện Isuzu 25kVA nhỏ gọn, cơ động, phù hợp cửa hàng, công trình nhỏ và nhu cầu dự phòng ngắn hạn.',
   },
+  {
+    slug: 'tu-hoa-dong-bo',
+    name: 'Tủ hòa đồng bộ (đến 3200A)',
+    categorySlug: 'may-phat-dien',
+    brand: 'PMC',
+    power: '3200 A',
+    image: '/images/equipment/acc-tu-hoa-dong-bo-3200a.jpg',
+    specs: [
+      { label: 'Dòng định mức', value: 'Đến 3200A' },
+      { label: 'Chức năng', value: 'Hòa đồng bộ nhiều tổ máy' },
+      { label: 'Ứng dụng', value: 'Ghép tải, dự phòng công suất lớn' },
+    ],
+    description:
+      'Tủ hòa đồng bộ cho phép ghép song song nhiều máy phát điện để cấp một nguồn công suất lớn, liên tục và dự phòng — giải pháp cho nhà máy, cảng và dự án tải lớn. Dòng định mức đến 3200A.',
+  },
+  {
+    slug: 'cap-dong-dien-25-240mm2',
+    name: 'Cáp đồng lõi điện từ 25–240mm²',
+    categorySlug: 'may-phat-dien',
+    brand: 'PMC',
+    power: '25–240 mm²',
+    image: '/images/equipment/acc-cap-dong.jpg',
+    specs: [
+      { label: 'Tiết diện', value: '25 – 240 mm²' },
+      { label: 'Lõi', value: 'Đồng' },
+      { label: 'Ứng dụng', value: 'Đấu nối máy phát → tủ điện / tải' },
+    ],
+    description:
+      'Cáp đồng cho thuê kèm theo máy phát điện, tiết diện từ 25 đến 240mm², đủ chiều dài để đấu nối từ tổ máy đến tủ điện và tải tại công trường.',
+  },
 
   // ---------------------------------------------------------------- Máy nén khí
+  {
+    slug: 'may-nen-khi-airman-pds125s-8bar',
+    name: 'Máy nén khí Airman PDS125S',
+    categorySlug: 'may-nen-khi',
+    brand: 'Airman',
+    power: '125 cfm',
+    image: '/images/equipment/mnk-airman-pds125s.jpg',
+    specs: [
+      { label: 'Lưu lượng', value: '125 cfm (3,5 m³/phút)' },
+      { label: 'Áp suất', value: '8 bar' },
+      { label: 'Hãng máy', value: 'Airman (Nhật)' },
+      DIESEL,
+    ],
+    description:
+      'Máy nén khí Airman PDS125S nhập Nhật, lưu lượng 125cfm ở 8 bar, nhỏ gọn và cơ động — phù hợp phun cát, chạy dụng cụ khí nén và công trình cỡ nhỏ–vừa.',
+  },
+  {
+    slug: 'binh-chua-khi',
+    name: 'Bình chứa khí nén',
+    categorySlug: 'may-nen-khi',
+    brand: 'PMC',
+    power: 'Ổn áp khí',
+    image: '/images/equipment/acc-binh-chua-khi.jpg',
+    specs: [
+      { label: 'Chức năng', value: 'Tích & ổn định áp khí' },
+      { label: 'Kết hợp', value: 'Đi kèm máy nén khí' },
+      { label: 'Ứng dụng', value: 'Giảm dao động áp, bảo vệ thiết bị' },
+    ],
+    description:
+      'Bình chứa khí nén cho thuê kèm máy nén, giúp tích trữ và ổn định áp suất khí, giảm dao động và bảo vệ thiết bị hạ nguồn khi nhu cầu khí thay đổi đột ngột.',
+  },
   {
     slug: 'may-nen-khi-airman-pdsf830s-12bar',
     name: 'Máy nén khí Airman PDSF-830S',
@@ -690,6 +751,36 @@ export const equipment: Equipment[] = [
   },
 
   // ---------------------------------------------------------------- UHP / Hydrotest
+  {
+    slug: 'may-ban-nuoc-sieu-cao-ap-uhp-2500bar',
+    name: 'Máy bắn nước siêu cao áp UHP 2500 bar',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'UHP',
+    power: '2500 bar',
+    image: '/images/equipment/uhp-densin-c1400.jpg',
+    specs: [
+      { label: 'Áp suất', value: 'Đến 2500 bar' },
+      { label: 'Công dụng', value: 'Tẩy cáu cặn, sơn, gỉ cứng đầu' },
+      { label: 'Ứng dụng', value: 'Bồn bể, đường ống, kết cấu' },
+    ],
+    description:
+      'Hệ thống bắn nước siêu cao áp UHP áp suất đến 2500 bar — xử lý cáu cặn, lớp sơn và gỉ bám chắc trên bồn bể, đường ống và kết cấu trong nhà máy, dầu khí. Vận hành bởi kỹ thuật viên PMC.',
+  },
+  {
+    slug: 'may-ban-nuoc-ap-luc-cao-200-1000bar',
+    name: 'Máy bắn nước áp lực cao 200–1000 bar',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'UHP',
+    power: '200–1000 bar',
+    image: '/images/equipment/uhp-densin-c1400.jpg',
+    specs: [
+      { label: 'Áp suất', value: '200 – 1000 bar' },
+      { label: 'Công dụng', value: 'Vệ sinh, tẩy rửa công nghiệp' },
+      { label: 'Ứng dụng', value: 'Bề mặt, thiết bị, sàn nhà máy' },
+    ],
+    description:
+      'Máy bắn nước áp lực cao dải 200–1000 bar cho vệ sinh và tẩy rửa công nghiệp: bề mặt thiết bị, sàn nhà máy, kết cấu — linh hoạt theo yêu cầu áp suất của từng công việc.',
+  },
   {
     slug: 'may-phun-nuoc-uhp-densin-c1400',
     name: 'Máy phun nước siêu cao áp UHP Densin C1400',
