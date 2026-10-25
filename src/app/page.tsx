@@ -99,7 +99,7 @@ export default async function Home() {
       <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
         <SectionHeader eyebrow="Dự án tiêu biểu" title="Công trình đã phục vụ" link={{ href: '/du-an/', label: 'Xem tất cả dự án' }} />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 3).map((p) => (
+          {projects.slice(0, 6).map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
         </div>

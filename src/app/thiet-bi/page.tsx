@@ -4,6 +4,7 @@ import { CategoryCard } from '@/components/CategoryCard';
 import { CategoryFilter } from '@/components/CategoryFilter';
 import { CtaBand } from '@/components/CtaBand';
 import { PageHeader } from '@/components/PageHeader';
+import { FleetStrength } from '@/components/FleetStrength';
 import { Reveal } from '@/components/motion/Reveal';
 
 const DESC =
@@ -54,6 +55,9 @@ export default async function Page() {
           ))}
         </div>
       </section>
+
+      {/* Fleet strengths — why PMC's equipment is trusted */}
+      <FleetStrength />
 
       {/* Full catalog — every item, filterable by category / brand / power */}
       <section className="bg-graphite-2 border-y border-edge">

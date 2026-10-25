@@ -85,6 +85,7 @@ function fromSanityProject(r: Record<string, unknown>): Project {
     location: (r.location as string) ?? '',
     image: (r.image as string) ?? '',
     desc: (r.description as string) ?? '',
+    gallery: (r.gallery as string[]) ?? undefined,
     equipmentUsed: (r.equipmentUsed as Project['equipmentUsed']) ?? undefined,
   };
 }

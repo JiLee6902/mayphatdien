@@ -125,6 +125,30 @@ export default async function ProjectPage({ params }: Props) {
                 <p className="mt-8 text-lg leading-8 text-paper-dim text-justify">{project.desc}</p>
               )}
 
+              {project.gallery?.length ? (
+                <div className="mt-10">
+                  <h2 className="font-display text-xl font-extrabold tracking-tight text-paper">Hình ảnh thực tế tại công trình</h2>
+                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                    {project.gallery.map((src, i) => (
+                      <a
+                        key={src}
+                        href={src}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group relative block overflow-hidden rounded-lg border border-edge bg-graphite"
+                      >
+                        <Img
+                          src={src}
+                          alt={`${project.title} — ảnh ${i + 1}`}
+                          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </a>
+                    ))}
+                  </div>
+                  <p className="mt-3 text-[13px] text-paper-mute">Ảnh thực tế do PMC chụp tại công trình.</p>
+                </div>
+              ) : null}
+
               {project.equipmentUsed?.length ? (
                 <div className="mt-10">
                   <h2 className="font-display text-xl font-extrabold tracking-tight text-paper">Thiết bị đã sử dụng</h2>
