@@ -1,4 +1,5 @@
 import { Hero } from '@/components/Hero';
+import { ExperienceBand } from '@/components/ExperienceBand';
 import { Process } from '@/components/Process';
 import { Features } from '@/components/Features';
 import { CtaBand } from '@/components/CtaBand';
@@ -94,6 +95,9 @@ export default async function Home() {
 
       <Process />
       <Features />
+
+      {/* Cinematic experience band — depth + credibility before the proof grid */}
+      <ExperienceBand />
 
       {/* Featured projects — case studies / social proof */}
       <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
