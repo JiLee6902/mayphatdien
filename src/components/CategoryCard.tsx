@@ -13,7 +13,7 @@ export function CategoryCard({
   return (
     <Link
       href={categoryHref(category.slug)}
-      className="group relative flex h-[400px] overflow-hidden rounded-lg shadow-[0_16px_38px_-22px_rgba(22,24,28,0.45)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_28px_56px_-24px_rgba(210,5,30,0.4)] hover:ring-signal"
+      className="group relative flex h-[400px] overflow-hidden rounded-[22px] shadow-[0_16px_38px_-22px_rgba(22,24,28,0.45)] ring-1 ring-edge transition-all duration-300 hover:shadow-[0_28px_56px_-24px_rgba(210,5,30,0.4)] hover:ring-signal"
     >
       <picture>
         <source srcSet={category.image.replace(/\.jpe?g$/i, '.webp')} type="image/webp" />
@@ -30,8 +30,8 @@ export function CategoryCard({
       {/* gradient + brand wash */}
       <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/5" />
 
-      {/* Index — top, in a red tab */}
-      <span className="absolute left-0 top-5 bg-signal px-3 py-1.5 font-display text-[18px] font-extrabold leading-none text-white">
+      {/* Index — top, red pill */}
+      <span className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center rounded-full bg-signal font-display text-[15px] font-extrabold leading-none text-white shadow-md shadow-signal/30">
         {num}
       </span>
 

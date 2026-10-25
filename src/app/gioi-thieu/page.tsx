@@ -208,12 +208,17 @@ export default async function GioiThieuPage() {
         <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
           Sự vững chắc đến từ năng lực thật
         </h2>
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-x-12 sm:grid-cols-2">
           {whyUs.map((w) => (
-            <div key={w.title} className="surface surface-hover rounded-lg p-6 hover:-translate-y-1">
-              <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{w.icon}</span>
-              <h3 className="mt-4 font-display text-lg font-extrabold tracking-tight text-paper">{w.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-paper-dim">{w.desc}</p>
+            <div
+              key={w.title}
+              className="flex items-start gap-4 border-t border-edge py-6"
+            >
+              <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-signal/10 text-signal-dark">{w.icon}</span>
+              <div>
+                <h3 className="font-display text-[17px] font-extrabold tracking-tight text-paper">{w.title}</h3>
+                <p className="mt-1.5 text-[14px] leading-relaxed text-paper-dim">{w.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -224,12 +229,17 @@ export default async function GioiThieuPage() {
           <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
             Đồng hành từ khảo sát đến vận hành
           </h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((sv) => (
-              <div key={sv.title} className="surface surface-hover group rounded-lg p-6 hover:-translate-y-1">
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{sv.icon}</span>
-                <h3 className="mt-4 font-display text-lg font-extrabold tracking-tight text-paper">{sv.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-paper-dim">{sv.desc}</p>
+          <div className="mt-8 grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((sv, i) => (
+              <div
+                key={sv.title}
+                className="flex items-start gap-4 border-t border-edge py-6"
+              >
+                <span className="font-display text-[26px] font-extrabold leading-none text-signal/30">{String(i + 1).padStart(2, '0')}</span>
+                <div>
+                  <h3 className="font-display text-[16px] font-extrabold tracking-tight text-paper">{sv.title}</h3>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{sv.desc}</p>
+                </div>
               </div>
             ))}
           </div>

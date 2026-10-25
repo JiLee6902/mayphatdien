@@ -12,16 +12,16 @@ export function EquipmentCard({
   hotline?: string;
 }) {
   return (
-    <div className="group surface surface-hover flex h-full flex-col overflow-hidden rounded-lg transition-all duration-300 hover:-translate-y-1">
+    <div className="group surface surface-hover flex h-full flex-col overflow-hidden rounded-[22px] transition-all duration-300 hover:-translate-y-1">
 
-      <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden">
+      <Link href={equipmentHref(item.slug)} className="relative block aspect-[4/3] overflow-hidden rounded-t-[22px]">
         <Img
           src={item.image}
           alt={`Cho thuê ${item.name}`}
           className="photo-grade h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.06]"
         />
-        {/* Amber power tab */}
-        <span className="absolute left-0 top-4 bg-signal px-3.5 py-1.5 font-display text-[15px] font-extrabold text-white">
+        {/* Power pill */}
+        <span className="absolute left-4 top-4 rounded-full bg-signal px-3.5 py-1.5 font-display text-[14px] font-extrabold text-white shadow-md shadow-signal/30">
           {item.power}
         </span>
       </Link>
@@ -44,7 +44,7 @@ export function EquipmentCard({
 
         <a
           href={telHref(hotline)}
-          className="mt-auto flex items-center justify-center gap-1.5 rounded-lg bg-signal py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal-dark"
+          className="mt-auto flex items-center justify-center gap-1.5 rounded-full bg-signal py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal-dark"
         >
           Gọi báo giá →
         </a>

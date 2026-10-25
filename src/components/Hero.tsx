@@ -24,9 +24,10 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
 
       <div className="relative z-10 mx-auto max-w-[1320px] px-6 lg:px-10">
         <div className="flex min-h-[86vh] max-w-[820px] flex-col justify-center pb-24 pt-32">
-          <p className="mb-7 text-[13px] font-medium uppercase tracking-[0.3em] text-white/70">
-            Cho thuê thiết bị công nghiệp · Miền Nam
-          </p>
+          <span className="mb-7 inline-flex items-center gap-2 self-start rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[12px] font-bold uppercase tracking-[0.2em] text-white backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+            Gần 20 năm · Miền Nam &amp; offshore
+          </span>
           <h1 className="font-display text-[46px] font-semibold leading-[1.0] tracking-tight text-white md:text-[78px]">
             Nguồn điện &amp; thiết bị cho <span className="font-extrabold">mọi công trình</span><span className="text-signal">.</span>
           </h1>
@@ -48,6 +49,21 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
               Xem thiết bị
             </Link>
           </div>
+
+          {/* Stat strip */}
+          <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-5 border-t border-white/15 pt-7">
+            {[
+              { v: '20+', l: 'Công trình tiêu biểu' },
+              { v: '55+', l: 'Thiết bị sẵn kho' },
+              { v: '1250kVA', l: 'Công suất lớn nhất' },
+              { v: '24/7', l: 'Kỹ thuật trực máy' },
+            ].map((s) => (
+              <div key={s.l}>
+                <dt className="font-display text-[26px] font-extrabold leading-none text-white md:text-[32px]">{s.v}</dt>
+                <dd className="mt-1.5 text-[12px] font-semibold uppercase tracking-wide text-white/55">{s.l}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 

@@ -28,15 +28,15 @@ export function Features() {
             </div>
           </Reveal>
 
-          {/* Right — solid white cards */}
-          <div className="grid gap-4 sm:grid-cols-2">
+          {/* Right — hairline-divided rows, no boxes */}
+          <div className="divide-y divide-edge border-t border-edge">
             {items.map((item, i) => (
-              <Reveal key={item.n} delay={i * 80} className="h-full">
-                <div className="surface surface-hover group flex h-full gap-4 rounded-lg p-6">
-                  <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-signal font-display text-[18px] font-extrabold text-white">{item.n}</span>
-                  <div>
-                    <h3 className="font-display text-[15px] font-extrabold tracking-tight text-paper">{item.title}</h3>
-                    <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{item.desc}</p>
+              <Reveal key={item.n} delay={i * 80}>
+                <div className="group flex items-start gap-6 py-6">
+                  <span className="font-display text-[34px] font-extrabold leading-none text-signal/25 transition-colors group-hover:text-signal/50">{item.n}</span>
+                  <div className="flex-1 border-l border-edge pl-6">
+                    <h3 className="font-display text-[17px] font-extrabold tracking-tight text-paper">{item.title}</h3>
+                    <p className="mt-1.5 text-[14px] leading-relaxed text-paper-dim">{item.desc}</p>
                   </div>
                 </div>
               </Reveal>

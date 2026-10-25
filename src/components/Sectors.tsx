@@ -28,13 +28,15 @@ export function Sectors() {
         <h2 className="mt-3 max-w-2xl font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
           Kinh nghiệm trải khắp các ngành trọng điểm
         </h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-x-12 sm:grid-cols-2">
           {sectors.map((s, i) => (
-            <Reveal key={s.title} delay={i * 50}>
-              <div className="surface surface-hover h-full rounded-lg p-6 hover:-translate-y-1">
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{s.icon}</span>
-                <h3 className="mt-4 font-display text-[15px] font-extrabold leading-snug tracking-tight text-paper">{s.title}</h3>
-                <p className="mt-1.5 text-[13px] leading-relaxed text-paper-mute">{s.desc}</p>
+            <Reveal key={s.title} delay={i * 40}>
+              <div className="group flex items-start gap-4 border-t border-edge py-5 transition-colors">
+                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-signal/10 text-signal-dark transition-colors group-hover:bg-signal group-hover:text-white">{s.icon}</span>
+                <div>
+                  <h3 className="font-display text-[16px] font-extrabold leading-snug tracking-tight text-paper">{s.title}</h3>
+                  <p className="mt-1 text-[13.5px] leading-relaxed text-paper-mute">{s.desc}</p>
+                </div>
               </div>
             </Reveal>
           ))}
