@@ -1,5 +1,6 @@
 import { Hero } from '@/components/Hero';
 import { ExperienceBand } from '@/components/ExperienceBand';
+import { Sectors } from '@/components/Sectors';
 import { Process } from '@/components/Process';
 import { Features } from '@/components/Features';
 import { CtaBand } from '@/components/CtaBand';
@@ -109,6 +110,7 @@ export default async function Home() {
         </div>
       </section>
 
+      <Sectors />
       <Testimonials />
       <Faq items={generalFaqs} />
       <JsonLd data={graph([faqSchema(generalFaqs, '/')])} />

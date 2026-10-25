@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Img } from '@/components/ui/Img';
 import { PageHeader } from '@/components/PageHeader';
 import { ProjectList } from '@/components/ProjectList';
+import { projectHref } from '@/config/projects';
 import { loadProjects } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -12,6 +15,7 @@ export const metadata: Metadata = {
 
 export default async function DuAnPage() {
   const projects = await loadProjects();
+  const [featured, ...rest] = projects;
 
   return (
     <>
@@ -36,7 +40,44 @@ export default async function DuAnPage() {
             </div>
           ))}
         </div>
-        <ProjectList projects={projects} />
+        {/* Featured project — magazine lead */}
+        {featured && (
+          <Link
+            href={projectHref(featured.slug)}
+            className="group mb-12 grid overflow-hidden rounded-xl border border-edge bg-graphite-2 md:grid-cols-2"
+          >
+            <div className="relative overflow-hidden">
+              <Img
+                src={featured.image}
+                alt={featured.title}
+                loading="eager"
+                className="h-full min-h-[260px] w-full object-cover transition-transform duration-700 group-hover:scale-105 md:min-h-[400px]"
+              />
+              <span className="label absolute left-5 top-5 inline-flex items-center rounded-lg bg-signal px-3 py-1 text-white">
+                Dự án nổi bật
+              </span>
+            </div>
+            <div className="flex flex-col justify-center p-7 md:p-10">
+              {featured.location && (
+                <p className="inline-flex items-center gap-2 text-[13px] font-semibold text-signal-dark">
+                  <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                  {featured.location}
+                </p>
+              )}
+              <h2 className="mt-3 font-display text-[24px] font-extrabold leading-tight tracking-tight text-paper transition-colors group-hover:text-signal-dark md:text-[32px]">
+                {featured.title}
+              </h2>
+              <p className="mt-4 text-[15px] leading-relaxed text-paper-dim line-clamp-4">{featured.desc}</p>
+              <span className="mt-6 inline-flex items-center gap-2 font-bold text-signal-dark">
+                Xem chi tiết dự án <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+              </span>
+            </div>
+          </Link>
+        )}
+
+        <ProjectList projects={rest} />
       </section>
     </>
   );

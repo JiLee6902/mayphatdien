@@ -41,7 +41,21 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   const [allProjects, settings] = await Promise.all([loadProjects(), loadSettings()]);
-  const related = allProjects.filter((p) => p.slug !== project.slug).slice(0, 3);
+  const related = allProjects.filter((p) => p.slug !== project.slug).slice(0, 4);
+
+  const catLabel = (slug: string): string =>
+    slug.startsWith('may-nen-khi') ? 'Máy nén khí'
+    : slug.startsWith('may-phun') ? 'Thiết bị UHP'
+    : slug.startsWith('may-han') || slug.startsWith('may-phat-han') ? 'Máy hàn / phát hàn'
+    : 'Máy phát điện';
+  const equipTypes = Array.from(new Set((project.equipmentUsed ?? []).map((e) => catLabel(e.slug))));
+
+  const facts: { label: string; value: string }[] = [
+    ...(project.location ? [{ label: 'Địa điểm', value: project.location }] : []),
+    ...(equipTypes.length ? [{ label: 'Nhóm thiết bị', value: equipTypes.join(' · ') }] : []),
+    { label: 'Phạm vi', value: 'Giao lắp & vận hành' },
+    ...(project.gallery?.length ? [{ label: 'Hình ảnh thực tế', value: `${project.gallery.length + 1} ảnh` }] : []),
+  ];
 
   const canonical = projectHref(project.slug);
   const crumbs = [
@@ -64,7 +78,7 @@ export default async function ProjectPage({ params }: Props) {
         )}
         <div className="grid-texture pointer-events-none absolute inset-0 opacity-60" />
 
-        <div className="relative mx-auto max-w-[1140px] px-8 pb-14 pt-9 lg:px-12">
+        <div className="relative mx-auto max-w-[1140px] px-8 pb-16 pt-9 lg:px-12 md:pb-20 md:pt-12">
           <nav aria-label="Breadcrumb" className="text-[13px] text-paper-mute">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li><Link href="/" className="transition-colors hover:text-paper">Trang chủ</Link></li>
@@ -75,11 +89,11 @@ export default async function ProjectPage({ params }: Props) {
             </ol>
           </nav>
 
-          <div className="mt-10 max-w-3xl">
+          <div className="mt-12 max-w-3xl md:mt-16">
             <span className="label inline-flex items-center rounded-lg bg-signal px-3 py-1 text-white">
-              Dự án
+              Dự án tiêu biểu
             </span>
-            <h1 className="mt-5 font-display text-[30px] font-extrabold leading-[1.12] tracking-tight text-paper md:text-[44px]">
+            <h1 className="mt-5 font-display text-[32px] font-extrabold leading-[1.08] tracking-tight text-paper md:text-[52px]">
               {project.title}
             </h1>
             {project.location && (
@@ -92,6 +106,16 @@ export default async function ProjectPage({ params }: Props) {
               </p>
             )}
           </div>
+
+          {/* Quick facts bar */}
+          <dl className="mt-10 grid max-w-3xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-edge bg-edge sm:grid-cols-4">
+            {facts.map((f) => (
+              <div key={f.label} className="bg-graphite px-5 py-4">
+                <dt className="text-[11px] font-bold uppercase tracking-wide text-paper-mute">{f.label}</dt>
+                <dd className="mt-1 text-[14px] font-bold leading-snug text-paper">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
@@ -126,26 +150,44 @@ export default async function ProjectPage({ params }: Props) {
               )}
 
               {project.gallery?.length ? (
-                <div className="mt-10">
-                  <h2 className="font-display text-xl font-extrabold tracking-tight text-paper">Hình ảnh thực tế tại công trình</h2>
-                  <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                    {project.gallery.map((src, i) => (
-                      <a
-                        key={src}
-                        href={src}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative block overflow-hidden rounded-lg border border-edge bg-graphite"
-                      >
-                        <Img
-                          src={src}
-                          alt={`${project.title} — ảnh ${i + 1}`}
-                          className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </a>
-                    ))}
-                  </div>
-                  <p className="mt-3 text-[13px] text-paper-mute">Ảnh thực tế do PMC chụp tại công trình.</p>
+                <div className="mt-12">
+                  <h2 className="font-display text-xl font-extrabold tracking-tight text-paper md:text-2xl">Hình ảnh thực tế tại công trình</h2>
+                  <p className="mt-2 text-[14px] text-paper-dim">Ảnh do PMC chụp trực tiếp tại công trường — minh chứng cho công việc thực tế.</p>
+
+                  {/* Lead image */}
+                  <a
+                    href={project.gallery[0]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-5 block overflow-hidden rounded-xl border border-edge bg-graphite"
+                  >
+                    <Img
+                      src={project.gallery[0]}
+                      alt={`${project.title} — ảnh 1`}
+                      className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                  </a>
+
+                  {/* Rest */}
+                  {project.gallery.length > 1 && (
+                    <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                      {project.gallery.slice(1).map((src, i) => (
+                        <a
+                          key={src}
+                          href={src}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group relative block overflow-hidden rounded-lg border border-edge bg-graphite"
+                        >
+                          <Img
+                            src={src}
+                            alt={`${project.title} — ảnh ${i + 2}`}
+                            className="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               ) : null}
 
@@ -177,6 +219,18 @@ export default async function ProjectPage({ params }: Props) {
 
             {/* Sticky sidebar */}
             <aside className="lg:sticky lg:top-24 h-fit space-y-6">
+              <div className="rounded-lg border border-edge bg-graphite p-6">
+                <p className="eyebrow">Thông tin dự án</p>
+                <dl className="mt-4 divide-y divide-edge">
+                  {facts.map((f) => (
+                    <div key={f.label} className="flex items-start justify-between gap-4 py-2.5 first:pt-0 last:pb-0">
+                      <dt className="text-[13px] text-paper-mute">{f.label}</dt>
+                      <dd className="text-right text-[13px] font-bold text-paper">{f.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+
               <div className="rounded-lg border border-edge bg-graphite p-6">
                 <p className="eyebrow">Liên hệ nhanh</p>
                 <p className="mt-2 text-[15px] leading-relaxed text-paper-dim">Báo giá miễn phí, giao lắp tận công trình, hỗ trợ 24/7.</p>
