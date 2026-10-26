@@ -1,5 +1,7 @@
 import { Hero } from '@/components/Hero';
 import { ExperienceBand } from '@/components/ExperienceBand';
+import { BrandStatement } from '@/components/BrandStatement';
+import { ProjectSpotlight } from '@/components/ProjectSpotlight';
 import { Sectors } from '@/components/Sectors';
 import { Process } from '@/components/Process';
 import { Features } from '@/components/Features';
@@ -97,14 +99,22 @@ export default async function Home() {
       <Process />
       <Features />
 
+      {/* Human brand statement — warmth + focal point */}
+      <BrandStatement />
+
       {/* Cinematic experience band — depth + credibility before the proof grid */}
       <ExperienceBand />
 
       {/* Featured projects — case studies / social proof */}
       <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
         <SectionHeader eyebrow="Dự án tiêu biểu" title="Công trình đã phục vụ" link={{ href: '/du-an/', label: 'Xem tất cả dự án' }} />
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 6).map((p) => (
+        {projects[0] && (
+          <div className="mt-8">
+            <ProjectSpotlight project={projects[0]} />
+          </div>
+        )}
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.slice(1, 4).map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
         </div>
