@@ -4,6 +4,8 @@ import { loadCategories, loadEquipmentByCategory, loadSettings } from '@/lib/con
 import { categoryHref } from '@/config/categories';
 import { categoryInfo } from '@/config/categoryInfo';
 import { CategoryFilter } from '@/components/CategoryFilter';
+import { ProofWall } from '@/components/ProofWall';
+import { gallery, type GalleryCategory } from '@/config/gallery';
 import { Faq } from '@/components/Faq';
 import { Reveal } from '@/components/motion/Reveal';
 import { JsonLd } from '@/components/JsonLd';
@@ -18,6 +20,7 @@ export async function CategoryView({ slug }: { slug: string }) {
   const category = categories.find((c) => c.slug === slug);
   if (!category) notFound();
   const info = categoryInfo[slug];
+  const shots = gallery.filter((g) => g.category === (slug as GalleryCategory));
 
   const crumbs = [
     { name: 'Trang chủ', path: '/' },
@@ -74,6 +77,21 @@ export async function CategoryView({ slug }: { slug: string }) {
           <CategoryFilter items={items} hotline={settings.hotline} />
         </div>
       </section>
+
+      {shots.length > 0 && (
+        <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
+          <p className="eyebrow">Hình ảnh thực tế</p>
+          <h2 className="mt-3 font-display text-[24px] font-extrabold tracking-tight text-paper md:text-[32px]">
+            {category.name} PMC tại công trình
+          </h2>
+          <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-paper-dim">
+            Hình ảnh thật tại công trường — bằng chứng thiết bị PMC đã vận hành ở nhiều dự án, kể cả công trình khó.
+          </p>
+          <div className="mt-8">
+            <ProofWall shots={shots} showFilter={false} />
+          </div>
+        </section>
+      )}
 
       {info && (
         <>

@@ -4,6 +4,7 @@ import { categories, categoryHref } from '@/config/categories';
 
 const quickLinks = [
   { label: 'Dự án', href: '/du-an/' },
+  { label: 'Hình ảnh thực tế', href: '/hinh-anh-thuc-te/' },
   { label: 'Quy trình thuê', href: '/quy-trinh-thue/' },
   { label: 'Tin tức', href: '/tin-tuc/' },
   { label: 'Giới thiệu', href: '/gioi-thieu/' },
