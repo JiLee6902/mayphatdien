@@ -17,16 +17,18 @@ function HardBadge() {
 
 function Shot({ s }: { s: GalleryShot }) {
   const inner = (
-    <figure className="group relative mb-3 block break-inside-avoid overflow-hidden rounded-2xl border border-edge bg-graphite">
-      {s.hard && <HardBadge />}
-      <Img src={s.src} alt={s.caption} className="w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent p-4 pt-10">
-        <figcaption className="text-[13px] font-semibold leading-snug text-white">{s.caption}</figcaption>
+    <figure className="surface surface-hover group flex h-full flex-col overflow-hidden rounded-2xl">
+      <div className="relative overflow-hidden rounded-t-2xl">
+        {s.hard && <HardBadge />}
+        <Img src={s.src} alt={s.caption} className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
       </div>
+      <figcaption className="flex flex-1 items-center px-4 py-3 text-[13px] font-semibold leading-snug text-paper">
+        {s.caption}
+      </figcaption>
     </figure>
   );
   return s.projectSlug ? (
-    <Link href={projectHref(s.projectSlug)} aria-label={s.caption}>{inner}</Link>
+    <Link href={projectHref(s.projectSlug)} aria-label={s.caption} className="block h-full">{inner}</Link>
   ) : (
     inner
   );
@@ -75,7 +77,7 @@ export function ProofWall({
         </div>
       )}
 
-      <div className="columns-2 gap-3 md:columns-3 lg:columns-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {items.map((s) => (
           <Shot key={s.src} s={s} />
         ))}

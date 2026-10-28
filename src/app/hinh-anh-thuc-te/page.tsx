@@ -33,7 +33,7 @@ export default async function HinhAnhThucTePage() {
         crumb="Hình ảnh thực tế"
       />
 
-      <section className="mx-auto max-w-[1320px] px-6 py-14 md:py-20 lg:px-10">
+      <section className="mx-auto max-w-[1600px] px-6 py-14 md:py-16 lg:px-10">
         <ProofWall />
       </section>
 
