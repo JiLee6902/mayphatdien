@@ -11,7 +11,7 @@ function Shot({ s }: { s: GalleryShot }) {
     <figure className="group relative block h-full overflow-hidden rounded-md bg-ink">
       <Img src={s.src} alt={s.caption} className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
       {/* caption bar — thin, directly under the image (dense, readable) */}
-      <figcaption className="line-clamp-2 bg-ink px-2 py-1.5 text-[11px] font-medium leading-snug text-white/90">
+      <figcaption className="line-clamp-2 bg-ink px-2.5 py-2 text-[12px] font-medium leading-snug text-white/90">
         {s.caption}
       </figcaption>
     </figure>
@@ -66,7 +66,7 @@ export function ProofWall({
         </div>
       )}
 
-      <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {items.map((s) => (
           <Shot key={s.src} s={s} />
         ))}
