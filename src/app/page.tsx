@@ -66,6 +66,20 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Proof wall — dense captioned field photos, high up so khách thấy minh chứng ngay */}
+      <section className="border-y border-edge bg-graphite-2">
+        <div className="mx-auto max-w-[1600px] px-6 py-14 lg:px-10 md:py-16">
+          <SectionHeader
+            eyebrow="Hình ảnh thực tế"
+            title="Thiết bị PMC tại hàng loạt công trình"
+            link={{ href: '/hinh-anh-thuc-te/', label: 'Xem tất cả hình ảnh' }}
+          />
+          <div className="mt-8">
+            <ProofWall showFilter={false} limit={24} />
+          </div>
+        </div>
+      </section>
+
       {/* USP / credentials band */}
       <section className="border-y border-edge bg-graphite">
         <div className="mx-auto grid max-w-[1320px] gap-px bg-edge px-0 sm:grid-cols-2 lg:grid-cols-4">
@@ -105,18 +119,6 @@ export default async function Home() {
 
       {/* Cinematic experience band — depth + credibility before the proof grid */}
       <ExperienceBand />
-
-      {/* Proof wall — dense captioned field photos, hard projects first */}
-      <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
-        <SectionHeader
-          eyebrow="Hình ảnh thực tế"
-          title="Đã cấp thiết bị cho những công trình khó nhất"
-          link={{ href: '/hinh-anh-thuc-te/', label: 'Xem tất cả hình ảnh' }}
-        />
-        <div className="mt-8">
-          <ProofWall showFilter={false} limit={18} />
-        </div>
-      </section>
 
       {/* Featured projects — case studies / social proof */}
       <section className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
