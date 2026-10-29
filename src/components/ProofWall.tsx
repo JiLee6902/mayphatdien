@@ -8,21 +8,20 @@ import { gallery, galleryCategories, type GalleryShot, type GalleryCategory } fr
 
 function HardBadge() {
   return (
-    <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-1 rounded-full bg-signal px-2.5 py-1 text-[11px] font-bold text-white shadow-md shadow-signal/30">
-      <svg viewBox="0 0 24 24" className="h-3 w-3" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
-      Công trình khó
+    <span className="absolute left-1.5 top-1.5 z-10 inline-flex items-center gap-1 rounded bg-signal px-1.5 py-0.5 text-[10px] font-bold text-white">
+      <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="currentColor"><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></svg>
+      Khó
     </span>
   );
 }
 
 function Shot({ s }: { s: GalleryShot }) {
   const inner = (
-    <figure className="surface surface-hover group flex h-full flex-col overflow-hidden rounded-2xl">
-      <div className="relative overflow-hidden rounded-t-2xl">
-        {s.hard && <HardBadge />}
-        <Img src={s.src} alt={s.caption} className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.05]" />
-      </div>
-      <figcaption className="flex flex-1 items-center px-4 py-3 text-[13px] font-semibold leading-snug text-paper">
+    <figure className="group relative block h-full overflow-hidden rounded-md bg-ink">
+      {s.hard && <HardBadge />}
+      <Img src={s.src} alt={s.caption} className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]" />
+      {/* caption bar — thin, directly under the image (dense, readable) */}
+      <figcaption className="line-clamp-2 bg-ink px-2 py-1.5 text-[11px] font-medium leading-snug text-white/90">
         {s.caption}
       </figcaption>
     </figure>
@@ -77,7 +76,7 @@ export function ProofWall({
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+      <div className="grid grid-cols-2 gap-1.5 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {items.map((s) => (
           <Shot key={s.src} s={s} />
         ))}
