@@ -109,7 +109,7 @@ export default async function GioiThieuPage() {
           <div className="space-y-5 text-[17px] leading-relaxed text-paper-dim">
             <p>
               Công ty TNHH P.M.C thành lập năm 2007, chuyên cho thuê <strong className="text-paper">máy phát điện,
-              máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn</strong> công nghiệp. Gần 20 năm hoạt động,
+              máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn</strong> công nghiệp. Qua gần hai thập kỷ,
               PMC là đối tác quen thuộc của nhiều nhà thầu lớn và dự án trọng điểm phía Nam.
             </p>
             <p>
@@ -246,7 +246,11 @@ export default async function GioiThieuPage() {
         </div>
       </section>
 
-      <CtaBand settings={settings} />
+      <CtaBand
+        settings={settings}
+        title="Tin tưởng kinh nghiệm của PMC?"
+        lead="Gọi ngay để được khảo sát và báo giá trong ngày."
+      />
     </>
   );
 }

@@ -1,12 +1,5 @@
 import { Img } from '@/components/ui/Img';
 
-const stats = [
-  { value: '2007', label: 'Năm thành lập' },
-  { value: '20+', label: 'Công trình tiêu biểu' },
-  { value: '1250kVA', label: 'Công suất lớn nhất' },
-  { value: '24/7', label: 'Kỹ thuật trực máy' },
-];
-
 const clients = [
   'PTSC M&C',
   'Lọc hóa dầu Long Sơn',
@@ -45,19 +38,8 @@ export function ExperienceBand() {
           nguồn điện không được phép gián đoạn, PMC là cái tên được các nhà thầu lớn tin giao.
         </p>
 
-        {/* Stats */}
-        <div className="mt-12 grid max-w-4xl grid-cols-2 gap-x-10 gap-y-8 sm:grid-cols-4 lg:gap-x-12">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-[32px] font-extrabold leading-none tracking-tight text-white md:text-[40px]">{s.value}</p>
-              <div className="mt-3 h-0.5 w-8 bg-signal" />
-              <p className="mt-2 text-[13px] font-semibold uppercase tracking-wide text-white/60">{s.label}</p>
-            </div>
-          ))}
-        </div>
-
         {/* Client strip */}
-        <div className="mt-14 border-t border-white/15 pt-8">
+        <div className="mt-12 border-t border-white/15 pt-8">
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/45">Đã phục vụ các dự án &amp; nhà thầu</p>
           <div className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3">
             {clients.map((c) => (

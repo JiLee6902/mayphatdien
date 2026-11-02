@@ -1,7 +1,15 @@
 import { telHref, defaultSiteSettings, type SiteSettings } from '@/config/site';
 import { Reveal } from './motion/Reveal';
 
-export function CtaBand({ settings = defaultSiteSettings }: { settings?: SiteSettings }) {
+export function CtaBand({
+  settings = defaultSiteSettings,
+  title = 'Cần thuê thiết bị cho dự án?',
+  lead = 'Giao lắp tận công trình, hỗ trợ kỹ thuật 24/7.',
+}: {
+  settings?: SiteSettings;
+  title?: string;
+  lead?: string;
+}) {
   const phone = settings.hotline.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
   return (
     <section className="bg-signal">
@@ -12,10 +20,10 @@ export function CtaBand({ settings = defaultSiteSettings }: { settings?: SiteSet
               Phản hồi trong 15 phút
             </p>
             <h2 className="mt-4 font-display text-[28px] font-extrabold leading-[1.08] tracking-tight text-ink md:text-[42px]">
-              Cần thuê thiết bị cho dự án?
+              {title}
             </h2>
             <p className="mt-3 text-[16.5px] leading-relaxed text-ink/80">
-              Giao lắp tận công trình, hỗ trợ kỹ thuật 24/7.
+              {lead}
             </p>
           </div>
           <div className="flex flex-none flex-col gap-3 sm:min-w-[300px]">

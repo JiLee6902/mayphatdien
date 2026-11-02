@@ -17,14 +17,14 @@ export function Features() {
           <Reveal>
             <p className="eyebrow">Tại sao chọn PMC</p>
             <h2 className="mt-4 font-display text-[32px] font-extrabold leading-[1.05] tracking-tight text-paper md:text-[42px]">
-              18 năm cho thuê thiết bị công nghiệp
+              Cam kết dịch vụ trọn gói
             </h2>
             <p className="mt-5 text-[15.5px] leading-relaxed text-paper-dim">
               Từ khảo sát đến tháo dỡ — PMC đồng hành toàn bộ dự án.
             </p>
             <div className="mt-8 inline-flex items-center gap-2 rounded-lg bg-signal px-4 py-2.5 text-[13px] font-bold text-white">
               <span className="pulse-dot h-2 w-2 rounded-full bg-white" />
-              Hỗ trợ kỹ thuật 24/7
+              Khảo sát &amp; báo giá trong ngày
             </div>
           </Reveal>
 

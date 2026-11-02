@@ -161,7 +161,11 @@ export default async function QuyTrinhThuePage() {
         <Faq items={faqs} title="Câu hỏi về thuê thiết bị" eyebrow="Giải đáp" />
       </section>
 
-      <CtaBand settings={settings} />
+      <CtaBand
+        settings={settings}
+        title="Đã nắm quy trình? Bắt đầu thuê ngay"
+        lead="Khảo sát và báo giá miễn phí trong ngày — không ràng buộc."
+      />
     </>
   );
 }

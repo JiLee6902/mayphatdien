@@ -37,7 +37,11 @@ export default async function HinhAnhThucTePage() {
         <ProofWall />
       </section>
 
-      <CtaBand settings={settings} />
+      <CtaBand
+        settings={settings}
+        title="Muốn thiết bị như trong ảnh cho công trình của bạn?"
+        lead="PMC khảo sát hiện trường và báo giá miễn phí — giao lắp tận nơi."
+      />
     </>
   );
 }

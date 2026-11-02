@@ -79,7 +79,11 @@ export default async function Page() {
         </div>
       </section>
 
-      <CtaBand settings={settings} />
+      <CtaBand
+        settings={settings}
+        title="Đã tìm được thiết bị phù hợp?"
+        lead="Gọi để nhận báo giá chi tiết theo công suất và thời gian thuê."
+      />
     </>
   );
 }

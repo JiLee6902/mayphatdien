@@ -433,3 +433,60 @@ export const projects: Project[] = [
     equipmentUsed: [GEN_300],
   },
 ];
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Served-works roster — additional named công trình from PMC's long-running
+// portfolio (sourced from the company's historical site chothuethietbipmc.com).
+// These are breadth-of-experience references without a dedicated photo set, so
+// they live here as a text roster that complements the photo-backed `projects`
+// above. Rendered on the Dự án page so khách thấy đầy đủ bề dày kinh nghiệm —
+// kể cả các công trình dầu khí ngoài khơi, lọc hóa dầu và dự án quốc tế.
+export interface ServedProject {
+  name: string;
+  location: string;
+  equipment: string;
+  image?: string; // optional real photo (from PMC's archive) — shown as thumbnail
+}
+
+export interface ServedSector {
+  sector: string;
+  items: ServedProject[];
+}
+
+export const servedProjects: ServedSector[] = [
+  {
+    sector: 'Dầu khí & ngoài khơi',
+    items: [
+      { name: 'Giàn Sư Tử Nâu — Cửu Long JOC', location: 'Mỏ ngoài khơi', equipment: '2× máy phát điện 500kVA' },
+      { name: 'Giàn H5 — Hoàng Long – Hoàn Vũ', location: 'Mỏ ngoài khơi', equipment: 'Máy phát điện 750kVA' },
+      { name: 'Giàn Thăng Long', location: 'Mỏ ngoài khơi', equipment: 'Máy phát điện 250kVA · chạy liên tục 8 tháng' },
+      { name: 'Dự án HRD — PTSC', location: 'Phú Mỹ, BR-VT', equipment: 'Máy phát điện 500kVA & 1250kVA' },
+      { name: 'Tàu khoan Deepventure', location: 'Ngoài khơi', equipment: 'Máy phát hàn & cáp hàn' },
+      { name: 'Dự án PVD6', location: 'Giàn khoan', equipment: 'Hệ thống phun rửa áp lực cao (UHP)' },
+      { name: 'MLS Total', location: 'Brunei', equipment: '2× máy phát điện 500kVA' },
+    ],
+  },
+  {
+    sector: 'Lọc hóa dầu & năng lượng',
+    items: [
+      { name: 'Lọc hóa dầu Nghi Sơn', location: 'Thanh Hóa', equipment: 'Máy phát điện công suất lớn' },
+      { name: 'Nhà máy lọc dầu Dung Quất', location: 'Quảng Ngãi', equipment: 'Máy phát điện công suất lớn' },
+      { name: 'Nhà máy điện Sông Hậu', location: 'Hậu Giang', equipment: 'Máy nén khí Denyo DIS-390SS', image: '/images/projects/nha-may-dien-song-hau/hero.jpg' },
+      { name: 'Hyosung', location: 'Phú Mỹ, BR-VT', equipment: 'Máy phát điện & máy nén khí' },
+    ],
+  },
+  {
+    sector: 'Hạ tầng & đô thị',
+    items: [
+      { name: 'Metro TP.HCM (tàu điện ngầm)', location: 'TP.HCM', equipment: 'Máy nén khí Hitachi 55kW', image: '/images/projects/metro-tphcm/hero.jpg' },
+      { name: 'Empire City', location: 'Thủ Thiêm, TP.HCM', equipment: 'Máy nén khí thi công' },
+      { name: 'Đại Quang Minh', location: 'Thủ Thiêm, TP.HCM', equipment: 'Máy nén khí Ingersoll Rand 75kW' },
+      { name: 'Khu đô thị Thủ Thiêm', location: 'TP.HCM', equipment: 'Máy nén khí Denyo DIS-765US' },
+      { name: 'HuDeCo', location: 'Thủ Dầu Một, Bình Dương', equipment: 'Máy phát điện 300kVA' },
+      { name: 'Đảo Bình Ba', location: 'Nha Trang, Khánh Hòa', equipment: 'Máy phát điện' },
+    ],
+  },
+];
+
+/** Total named works across the photo-backed portfolio + the served roster. */
+export const servedCount = servedProjects.reduce((n, s) => n + s.items.length, 0);
