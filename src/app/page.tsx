@@ -75,7 +75,7 @@ export default async function Home() {
             link={{ href: '/hinh-anh-thuc-te/', label: 'Xem tất cả hình ảnh' }}
           />
           <div className="mt-8">
-            <ProofWall showFilter={false} limit={40} />
+            <ProofWall showFilter={false} limit={32} />
           </div>
         </div>
       </section>

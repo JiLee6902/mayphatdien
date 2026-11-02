@@ -26,15 +26,15 @@ export function EquipmentCard({
         </span>
       </Link>
 
-      <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-[17px] font-extrabold leading-snug tracking-tight text-paper">
+      <div className="flex flex-1 flex-col p-4">
+        <h3 className="font-display text-[16px] font-extrabold leading-snug tracking-tight text-paper">
           <Link href={equipmentHref(item.slug)} className="transition-colors hover:text-signal-dark">{item.name}</Link>
         </h3>
 
         {item.specs.length > 0 && (
-          <dl className="mt-4 border-t border-edge text-[13px]">
-            {item.specs.slice(0, 3).map((s) => (
-              <div key={s.label} className="flex items-center justify-between gap-3 border-b border-edge py-2">
+          <dl className="mt-3 border-t border-edge text-[12.5px]">
+            {item.specs.slice(0, 4).map((s) => (
+              <div key={s.label} className="flex items-center justify-between gap-3 border-b border-edge py-1.5">
                 <dt className="text-paper-dim">{s.label}</dt>
                 <dd className="font-semibold text-paper">{s.value}</dd>
               </div>
@@ -44,7 +44,7 @@ export function EquipmentCard({
 
         <a
           href={telHref(hotline)}
-          className="mt-auto flex items-center justify-center gap-1.5 rounded-full bg-signal py-3 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal-dark"
+          className="mt-auto flex items-center justify-center gap-1.5 rounded-full bg-signal py-2.5 text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-signal-dark"
         >
           Gọi báo giá →
         </a>
