@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import type { ReactNode } from 'react';
 import { PageHeader } from '@/components/PageHeader';
 import { Faq } from '@/components/Faq';
 import { CtaBand } from '@/components/CtaBand';
@@ -16,14 +15,6 @@ export const metadata: Metadata = {
   alternates: { canonical: '/quy-trinh-thue/' },
 };
 
-function Icon({ children }: { children: ReactNode }) {
-  return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      {children}
-    </svg>
-  );
-}
-
 const steps: { n: string; title: string; desc: string }[] = [
   { n: '01', title: 'Liên hệ & tư vấn', desc: 'Gọi hotline hoặc gửi yêu cầu. Kỹ sư PMC tư vấn loại máy, công suất phù hợp ngay trong ngày.' },
   { n: '02', title: 'Khảo sát công trình', desc: 'PMC khảo sát mặt bằng, tải và điều kiện thi công — miễn phí, không ràng buộc.' },
@@ -31,15 +22,6 @@ const steps: { n: string; title: string; desc: string }[] = [
   { n: '04', title: 'Giao lắp & đấu nối', desc: 'Xe cẩu/xe nâng của PMC vận chuyển, hạ đặt, đấu nối, chạy thử và bàn giao tận công trình.' },
   { n: '05', title: 'Vận hành & bảo trì', desc: 'Hướng dẫn vận hành hoặc cử kỹ thuật viên trực máy; bảo dưỡng định kỳ trong suốt thời gian thuê.' },
   { n: '06', title: 'Thu hồi khi kết thúc', desc: 'Hết hạn thuê (hoặc gia hạn theo nhu cầu), PMC thu hồi thiết bị tận nơi — nhanh gọn.' },
-];
-
-const policies: { title: string; desc: string; icon: ReactNode }[] = [
-  { title: 'Khảo sát & báo giá miễn phí', desc: 'Không tính phí khảo sát, không ràng buộc — báo giá trong ngày.', icon: <Icon><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></Icon> },
-  { title: 'Giao lắp toàn miền Nam', desc: 'TP.HCM, Vũng Tàu, Đồng Nai, Bình Dương, Long An… và cả công trình ngoài khơi.', icon: <Icon><path d="M1 3h13v13H1zM14 8h4l3 3v5h-7z" /><circle cx="5.5" cy="18.5" r="1.5" /><circle cx="17.5" cy="18.5" r="1.5" /></Icon> },
-  { title: 'Bảo trì trong suốt thời gian thuê', desc: 'Bảo dưỡng định kỳ, thay vật tư hao mòn — chi phí đã nằm trong gói thuê.', icon: <Icon><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></Icon> },
-  { title: 'Hỗ trợ kỹ thuật 24/7', desc: 'Đội kỹ thuật cơ động, có mặt nhanh khi phát sinh sự cố — hạn chế gián đoạn.', icon: <Icon><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /><circle cx="12" cy="12" r="3" /></Icon> },
-  { title: 'Thuê linh hoạt', desc: 'Theo ngày, tuần, tháng hoặc dài hạn — thuê càng dài, đơn giá càng tốt.', icon: <Icon><rect x="3" y="4" width="18" height="18" rx="2" /><path d="M16 2v4M8 2v4M3 10h18" /></Icon> },
-  { title: 'Thiết bị kiểm tra trước khi giao', desc: 'Mọi tổ máy được bảo dưỡng, chạy thử tại xưởng trước khi đưa đến công trình.', icon: <Icon><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></Icon> },
 ];
 
 const included = [
@@ -106,25 +88,6 @@ export default async function QuyTrinhThuePage() {
             </Reveal>
           ))}
         </ol>
-      </section>
-
-      {/* Policies / commitments — hairline list (not cards) for visual variety */}
-      <section className="border-y border-edge bg-graphite-2">
-        <div className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
-          <p className="eyebrow text-signal-dark">Cam kết của PMC</p>
-          <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">Chính sách thuê</h2>
-          <div className="mt-8 grid gap-x-12 sm:grid-cols-2">
-            {policies.map((p) => (
-              <div key={p.title} className="flex items-start gap-4 border-t border-edge py-6">
-                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{p.icon}</span>
-                <div>
-                  <h3 className="font-display text-[16px] font-extrabold tracking-tight text-paper">{p.title}</h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{p.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Included + price factors */}

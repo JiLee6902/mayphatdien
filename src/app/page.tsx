@@ -1,11 +1,9 @@
 import { Hero } from '@/components/Hero';
 import { ExperienceBand } from '@/components/ExperienceBand';
-import { BrandStatement } from '@/components/BrandStatement';
 import { ProjectSpotlight } from '@/components/ProjectSpotlight';
 import { Sectors } from '@/components/Sectors';
 import { ProofWall } from '@/components/ProofWall';
 import { CtaBand } from '@/components/CtaBand';
-import { ServedWorks } from '@/components/ServedWorks';
 import { SectionHeader } from '@/components/SectionHeader';
 import { CategoryCard } from '@/components/CategoryCard';
 import { ProjectCard } from '@/components/ProjectCard';
@@ -54,9 +52,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Human brand statement — warmth + focal point */}
-      <BrandStatement />
-
       {/* Cinematic experience band — depth + credibility before the proof grid */}
       <ExperienceBand />
 
@@ -75,10 +70,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Served-works roster — breadth of experience surfaced on the homepage so
-          khách thấy ngay bề dày kinh nghiệm (họ thường vào thẳng xem kinh nghiệm). */}
-      <ServedWorks className="border-y border-edge bg-graphite" />
-
+      {/* Experience by industry — single "bề dày kinh nghiệm" block (the detailed
+          served-works roster lives on /du-an to avoid repeating it here). */}
       <Sectors />
       <Testimonials />
       <Faq items={generalFaqs} />
