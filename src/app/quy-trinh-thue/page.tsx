@@ -85,34 +85,42 @@ export default async function QuyTrinhThuePage() {
         crumb="Quy trình thuê"
       />
 
-      {/* 6-step process */}
-      <section className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
-        <p className="eyebrow">Quy trình 6 bước</p>
+      {/* 6-step process — vertical timeline (distinct from the card grids used
+          elsewhere; a connected journey fits a "quy trình" page). */}
+      <section className="mx-auto max-w-[920px] px-6 py-16 md:py-20 lg:px-10">
+        <p className="eyebrow text-signal-dark">Quy trình 6 bước</p>
         <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">Từ liên hệ đến bàn giao</h2>
-        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+
+        <ol className="relative mt-10 space-y-5 before:absolute before:bottom-6 before:left-[27px] before:top-6 before:w-px before:bg-edge">
           {steps.map((s, i) => (
-            <Reveal key={s.n} delay={i * 70} className="h-full">
-              <div className="surface surface-hover group relative flex h-full flex-col overflow-hidden rounded-lg p-6 hover:-translate-y-1">
-                <span className="pointer-events-none absolute -right-2 -top-3 font-display text-[80px] font-extrabold leading-none text-signal/[0.08]">{s.n}</span>
-                <h3 className="relative font-display text-[17px] font-extrabold tracking-tight text-paper">{s.title}</h3>
-                <p className="relative mt-2 text-[14px] leading-relaxed text-paper-dim">{s.desc}</p>
-              </div>
+            <Reveal key={s.n} delay={i * 60}>
+              <li className="relative flex items-start gap-5">
+                <span className="relative z-10 flex h-14 w-14 flex-none items-center justify-center rounded-full border-4 border-graphite bg-signal font-display text-[18px] font-extrabold text-white">
+                  {s.n}
+                </span>
+                <div className="surface flex-1 rounded-xl p-5 md:p-6">
+                  <h3 className="font-display text-[17px] font-extrabold tracking-tight text-paper">{s.title}</h3>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-paper-dim">{s.desc}</p>
+                </div>
+              </li>
             </Reveal>
           ))}
-        </div>
+        </ol>
       </section>
 
-      {/* Policies / commitments */}
+      {/* Policies / commitments — hairline list (not cards) for visual variety */}
       <section className="border-y border-edge bg-graphite-2">
         <div className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
-          <p className="eyebrow">Cam kết của PMC</p>
+          <p className="eyebrow text-signal-dark">Cam kết của PMC</p>
           <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">Chính sách thuê</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-x-12 sm:grid-cols-2">
             {policies.map((p) => (
-              <div key={p.title} className="surface surface-hover rounded-lg p-6 hover:-translate-y-1">
-                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{p.icon}</span>
-                <h3 className="mt-4 font-display text-[16px] font-extrabold tracking-tight text-paper">{p.title}</h3>
-                <p className="mt-2 text-[13.5px] leading-relaxed text-paper-dim">{p.desc}</p>
+              <div key={p.title} className="flex items-start gap-4 border-t border-edge py-6">
+                <span className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-signal/10 text-signal-dark">{p.icon}</span>
+                <div>
+                  <h3 className="font-display text-[16px] font-extrabold tracking-tight text-paper">{p.title}</h3>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{p.desc}</p>
+                </div>
               </div>
             ))}
           </div>
