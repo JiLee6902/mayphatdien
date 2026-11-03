@@ -5,12 +5,11 @@ import { Img } from '@/components/ui/Img';
 import { PageHeader } from '@/components/PageHeader';
 import { FleetStrength } from '@/components/FleetStrength';
 import { CtaBand } from '@/components/CtaBand';
-import { projectHref } from '@/config/projects';
-import { loadProjects, loadSettings } from '@/lib/content';
+import { loadSettings } from '@/lib/content';
 
 function Icon({ children }: { children: ReactNode }) {
   return (
-    <svg aria-hidden viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <svg aria-hidden viewBox="0 0 24 24" className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
       {children}
     </svg>
   );
@@ -19,108 +18,81 @@ function Icon({ children }: { children: ReactNode }) {
 export const metadata: Metadata = {
   title: { absolute: 'Giới thiệu Công ty TNHH P.M.C — Năng lực cho thuê thiết bị công nghiệp' },
   description:
-    'P.M.C — gần 20 năm cho thuê máy phát điện, máy nén khí, UHP và máy hàn. Đã cấp thiết bị cho sân bay Long Thành, lọc hóa dầu Long Sơn, giàn khoan ngoài khơi, cảng Cái Mép, bệnh viện và nhiều dự án trọng điểm miền Nam.',
+    'Câu chuyện P.M.C: thành lập 2007, tự sở hữu đội máy lớn, cho thuê thiết bị công nghiệp khắp miền Nam, ra cả giàn khoan ngoài khơi và quốc tế (Brunei). Vì sao các nhà thầu lớn tin giao.',
   alternates: { canonical: '/gioi-thieu/' },
 };
 
-const stats = [
+// Company identity — reach & ownership angle (deliberately different from the
+// homepage's operational stats so the pages don't echo each other).
+const identity = [
   { value: 'Từ 2007', label: 'Gần 20 năm trong nghề' },
-  { value: '20+', label: 'Công trình tiêu biểu' },
-  { value: '55+', label: 'Thiết bị, công suất đến 1250kVA' },
-  { value: 'Offshore', label: 'Phục vụ cả giàn khoan ngoài khơi' },
+  { value: '100%', label: 'Đội máy do PMC sở hữu' },
+  { value: '10+', label: 'Tỉnh thành đã phục vụ' },
+  { value: 'Brunei', label: 'Vươn ra cả quốc tế' },
 ];
 
-// Real clients / contractors / projects PMC has supplied equipment to.
-const clients = [
-  'Sân bay Quốc tế Long Thành',
-  'Lọc hóa dầu Long Sơn (LSP)',
-  'PTSC M&C',
-  'Vietsovpetro — giàn Kình Ngư',
-  'CapitaLand',
-  'Sun Group',
-  'Coteccons',
-  'Cảng Cái Mép',
-  'Cảng PTSC Phú Mỹ',
-  'Bệnh viện Tâm Anh',
-  'Metro TP.HCM',
-  'Pepperl+Fuchs',
-  'Đại Quang Minh',
-  'Cao tốc Bến Lức – Long Thành',
-];
-
-const whyUs: { title: string; desc: string; icon: ReactNode }[] = [
+// The three things that actually set PMC apart — not the generic selling points
+// repeated elsewhere on the site.
+const pillars: { title: string; desc: string; icon: ReactNode }[] = [
   {
-    title: 'Đội máy sở hữu — không qua trung gian',
-    desc: 'PMC tự sở hữu kho máy lớn, chủ động nguồn và giá, không phụ thuộc bên thứ ba.',
+    title: 'Đội máy sở hữu 100%',
+    desc: 'PMC tự đầu tư và vận hành kho máy — chủ động nguồn, chủ động giá, không qua trung gian. Khách thuê thẳng từ chính chủ sở hữu thiết bị.',
     icon: <Icon><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3" /></Icon>,
   },
   {
-    title: 'Công suất 25 – 1250 kVA',
-    desc: 'Đủ dải cho công trình nhỏ đến nhà máy, cảng, lọc hóa dầu và giàn khoan.',
-    icon: <Icon><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></Icon>,
-  },
-  {
-    title: 'Kỹ thuật trực theo máy 24/7',
-    desc: 'Kỹ thuật viên đồng hành suốt thời gian thuê, xử lý sự cố nhanh tại chỗ.',
+    title: 'Kỹ thuật đi cùng máy',
+    desc: 'Không chỉ giao máy rồi rời đi — PMC cử kỹ thuật trực theo máy suốt thời gian thuê, xử lý sự cố ngay tại công trình.',
     icon: <Icon><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></Icon>,
   },
   {
-    title: 'Giao lắp tận công trình',
-    desc: 'Xe cẩu, xe nâng chuyên dụng của PMC vận chuyển, hạ đặt và đấu nối tận nơi.',
-    icon: <Icon><path d="M1 3h13v13H1zM14 8h4l3 3v5h-7z" /><circle cx="5.5" cy="18.5" r="1.5" /><circle cx="17.5" cy="18.5" r="1.5" /></Icon>,
-  },
-  {
-    title: 'Thương hiệu Nhật & châu Âu',
-    desc: 'Mitsubishi, Cummins, Denyo, Komatsu, Hitachi, Perkins, MTU, Airman — bền, êm, tiết kiệm.',
-    icon: <Icon><path d="M20 7 12 3 4 7l8 4 8-4zM4 7v10l8 4 8-4V7M12 11v10" /></Icon>,
-  },
-  {
-    title: 'Minh bạch & đúng tiến độ',
-    desc: 'Khảo sát kỹ, báo giá rõ ràng, cam kết thời gian — yếu tố sống còn với công trình.',
-    icon: <Icon><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></Icon>,
+    title: 'Chuyên môi trường khắt khe',
+    desc: 'Lọc hóa dầu, cảng nước sâu, giàn khoan ngoài khơi — nơi nguồn điện không được phép gián đoạn chính là nơi PMC được chọn.',
+    icon: <Icon><path d="M2 20h20M4 20V8l6-4 6 4M8 20v-6h4v6M18 20v-9l3 2v7" /></Icon>,
   },
 ];
 
-const services: { title: string; desc: string; icon: ReactNode }[] = [
-  { title: 'Khảo sát', desc: 'Đánh giá tải, mặt bằng và điều kiện thi công tại công trình.', icon: <Icon><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></Icon> },
-  { title: 'Vận chuyển', desc: 'Điều phối xe cẩu/xe nâng chuyên dụng, giao đúng tiến độ.', icon: <Icon><path d="M1 3h13v13H1zM14 8h4l3 3v5h-7z" /><circle cx="5.5" cy="18.5" r="1.5" /><circle cx="17.5" cy="18.5" r="1.5" /></Icon> },
-  { title: 'Lắp đặt', desc: 'Đấu nối, căn chỉnh và kiểm tra an toàn trước khi bàn giao.', icon: <Icon><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2z" /></Icon> },
-  { title: 'Vận hành', desc: 'Hướng dẫn hoặc cử kỹ thuật viên vận hành theo yêu cầu.', icon: <Icon><circle cx="12" cy="12" r="3" /><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" /></Icon> },
-  { title: 'Bảo trì', desc: 'Bảo dưỡng định kỳ, thay thế vật tư trong suốt thời gian thuê.', icon: <Icon><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><path d="m9 12 2 2 4-4" /></Icon> },
-  { title: 'Xử lý sự cố', desc: 'Đội kỹ thuật cơ động, có mặt nhanh khi phát sinh sự cố.', icon: <Icon><path d="M13 2 3 14h7l-1 8 10-12h-7z" /></Icon> },
+// Geographic reach — unique to the About page (not shown anywhere else).
+const coverage: { region: string; areas: string[] }[] = [
+  { region: 'Đông Nam Bộ', areas: ['TP.HCM', 'Đồng Nai', 'Bà Rịa – Vũng Tàu', 'Bình Dương', 'Long An'] },
+  { region: 'Tây Nam Bộ', areas: ['Cần Thơ', 'Hậu Giang', 'Cà Mau', 'Trà Vinh', 'Bến Tre', 'Bạc Liêu'] },
+  { region: 'Miền Trung & Bắc', areas: ['Quảng Ngãi — Dung Quất', 'Thanh Hóa — Nghi Sơn', 'Quảng Trị', 'Khánh Hòa'] },
+  { region: 'Ngoài khơi & quốc tế', areas: ['Giàn khoan offshore BR-VT', 'Brunei — MLS Total'] },
 ];
 
 export default async function GioiThieuPage() {
-  const [projects, settings] = await Promise.all([loadProjects(), loadSettings()]);
-  const proof = projects.slice(0, 8);
+  const settings = await loadSettings();
 
   return (
     <>
       <PageHeader
         eyebrow="Về chúng tôi"
         title="Giới thiệu Công ty TNHH P.M.C"
-        subtitle="Gần 20 năm cho thuê thiết bị công nghiệp tại miền Nam — từ công trình dân dụng đến nhà máy, cảng biển và giàn khoan ngoài khơi."
+        subtitle="Từ một đội máy nhỏ năm 2007 đến đối tác cấp nguồn cho sân bay, lọc hóa dầu và giàn khoan ngoài khơi — đây là câu chuyện của PMC."
         crumb="Giới thiệu"
       />
 
-      {/* Intro + real photo */}
+      {/* STORY — editorial narrative with a big founding-year anchor */}
       <section className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-14">
-          <div className="space-y-5 text-[17px] leading-relaxed text-paper-dim">
-            <p>
-              Công ty TNHH P.M.C thành lập năm 2007, chuyên cho thuê <strong className="text-paper">máy phát điện,
-              máy nén khí, thiết bị phun rửa áp lực cao (UHP) và máy hàn</strong> công nghiệp. Qua gần hai thập kỷ,
-              PMC là đối tác quen thuộc của nhiều nhà thầu lớn và dự án trọng điểm phía Nam.
-            </p>
-            <p>
-              Điểm khác biệt của PMC là <strong className="text-paper">sở hữu đội máy lớn, đa dạng công suất 25–1250kVA</strong> và
-              chủ động giao lắp bằng phương tiện riêng — không qua trung gian. Nhờ đó PMC đáp ứng được những công
-              trình khắt khe nhất về độ ổn định nguồn điện: lọc hóa dầu, cảng nước sâu, bệnh viện và giàn khoan ngoài khơi.
-            </p>
-            <p>
-              Mỗi đơn hàng đều được khảo sát kỹ, tư vấn đúng công suất và có kỹ thuật viên trực theo máy — để công
-              trình của khách hàng <strong className="text-paper">không bao giờ gián đoạn</strong>.
-            </p>
+          <div>
+            <p className="eyebrow text-signal-dark">Câu chuyện PMC</p>
+            <div className="mt-4 flex items-baseline gap-4">
+              <span className="font-display text-[64px] font-extrabold leading-none tracking-tight text-signal md:text-[88px]">2007</span>
+              <span className="text-[15px] font-semibold uppercase tracking-wide text-paper-mute">Năm<br />thành lập</span>
+            </div>
+            <div className="mt-6 space-y-5 text-[17px] leading-relaxed text-paper-dim">
+              <p>
+                Công ty TNHH P.M.C khởi đầu năm 2007 với một đội máy khiêm tốn. Gần hai thập kỷ sau,
+                PMC trở thành đối tác quen thuộc của nhiều <strong className="text-paper">nhà thầu lớn và dự án
+                trọng điểm</strong> phía Nam — chuyên cho thuê máy phát điện, máy nén khí, thiết bị phun rửa
+                áp lực cao (UHP) và máy hàn công nghiệp.
+              </p>
+              <p>
+                Thứ giữ chân khách hàng không phải lời quảng cáo, mà là <strong className="text-paper">năng lực
+                thật</strong>: tự sở hữu kho máy lớn, chủ động giao lắp bằng phương tiện riêng, và kỹ thuật
+                viên đi cùng máy đến khi công trình vận hành ổn định.
+              </p>
+            </div>
           </div>
           <figure className="overflow-hidden rounded-xl border border-edge">
             <Img
@@ -135,9 +107,9 @@ export default async function GioiThieuPage() {
           </figure>
         </div>
 
-        {/* Stats row */}
+        {/* Identity strip — reach & ownership */}
         <div className="mt-14 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {stats.map((s) => (
+          {identity.map((s) => (
             <div key={s.label} className="surface rounded-lg p-6 text-center">
               <p className="font-display text-2xl font-extrabold tracking-tight text-signal-dark md:text-3xl">{s.value}</p>
               <p className="mt-2 text-sm leading-snug text-paper-dim">{s.label}</p>
@@ -146,105 +118,63 @@ export default async function GioiThieuPage() {
         </div>
       </section>
 
-      {/* PROOF — real projects (credibility) */}
-      <section className="border-y border-edge bg-graphite-2">
+      {/* PILLARS — dark band for visual distinction; the real differentiators */}
+      <section className="border-y border-edge bg-ink">
         <div className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="eyebrow">Năng lực đã được chứng minh</p>
-              <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
-                Những công trình PMC đã cấp thiết bị
-              </h2>
-              <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-paper-dim">
-                Hình ảnh thật tại công trường — bằng chứng rõ ràng nhất về năng lực của một nhà cung cấp.
-              </p>
-            </div>
-            <Link href="/du-an/" className="hidden shrink-0 items-center gap-2 font-bold text-signal-dark hover:underline sm:inline-flex">
-              Xem tất cả dự án <span aria-hidden>→</span>
-            </Link>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4">
-            {proof.map((p) => (
-              <Link
-                key={p.slug}
-                href={projectHref(p.slug)}
-                className="group relative overflow-hidden rounded-lg border border-edge"
-              >
-                <Img src={p.image} alt={p.title} className="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-3">
-                  <p className="text-[13px] font-bold leading-snug text-white line-clamp-2">{p.title}</p>
-                  {p.location && <p className="mt-0.5 text-[11px] text-white/70 line-clamp-1">{p.location}</p>}
-                </div>
-              </Link>
+          <p className="eyebrow text-signal">Điều làm nên PMC</p>
+          <h2 className="mt-3 max-w-2xl font-display text-[26px] font-extrabold leading-tight tracking-tight text-white md:text-[34px]">
+            Ba thứ không nhà cung cấp nào sao chép được
+          </h2>
+          <div className="mt-10 grid gap-8 md:grid-cols-3">
+            {pillars.map((p) => (
+              <div key={p.title} className="rounded-xl border border-white/12 bg-white/[0.03] p-7">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-signal/15 text-signal">{p.icon}</span>
+                <h3 className="mt-5 font-display text-[18px] font-extrabold tracking-tight text-white">{p.title}</h3>
+                <p className="mt-2.5 text-[14.5px] leading-relaxed text-white/65">{p.desc}</p>
+              </div>
             ))}
-          </div>
-
-          <Link href="/du-an/" className="mt-8 inline-flex items-center gap-2 font-bold text-signal-dark hover:underline sm:hidden">
-            Xem tất cả dự án <span aria-hidden>→</span>
-          </Link>
-
-          {/* Trusted by */}
-          <div className="mt-14">
-            <p className="eyebrow">Đã phục vụ các dự án & nhà thầu</p>
-            <div className="mt-5 flex flex-wrap gap-2.5">
-              {clients.map((c) => (
-                <span key={c} className="inline-flex items-center rounded-lg border border-edge bg-graphite px-4 py-2 text-sm font-semibold text-paper">
-                  {c}
-                </span>
-              ))}
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Fleet strengths */}
-      <FleetStrength />
-
-      {/* Why choose PMC */}
+      {/* COVERAGE — geographic reach, unique to this page */}
       <section className="mx-auto max-w-[1320px] px-6 py-16 md:py-20 lg:px-10">
-        <p className="eyebrow">Vì sao chọn PMC</p>
-        <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
-          Sự vững chắc đến từ năng lực thật
-        </h2>
-        <div className="mt-8 grid gap-x-12 sm:grid-cols-2">
-          {whyUs.map((w) => (
-            <div
-              key={w.title}
-              className="flex items-start gap-4 border-t border-edge py-6"
-            >
-              <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-signal/10 text-signal-dark">{w.icon}</span>
-              <div>
-                <h3 className="font-display text-[17px] font-extrabold tracking-tight text-paper">{w.title}</h3>
-                <p className="mt-1.5 text-[14px] leading-relaxed text-paper-dim">{w.desc}</p>
-              </div>
+        <div className="max-w-2xl">
+          <p className="eyebrow text-signal-dark">Phạm vi phục vụ</p>
+          <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
+            Có mặt khắp miền Nam — ra cả offshore & quốc tế
+          </h2>
+          <p className="mt-3 text-[15px] leading-relaxed text-paper-dim">
+            Địa bàn càng xa, điều kiện càng khó, PMC càng có kinh nghiệm. Thiết bị của PMC đã chạy
+            từ các tỉnh đồng bằng đến giàn khoan ngoài khơi và công trình tại Brunei.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {coverage.map((c) => (
+            <div key={c.region} className="rounded-xl border border-edge bg-graphite-2 p-6">
+              <h3 className="flex items-center gap-2 font-display text-[15px] font-extrabold tracking-tight text-paper">
+                <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-signal-dark" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" />
+                </svg>
+                {c.region}
+              </h3>
+              <ul className="mt-4 space-y-2">
+                {c.areas.map((a) => (
+                  <li key={a} className="text-[14px] leading-snug text-paper-dim">{a}</li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
 
-        {/* Services process */}
-        <div className="mt-20">
-          <p className="eyebrow">Dịch vụ trọn gói</p>
-          <h2 className="mt-3 font-display text-[26px] font-extrabold tracking-tight text-paper md:text-[34px]">
-            Đồng hành từ khảo sát đến vận hành
-          </h2>
-          <div className="mt-8 grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((sv, i) => (
-              <div
-                key={sv.title}
-                className="flex items-start gap-4 border-t border-edge py-6"
-              >
-                <span className="font-display text-[26px] font-extrabold leading-none text-signal/30">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <h3 className="font-display text-[16px] font-extrabold tracking-tight text-paper">{sv.title}</h3>
-                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-paper-dim">{sv.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Link href="/du-an/" className="mt-10 inline-flex items-center gap-2 font-bold text-signal-dark hover:underline">
+          Xem các công trình tiêu biểu <span aria-hidden>→</span>
+        </Link>
       </section>
+
+      {/* Fleet composition — appropriate depth for an About page */}
+      <FleetStrength />
 
       <CtaBand
         settings={settings}
