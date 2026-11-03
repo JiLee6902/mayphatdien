@@ -100,9 +100,11 @@ export function ProofWall({
           dense brick wall. Fixed row heights keep it tidy regardless of count. */}
       <div className="grid auto-rows-[150px] grid-flow-dense grid-cols-2 gap-2 sm:auto-rows-[165px] sm:grid-cols-3 lg:auto-rows-[182px] lg:grid-cols-4 xl:auto-rows-[190px] xl:grid-cols-5">
         {items.map((s, i) => {
+          // Feature only from sm up — on mobile the grid stays uniform so captions
+          // all sit at the same height (no more "text floating high/low").
           const feature = i === 0;
           return (
-            <div key={s.src} className={feature ? 'col-span-2 row-span-2' : ''}>
+            <div key={s.src} className={feature ? 'sm:col-span-2 sm:row-span-2' : ''}>
               <Shot s={s} feature={feature} />
             </div>
           );

@@ -56,10 +56,8 @@ export default async function Page() {
         </div>
       </section>
 
-      {/* Fleet strengths — why PMC's equipment is trusted */}
-      <FleetStrength />
-
-      {/* Full catalog — every item, filterable by category / brand / power */}
+      {/* Full catalog — every item, filterable by category / brand / power.
+          Kept high up: on a "Thiết bị" page the list is what visitors came for. */}
       <section className="bg-graphite-2 border-y border-edge">
         <div className="mx-auto max-w-[1600px] px-6 pb-16 pt-16 lg:px-10 md:pb-20 md:pt-20">
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
@@ -78,6 +76,9 @@ export default async function Page() {
           </div>
         </div>
       </section>
+
+      {/* Fleet strengths — supporting credibility, after the list */}
+      <FleetStrength />
 
       <CtaBand
         settings={settings}

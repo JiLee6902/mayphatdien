@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Be_Vietnam_Pro, Plus_Jakarta_Sans } from 'next/font/google';
+import { Be_Vietnam_Pro } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { Header } from '@/components/Header';
@@ -16,20 +16,13 @@ import {
   localBusinessSchemas,
 } from '@/lib/schema';
 
+// Single family for body + display — Be Vietnam Pro is drawn for Vietnamese so
+// diacritics stay crisp at hero size; weight 900 gives headlines real punch.
 const beVietnam = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--font-be-vietnam',
-});
-
-// Display face — Plus Jakarta Sans draws Vietnamese diacritics cleanly and
-// reads modern/premium for headlines.
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['600', '700', '800'],
-  display: 'swap',
-  variable: '--font-jakarta',
 });
 
 
@@ -93,7 +86,7 @@ export const viewport: Viewport = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const settings = await loadSettings();
   return (
-    <html lang="vi" className={`${beVietnam.variable} ${jakarta.variable}`}>
+    <html lang="vi" className={beVietnam.variable}>
       <head>
         {/* Preload LCP hero image (WebP) for faster Largest Contentful Paint */}
         <link

@@ -27,8 +27,8 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
             <span className="h-1.5 w-1.5 rounded-full bg-signal" />
             Gần 20 năm · Miền Nam &amp; offshore
           </span>
-          <h1 className="font-display text-[46px] font-semibold leading-[1.0] tracking-tight text-white md:text-[78px]">
-            Nguồn điện &amp; thiết bị cho <span className="font-extrabold">mọi công trình</span><span className="text-signal">.</span>
+          <h1 className="font-display text-[46px] font-black leading-[1.0] tracking-tight text-white md:text-[78px]">
+            Nguồn điện &amp; thiết bị cho <span className="text-white">mọi công trình</span><span className="text-signal">.</span>
           </h1>
           <p className="mt-7 max-w-xl text-[18px] font-light leading-relaxed text-white/80">
             Máy phát điện, máy nén khí, UHP &amp; máy hàn — khảo sát, giao lắp

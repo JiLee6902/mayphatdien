@@ -41,7 +41,9 @@
 
   /* Type — distinctive display + mono, avoids generic AI defaults */
   --font-sans: var(--font-be-vietnam), system-ui, sans-serif;
-  --font-display: var(--font-jakarta), system-ui, sans-serif;
+  /* Display uses Be Vietnam Pro too — purpose-built VN diacritics render clean
+     at large sizes (Jakarta stacked marks awkwardly on the hero). */
+  --font-display: var(--font-be-vietnam), system-ui, sans-serif;
   /* No typewriter face — a corporate site reads as sans, not code. */
   --font-mono: var(--font-be-vietnam), system-ui, sans-serif;
 }
