@@ -61,7 +61,7 @@ export default async function Page() {
 
       {/* Full catalog — every item, filterable by category / brand / power */}
       <section className="bg-graphite-2 border-y border-edge">
-        <div className="mx-auto max-w-[1320px] px-6 pb-16 pt-16 lg:px-10 md:pb-20 md:pt-20">
+        <div className="mx-auto max-w-[1600px] px-6 pb-16 pt-16 lg:px-10 md:pb-20 md:pt-20">
           <Reveal className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="eyebrow">Toàn bộ</p>

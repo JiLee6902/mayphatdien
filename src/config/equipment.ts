@@ -766,6 +766,21 @@ export const equipment: Equipment[] = [
     description:
       'Máy nén khí trục vít Hitachi 55kW chạy điện, ổn định và tiết kiệm, đã phục vụ dự án tàu điện ngầm Metro.',
   },
+  {
+    slug: 'bo-say-khi',
+    name: 'Bộ sấy khí',
+    categorySlug: 'may-nen-khi',
+    brand: 'PMC',
+    power: 'Tách ẩm',
+    image: '/images/equipment/bo-say-khi.jpg',
+    specs: [
+      { label: 'Chức năng', value: 'Làm khô, tách ẩm khí nén' },
+      { label: 'Ứng dụng', value: 'Phun sơn, phun cát, khí sạch' },
+      { label: 'Đi kèm', value: 'Lắp sau máy nén khí' },
+    ],
+    description:
+      'Bộ sấy khí (air dryer) tách ẩm và làm khô khí nén trước khi sử dụng — cho thuê kèm máy nén khí khi công việc đòi hỏi khí sạch, khô như phun sơn, phun cát hay cấp khí cho thiết bị khí nén.',
+  },
 
   // ---------------------------------------------------------------- UHP / Hydrotest
   {
@@ -874,6 +889,66 @@ export const equipment: Equipment[] = [
     description:
       'Thiết bị ghi biểu đồ áp suất (chart recorder) dải 20.000 psi, lưu lại dữ liệu áp theo thời gian trong quá trình thử áp.',
   },
+  {
+    slug: 'he-thong-hydrotest-6000psi',
+    name: 'Hệ thống Hydrotest 6.000 psi',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'PMC',
+    power: '6.000 psi',
+    image: '/images/equipment/uhp-hydrotest-10000psi.jpg',
+    specs: [
+      { label: 'Áp suất', value: '6.000 psi' },
+      { label: 'Ứng dụng', value: 'Thử áp đường ống, thiết bị' },
+      { label: 'Loại', value: 'Hydrotest' },
+    ],
+    description:
+      'Hệ thống thử áp Hydrotest 6.000 psi cho kiểm tra áp lực đường ống và thiết bị áp lực ở dải áp vừa, kèm thiết bị ghi biểu đồ.',
+  },
+  {
+    slug: 'he-thong-gas-booster-10000psi',
+    name: 'Hệ thống Gas Booster 10.000 psi',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'PMC',
+    power: '10.000 psi',
+    image: '/images/equipment/uhp-gasbooster-15000psi.jpg',
+    specs: [
+      { label: 'Áp suất', value: '10.000 psi' },
+      { label: 'Ứng dụng', value: 'Thử áp bằng khí nén' },
+      { label: 'Loại', value: 'Gas booster' },
+    ],
+    description:
+      'Hệ thống tăng áp khí (gas booster) 10.000 psi phục vụ nạp và thử áp bằng khí cho đường ống, van và thiết bị áp lực.',
+  },
+  {
+    slug: 'thiet-bi-ghi-bieu-do-ap-30000psi',
+    name: 'Thiết bị ghi biểu đồ áp 30.000 psi',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'PMC',
+    power: '30.000 psi',
+    image: '/images/equipment/uhp-chart-recorder-30000psi.jpg',
+    specs: [
+      { label: 'Dải đo', value: '30.000 psi' },
+      { label: 'Ứng dụng', value: 'Ghi biểu đồ áp suất thử' },
+      { label: 'Loại', value: 'Chart recorder' },
+    ],
+    description:
+      'Thiết bị ghi biểu đồ áp suất (chart recorder) dải 30.000 psi, ghi lại dữ liệu áp theo thời gian khi thử áp cao — phục vụ nghiệm thu đường ống và bồn bể dầu khí.',
+  },
+  {
+    slug: 'thiet-bi-ghi-bieu-do-ap-6000psi',
+    name: 'Thiết bị ghi biểu đồ áp 6.000 psi',
+    categorySlug: 'may-phun-rua-ap-luc-cao',
+    brand: 'PMC',
+    power: '6.000 psi',
+    image: '/images/equipment/uhp-chart-recorder-20000psi.jpg',
+    specs: [
+      { label: 'Dải đo', value: '6.000 psi' },
+      { label: 'Ứng dụng', value: 'Ghi biểu đồ áp suất thử' },
+      { label: 'Loại', value: 'Chart recorder' },
+    ],
+    description:
+      'Thiết bị ghi biểu đồ áp suất (chart recorder) dải 6.000 psi, lưu dữ liệu áp theo thời gian trong quá trình thử áp ở dải áp vừa.',
+  },
 
   // ---------------------------------------------------------------- Máy hàn
   {
@@ -891,6 +966,22 @@ export const equipment: Equipment[] = [
     ],
     description:
       'Máy phát hàn Denyo DLW300ESW chạy diesel — vừa cấp dòng hàn 300A vừa phát điện, cơ động cho công trình ngoài trời, cầu cảng và giàn khoan không có nguồn điện sẵn.',
+  },
+  {
+    slug: 'may-phat-han-airman-300a',
+    name: 'Máy phát hàn Airman 300A',
+    categorySlug: 'may-han',
+    brand: 'Airman',
+    power: '300A',
+    image: '/images/equipment/mph-denyo-dlw300esw.jpg',
+    specs: [
+      { label: 'Dòng hàn', value: '300A' },
+      { label: 'Hãng máy', value: 'Airman (Nhật)' },
+      DIESEL,
+      { label: 'Tính năng', value: 'Vừa hàn vừa phát điện' },
+    ],
+    description:
+      'Máy phát hàn Airman 300A chạy diesel — cấp dòng hàn 300A và phát điện phụ, phù hợp thi công hàn tại công trình ngoài trời, cầu cảng và khu vực không có nguồn điện lưới.',
   },
   {
     slug: 'may-han-mig-500a',

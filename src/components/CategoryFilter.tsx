@@ -4,7 +4,7 @@ import { useMemo, useRef, useState } from 'react';
 import type { Equipment } from '@/config/equipment';
 import { EquipmentCard } from '@/components/EquipmentCard';
 
-const PAGE_SIZE = 24;
+const PAGE_SIZE = 20; // multiple of both 4- and 5-col grids so rows fill evenly
 
 function distinct(values: string[]): string[] {
   return Array.from(new Set(values));
@@ -183,7 +183,7 @@ export function CategoryFilter({
             Hiển thị <span className="font-bold text-paper">{start + 1}–{start + pageItems.length}</span>{' '}
             trong <span className="font-bold text-paper">{filtered.length}</span> thiết bị
           </p>
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
             {pageItems.map((item) => (
               <EquipmentCard key={item.slug} item={item} hotline={hotline} />
             ))}
