@@ -508,6 +508,7 @@ export const servedProjects: ServedSector[] = [
       { name: 'Tàu khoan Deepventure', location: 'Ngoài khơi', equipment: 'Máy phát hàn & cáp hàn' },
       { name: 'Dự án PVD6', location: 'Giàn khoan', equipment: 'Hệ thống phun rửa áp lực cao (UHP)' },
       { name: 'MLS Total', location: 'Brunei', equipment: '2× máy phát điện 500kVA' },
+      { name: 'Sửa chữa & hoán cải tàu biển', location: 'Vũng Tàu', equipment: 'Máy phát điện 700kVA' },
     ],
   },
   {
@@ -521,7 +522,9 @@ export const servedProjects: ServedSector[] = [
     sector: 'Hạ tầng & đô thị',
     items: [
       { name: 'HuDeCo', location: 'Thủ Dầu Một, Bình Dương', equipment: 'Máy phát điện 300kVA' },
-      { name: 'Đảo Bình Ba', location: 'Nha Trang, Khánh Hòa', equipment: 'Máy phát điện' },
+      { name: 'Nhà máy xử lý nước thải', location: 'TP.HCM', equipment: 'Máy hàn & thiết bị thi công' },
+      { name: 'Nhà máy Pepperl+Fuchs', location: 'Bình Dương', equipment: 'Máy phát điện dự phòng' },
+      { name: 'Đảo Bình Ba', location: 'Nha Trang, Khánh Hòa', equipment: 'Máy phát điện cấp nguồn hải đảo' },
     ],
   },
 ];

@@ -4,12 +4,10 @@ import { BrandStatement } from '@/components/BrandStatement';
 import { ProjectSpotlight } from '@/components/ProjectSpotlight';
 import { Sectors } from '@/components/Sectors';
 import { ProofWall } from '@/components/ProofWall';
-import { Process } from '@/components/Process';
-import { Features } from '@/components/Features';
 import { CtaBand } from '@/components/CtaBand';
+import { ServedWorks } from '@/components/ServedWorks';
 import { SectionHeader } from '@/components/SectionHeader';
 import { CategoryCard } from '@/components/CategoryCard';
-import { EquipmentCard } from '@/components/EquipmentCard';
 import { ProjectCard } from '@/components/ProjectCard';
 import { Testimonials } from '@/components/Testimonials';
 import { Faq } from '@/components/Faq';
@@ -17,12 +15,11 @@ import { JsonLd } from '@/components/JsonLd';
 import { Reveal } from '@/components/motion/Reveal';
 import { generalFaqs } from '@/config/faqs';
 import { graph, faqSchema } from '@/lib/schema';
-import { loadCategories, loadFeaturedEquipment, loadProjects, loadSettings } from '@/lib/content';
+import { loadCategories, loadProjects, loadSettings } from '@/lib/content';
 
 export default async function Home() {
-  const [categories, featured, projects, settings] = await Promise.all([
+  const [categories, projects, settings] = await Promise.all([
     loadCategories(),
-    loadFeaturedEquipment(),
     loadProjects(),
     loadSettings(),
   ]);
@@ -57,23 +54,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Featured equipment */}
-      <section className="border-b border-edge bg-graphite-2">
-        <div className="mx-auto max-w-[1320px] px-6 py-16 lg:px-10 md:py-20">
-          <SectionHeader eyebrow="Nổi bật" title="Thiết bị được thuê nhiều" link={{ href: '/thiet-bi/', label: 'Xem tất cả' }} />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featured.slice(0, 3).map((item, i) => (
-              <Reveal key={item.slug} delay={i * 70} className="h-full">
-                <EquipmentCard item={item} hotline={settings.hotline} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Process />
-      <Features />
-
       {/* Human brand statement — warmth + focal point */}
       <BrandStatement />
 
@@ -89,11 +69,15 @@ export default async function Home() {
           </div>
         )}
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(1, 4).map((p) => (
+          {projects.slice(1, 10).map((p) => (
             <ProjectCard key={p.slug} project={p} />
           ))}
         </div>
       </section>
+
+      {/* Served-works roster — breadth of experience surfaced on the homepage so
+          khách thấy ngay bề dày kinh nghiệm (họ thường vào thẳng xem kinh nghiệm). */}
+      <ServedWorks className="border-y border-edge bg-graphite" />
 
       <Sectors />
       <Testimonials />
