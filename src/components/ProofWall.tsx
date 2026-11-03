@@ -16,14 +16,12 @@ function Shot({ s, feature = false }: { s: GalleryShot; feature?: boolean }) {
         className="h-full w-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.07]"
       />
 
-      {/* cinematic gradient — caption always legible, deepens on hover */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/15 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
-
-      {/* caption + click affordance */}
+      {/* gradient sits only behind the caption at the bottom — image stays big
+          and bright, text hugs the bottom edge (no floating mid-tile). */}
       <figcaption
         className={
-          'absolute inset-x-0 bottom-0 px-3 pb-2.5 pt-10 font-semibold leading-snug text-white ' +
-          (feature ? 'text-[15px] md:text-[18px]' : 'text-[12px]')
+          'absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/85 to-transparent px-3 pb-2.5 pt-7 font-semibold leading-snug text-white ' +
+          (feature ? 'text-[14px] md:text-[16px]' : 'text-[12px]')
         }
       >
         <span className="line-clamp-2 drop-shadow">{s.caption}</span>
