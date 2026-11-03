@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import type { Project } from '@/config/projects';
 import { ProjectCard } from '@/components/ProjectCard';
 
-const PAGE_SIZE = 9;
+const PAGE_SIZE = 16; // 4 rows of the 4-col grid — denser per page
 
 function pageList(current: number, total: number): (number | '…')[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
@@ -34,7 +34,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
 
   return (
     <div ref={topRef} className="scroll-mt-28">
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {pageItems.map((p) => (
           <ProjectCard key={p.slug} project={p} />
         ))}

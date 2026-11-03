@@ -45,16 +45,28 @@ export function Sectors() {
           </Link>
         </div>
 
-        <div className="mt-8 grid gap-x-12 sm:grid-cols-2">
+        <div className="mt-8 grid gap-x-8 sm:grid-cols-2">
           {sectors.map((s, i) => (
             <Reveal key={s.title} delay={i * 40}>
-              <div className="group flex items-start gap-4 border-t border-edge py-5 transition-colors">
+              <Link
+                href="/du-an/"
+                aria-label={`Xem công trình ngành ${s.title}`}
+                className="group flex items-start gap-4 border-t border-edge py-5 pr-3 transition-colors hover:bg-graphite/70"
+              >
                 <span className="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-signal/10 text-signal-dark transition-colors group-hover:bg-signal group-hover:text-white">{s.icon}</span>
-                <div>
-                  <h3 className="font-display text-[16px] font-extrabold leading-snug tracking-tight text-paper">{s.title}</h3>
+                <div className="min-w-0 flex-1">
+                  <h3 className="flex items-center gap-1.5 font-display text-[16px] font-extrabold leading-snug tracking-tight text-paper transition-colors group-hover:text-signal-dark">
+                    {s.title}
+                  </h3>
                   <p className="mt-1 text-[13.5px] leading-relaxed text-paper-mute">{s.desc}</p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-[12px] font-bold uppercase tracking-wide text-signal-dark opacity-0 transition-all duration-200 group-hover:opacity-100">
+                    Xem công trình
+                    <span aria-hidden className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </span>
                 </div>
-              </div>
+                {/* persistent chevron so the row reads as clickable at a glance */}
+                <span aria-hidden className="mt-1 flex-none text-paper-mute transition-all duration-200 group-hover:translate-x-1 group-hover:text-signal-dark">→</span>
+              </Link>
             </Reveal>
           ))}
         </div>

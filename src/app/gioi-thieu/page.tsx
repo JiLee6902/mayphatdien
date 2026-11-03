@@ -150,20 +150,41 @@ export default async function GioiThieuPage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {coverage.map((c) => (
-            <div key={c.region} className="rounded-xl border border-edge bg-graphite-2 p-6">
-              <h3 className="flex items-center gap-2 font-display text-[15px] font-extrabold tracking-tight text-paper">
-                <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4 text-signal-dark" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" />
-                </svg>
-                {c.region}
-              </h3>
-              <ul className="mt-4 space-y-2">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {coverage.map((c, i) => (
+            <div
+              key={c.region}
+              className="surface group relative flex flex-col overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+            >
+              {/* red accent bar grows on hover — agency polish */}
+              <span aria-hidden className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-signal transition-transform duration-300 group-hover:scale-x-100" />
+
+              <div className="flex items-center justify-between">
+                <span className="font-display text-[13px] font-extrabold tracking-widest text-paper-mute">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-signal/10 text-signal-dark transition-colors group-hover:bg-signal group-hover:text-white">
+                  <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" /><circle cx="12" cy="10" r="3" />
+                  </svg>
+                </span>
+              </div>
+
+              <h3 className="mt-4 font-display text-[17px] font-extrabold tracking-tight text-paper">{c.region}</h3>
+              <p className="mt-1 text-[11.5px] font-bold uppercase tracking-wide text-signal-dark">
+                {c.areas.length} địa bàn
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
                 {c.areas.map((a) => (
-                  <li key={a} className="text-[14px] leading-snug text-paper-dim">{a}</li>
+                  <span
+                    key={a}
+                    className="rounded-full bg-graphite px-2.5 py-1 text-[12px] font-medium leading-snug text-paper-dim ring-1 ring-edge"
+                  >
+                    {a}
+                  </span>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
