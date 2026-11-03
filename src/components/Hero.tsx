@@ -19,7 +19,6 @@ export function Hero({ settings = defaultSiteSettings }: { settings?: SiteSettin
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink/92 via-ink/55 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/30" />
-        <div className="pointer-events-none absolute -right-24 top-24 h-[520px] w-[520px] rounded-full bg-signal/25 blur-[140px]" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1320px] px-6 lg:px-10">
